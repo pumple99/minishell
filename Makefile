@@ -6,11 +6,11 @@
 #    By: seunghoy <seunghoy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/03/12 17:39:53 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/04/04 15:06:40 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := pipex
+NAME := minishell
 CC := cc
 CFLAGS := -Werror -Wall -Wextra
 DEBUG_FLAGS := -g
@@ -19,12 +19,10 @@ LIB_DIR := libft
 SRCS_DIR := srcs
 OBJS_DIR := objs
 
-CHANGABLE_HEADERS = pipex.h pipex_consts.h
+CHANGABLE_HEADERS = 
 
-SRCS_C := $(addprefix $(SRCS_DIR)/, parse.c parse2.c path.c parent.c child.c \
-error_exit.c)
-SRCS_M := $(addprefix $(SRCS_DIR)/, pipex.c check_err.c check_err2.c \
-child_heredoc.c)
+SRCS_C := $(addprefix $(SRCS_DIR)/, )
+SRCS_M := $(addprefix $(SRCS_DIR)/, )
 SRCS_B := $(addprefix $(SRCS_DIR)/, )
 
 OBJS_C := $(SRCS_C:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
