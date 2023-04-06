@@ -1,42 +1,44 @@
-/*
-	1. 어떤 문자열이 들어옴.
-	2. 해당 문자열을 split으로 자르기.
-	3. 잘라진 값들을 가지고 노드로 만들기.
-	4. 각 노드들을 해쉬리스트에 추가해주기.
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
+/*   Updated: 2023/04/06 16:43:34 by sindong-yeo      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	export(t_hash_list *export_list[], char	*str)
+#include "main.h"
+
+static int	inspect_arg(char *export_arg, int *flag);
+
+int	export(t_admin *hash_map, char ***envp, char **export_args)
 {
-	char	**new_export_list;
-	int		flag;
-	int		region;
-	int		i;
+	int	i;
+	int	flag;
 
-	i = 0;
+	i = -1;
 	flag = 0;
-	new_export_list = ft_split(str);
-	// if (export_list == NULL)
-		// error handling.
-	while (new_export_list[i])
+	if (export_args == NULL)
+		return (print_hash_map(hash_map), 0);
+	while (export_args[++i])
 	{
-		region = new_export_list[i][0] - 'A';
-		if (0 <= region && region <= 26)
-		{
-			//export_list[region]에 추가하기.
-		}
-		else if (32 <= region && region <= 58)
-		{
-			//export_list[region]에 추가하기.
-		}
-		else
-		{
-			write(2, "bash: export: ", 15);
-			write(2, export_list[i], ft_strlen(export_list));
-			flag = 1;
-		}
+		if (inspect_arg(export_args[i], &flag) == -1)
+			continue ;
+		add_node(hash_map, export_args[i]);
 	}
-	if (flag == 1)
-		return (1);
-	else
+	make_array(hash_map, envp);
+	return (flag);
+}
+
+static int	inspect_arg(char *export_arg, int *flag)
+{
+	if (('A' <= export_arg[0] && export_arg[0] <= 'Z') \
+		|| ('a' <= export_arg[0] && export_arg[0] <= 'z') \
+		|| ('_' == export_arg[0]))
 		return (0);
+	*flag = 1;
+	return (-1);
 }
