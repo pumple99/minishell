@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/03 21:33:01 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:48:14 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main(void)
 {
 	struct termios	attr;
 	char			*line_read;
+	t_admin			hash_map[53];
+	char			**new_envp;
 
 	tcgetattr(0, &attr);
 	attr.c_lflag &= ~ECHOCTL;
