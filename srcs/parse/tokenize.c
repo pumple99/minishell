@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/06 20:09:56 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:24:16 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,13 @@ t_token	*parse_line(char *line)
 #include <stdio.h>
 int main()
 {
-	char	*line = "(ls'slj)')><>><<<|||&&&sdf ";
+	char	*line = "ls && (|| ls ) || ls";
 	t_token	*token_arr = parse_line(line);
+	t_token *temp = token_arr;
 	while (token_arr->type != end)
 	{
 		printf("%u: %s\n", token_arr->type, token_arr->string);
 		++token_arr;
 	}
+	printf("syntax err: %d\n", is_syntax_err(temp));
 }

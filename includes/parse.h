@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/06 21:51:49 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:29:16 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ int		is_arr_size_plus(t_state prev, t_state new);
 int		is_pre_break_condition(t_state prev, t_state new);
 void	allocate_token_type(t_token *token_arr, int arr_idx);
 t_token	*free_parse_arr(t_token *token_arr, int arr_idx);
+
+//syntax_err.c
+int		is_syntax_err(t_token *token_arr);
 
 #endif
