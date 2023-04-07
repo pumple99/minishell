@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/06 22:01:00 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:14:44 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
 		return (error);
 	else if (type == and || type == or || type == pipe)
 		return (none);
-	else if (paren_r)
+	else if (type == paren_r)
 	{
 		if (*p_depth > 0)
 		{
@@ -93,6 +93,9 @@ t_syntax_s	get_syntax_state(t_syntax_s prev, int *p_depth, t_token_type type)
 	}
 }
 
+//use if flexible
+
+#include <stdio.h>
 
 int	is_syntax_err(t_token *token_arr)
 {
@@ -105,13 +108,18 @@ int	is_syntax_err(t_token *token_arr)
 	while (token_arr->type != end)
 	{
 		new = get_syntax_state(prev, &paren_depth, token_arr->type);
+		printf("state: %u\n", new);
 		if (new == error)
 		{
-			//
+			//temp out
+			printf("minishell: syntax error near unexpected token `%s'\n", token_arr->string);
 			return (1);
 		}
 		prev = new;
 		++token_arr;
 	}
+	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
+	|| prev == none)
+		return (printf("minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
 	return (0);
 }
