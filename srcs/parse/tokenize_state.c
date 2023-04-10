@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:36:36 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/06 19:31:14 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:22:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_state	prev_general(t_state prev_state, char *str)
 
 	c = *str;
 	new.char_s = c;
-	if (c == ' ' || c == '\t')
+	if (c == ' ' || c == '\t' || c == '\n')
 		return (new.num_s = outside, new);
 	else if (c == '&' && *(str + 1) == '&')
 		return (new.num_s = op_may_change, new);
@@ -53,7 +53,7 @@ static t_state	prev_is_op_may_change(t_state prev_state, char *str)
 
 	c = *str;
 	new.char_s = c;
-	if (c == ' ' || c == '\t')
+	if (c == ' ' || c == '\t' || c == '\n')
 		return (new.num_s = outside, new);
 	else if (c == '|' || c == '<' || c == '>' || c == '&')
 	{
@@ -74,7 +74,7 @@ static t_state	prev_is_op_may_change(t_state prev_state, char *str)
 // if (prev_state.num_s == outside || prev_state.num_s == op_end \
 // 	|| prev_state.num_s == op_paren || prev_state.num_s == inside)
 // 		return (prev_general(prev_state, str));
-t_state	get_new_state(t_state prev_state, char *str)
+t_state	get_tokenize_state(t_state prev_state, char *str)
 {
 	if (prev_state.num_s == quote)
 		return (prev_is_quote(prev_state, str));

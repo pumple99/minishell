@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:36:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/06 20:04:38 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:31:52 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,28 @@ int	is_pre_break_condition(t_state prev, t_state new)
 	return (0);
 }
 
-void	allocate_token_type(t_token *token_arr, int arr_idx)
+t_token_type	get_token_type(char *str)
 {
-	char	*str;
-
-	str = token_arr[arr_idx].string;
 	if (ft_strncmp(str, "(", 2) == 0)
-		token_arr[arr_idx].type = paren_l;
+		return (paren_l);
 	else if (ft_strncmp(str, ")", 2) == 0)
-		token_arr[arr_idx].type = paren_r;
+		return (paren_r);
 	else if (ft_strncmp(str, ">", 2) == 0)
-		token_arr[arr_idx].type = redirect_r;
+		return (redirect_r);
 	else if (ft_strncmp(str, "<", 2) == 0)
-		token_arr[arr_idx].type = redirect_l;
+		return (redirect_l);
 	else if (ft_strncmp(str, ">>", 3) == 0)
-		token_arr[arr_idx].type = append;
+		return (append);
 	else if (ft_strncmp(str, "<<", 3) == 0)
-		token_arr[arr_idx].type = heredoc;
+		return (heredoc);
 	else if (ft_strncmp(str, "&&", 3) == 0)
-		token_arr[arr_idx].type = and;
+		return (and);
 	else if (ft_strncmp(str, "||", 3) == 0)
-		token_arr[arr_idx].type = or;
+		return (or);
 	else if (ft_strncmp(str, "|", 2) == 0)
-		token_arr[arr_idx].type = pipe;
+		return (pipe);
 	else
-		token_arr[arr_idx].type = word;
+		return (word);
 }
 
 t_token	*free_parse_arr(t_token *token_arr, int arr_idx)
