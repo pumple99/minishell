@@ -6,34 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/07 17:24:16 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:58:11 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../includes/parse.h"
-
-static t_token	*make_arr(char *line)
-{
-	t_state	state;
-	t_state	new_state;
-	int		token_count;
-	t_token	*token_arr;
-
-	state = init_state();
-	token_count = 0;
-	while (*line)
-	{
-		new_state = get_new_state(state, line++);
-		if (is_arr_size_plus(state, new_state))
-			++token_count;
-		state = new_state;
-	}
-	token_arr = (t_token *)malloc(sizeof(t_token) * (token_count + 1));
-	if (token_arr)
-		token_arr[token_count].type = end;
-	return (token_arr);
-}
 
 /*src: word's starting address, not a start of total input
 return: size of string, not include " and '*/
@@ -47,7 +25,7 @@ static int	get_token_size(char *src)
 	token_size = 0;
 	while (*src)
 	{
-		new_state = get_new_state(state, src++);
+		new_state = get_tokenize_state(state, src++);
 		if (is_pre_break_condition(state, new_state))
 			break ;
 		++token_size;
@@ -77,7 +55,7 @@ static char	*copy_token_in_line(char *src)
 	copy_token[token_size] = '\0';
 	while (*src)
 	{
-		new_state = get_new_state(state, src);
+		new_state = get_tokenize_state(state, src);
 		if (is_pre_break_condition(state, new_state))
 			break ;
 		copy_token[str_idx++] = *(src++);
@@ -88,44 +66,39 @@ static char	*copy_token_in_line(char *src)
 	return (copy_token);
 }
 
-t_token	*parse_line(char *line)
+t_token_list	tokenize_line(char *line)
 {
-	t_token	*token_arr;
-	t_state	state;
-	t_state	new_state;
-	int		arr_idx;
+	t_token_list	token_list;
+	t_state			state;
+	t_state			new_state;
 
-	token_arr = make_arr(line);
-	if (token_arr == 0)
-		return (0);
+	token_list = make_token_list();
 	state = init_state();
-	arr_idx = 0;
 	while (*line)
 	{
-		new_state = get_new_state(state, line);
+		new_state = get_tokenize_state(state, line);
 		if (is_arr_size_plus(state, new_state))
 		{
-			token_arr[arr_idx].string = copy_token_in_line(line);
-			if (token_arr[arr_idx].string == 0)
-				return (free_parse_arr(token_arr, arr_idx));
-			allocate_token_type(token_arr, arr_idx++);
+			add_token(&token_list, copy_token_in_line(line));
 		}
 		state = new_state;
 		++line;
 	}
-	return (token_arr);
+	add_token(&token_list, "end");
+	token_list.tail->type = end;
+	return (token_list);
 }
 
 #include <stdio.h>
 int main()
 {
-	char	*line = "ls && (|| ls ) || ls";
-	t_token	*token_arr = parse_line(line);
-	t_token *temp = token_arr;
-	while (token_arr->type != end)
+	char	*line = "(ls||ls|) && cmd";
+	t_token_list	token_list = tokenize_line(line);
+	t_token *node = token_list.head;
+	while (node->type != end)
 	{
-		printf("%u: %s\n", token_arr->type, token_arr->string);
-		++token_arr;
+		printf("%u: %s\n", node->type, node->string);
+		node = node->next;
 	}
-	printf("syntax err: %d\n", is_syntax_err(temp));
+	printf("syntax err: %d\n", is_syntax_err(token_list));
 }

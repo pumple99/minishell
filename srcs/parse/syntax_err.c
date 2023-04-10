@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/07 17:14:44 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:52:14 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,26 +97,28 @@ t_syntax_s	get_syntax_state(t_syntax_s prev, int *p_depth, t_token_type type)
 
 #include <stdio.h>
 
-int	is_syntax_err(t_token *token_arr)
+int	is_syntax_err(t_token_list token_list)
 {
 	int			paren_depth;
 	t_syntax_s	prev;
 	t_syntax_s	new;
+	t_token		*node;
 
 	prev = none;
 	paren_depth = 0;
-	while (token_arr->type != end)
+	node = token_list.head;
+	while (node->type != end)
 	{
-		new = get_syntax_state(prev, &paren_depth, token_arr->type);
+		new = get_syntax_state(prev, &paren_depth, node->type);
 		printf("state: %u\n", new);
 		if (new == error)
 		{
 			//temp out
-			printf("minishell: syntax error near unexpected token `%s'\n", token_arr->string);
+			printf("minishell: syntax error near unexpected token `%s'\n", node->string);
 			return (1);
 		}
 		prev = new;
-		++token_arr;
+		node = node->next;
 	}
 	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
 	|| prev == none)
