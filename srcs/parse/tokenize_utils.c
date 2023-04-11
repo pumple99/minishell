@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:36:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/10 20:31:52 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:13:07 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,4 @@ t_token_type	get_token_type(char *str)
 		return (pipe);
 	else
 		return (word);
-}
-
-t_token	*free_parse_arr(t_token *token_arr, int arr_idx)
-{
-	//need change
-	return (0);
 }

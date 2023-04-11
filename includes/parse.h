@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/10 20:49:25 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/11 21:55:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef enum e_num_state
 	quote,
 	op_paren,
 	op_may_change,
-	op_end
+	op_end = 6
 }	t_num_state;
 
 typedef struct s_state
@@ -32,7 +32,7 @@ typedef struct s_state
 
 typedef enum e_token_type
 {
-	word = 10,
+	word = 7,
 	paren_l,
 	paren_r,
 	redirect_r,
@@ -42,13 +42,23 @@ typedef enum e_token_type
 	and,
 	or,
 	pipe,
-	end
+	end = 17
 }	t_token_type;
+
+typedef	enum e_expand_type
+{
+	quote_word = 18,
+	quote_end,
+	non_quote,
+	non_quote_end,
+	not_expanded = 22
+}	t_expand_type;
 
 typedef struct s_token
 {
 	char			*string;
 	t_token_type	type;
+	t_expand_type	expand;
 	struct s_token	*next;
 }	t_token;
 
@@ -60,7 +70,8 @@ typedef struct s_token_list
 
 typedef enum e_syntax_s
 {
-	none = 20,
+	start = 23,
+	none,
 	exist,
 	a_bracket,
 	done,
@@ -76,14 +87,28 @@ t_state			init_state(void);
 int				is_arr_size_plus(t_state prev, t_state new);
 int				is_pre_break_condition(t_state prev, t_state new);
 t_token_type	get_token_type(char *str);
-t_token			*free_parse_arr(t_token *token_arr, int arr_idx);
 
 //tokenize_list.c
 t_token_list	make_token_list(void);
 t_token			*new_token(char *token_str);
 void			add_token(t_token_list *tl, char *token_str);
+void			delete_next_token(t_token *prev_token);
+t_token			*insert_token_to_next(t_token *prev_token, char *str);
+
+//tokenize.c
+t_token_list	tokenize_line(char *line);
 
 //syntax_err.c
 int				is_syntax_err(t_token_list token_list);
+
+//join_quote_split.c
+void			join_quote_split(t_token_list tl);
+
+//quote_split.c
+
+
+//expand.c
+int				is_include_quote(char *str);
+void			expand_token_list(t_token_list tl);
 
 #endif

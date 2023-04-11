@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/10 20:58:11 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:11:05 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,4 @@ t_token_list	tokenize_line(char *line)
 	add_token(&token_list, "end");
 	token_list.tail->type = end;
 	return (token_list);
-}
-
-#include <stdio.h>
-int main()
-{
-	char	*line = "(ls||ls|) && cmd";
-	t_token_list	token_list = tokenize_line(line);
-	t_token *node = token_list.head;
-	while (node->type != end)
-	{
-		printf("%u: %s\n", node->type, node->string);
-		node = node->next;
-	}
-	printf("syntax err: %d\n", is_syntax_err(token_list));
 }
