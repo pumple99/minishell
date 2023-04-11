@@ -6,13 +6,13 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/10 20:52:14 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:02:52 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 
-t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
+static t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
 {
 	if (type == paren_r || type == and || type == or || type == pipe)
 		return (error);
@@ -27,7 +27,7 @@ t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
 		return (a_bracket);
 }
 
-t_syntax_s	prev_is_exist(int *p_depth, t_token_type type)
+static t_syntax_s	prev_is_exist(int *p_depth, t_token_type type)
 {
 	if (type == word)
 		return (exist);
@@ -49,7 +49,7 @@ t_syntax_s	prev_is_exist(int *p_depth, t_token_type type)
 		return (a_bracket);
 }
 
-t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
+static t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
 {
 	if (type == paren_l || type == word)
 		return (error);
@@ -69,9 +69,10 @@ t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
 		return (done_a_bracket);
 }
 
-t_syntax_s	get_syntax_state(t_syntax_s prev, int *p_depth, t_token_type type)
+static t_syntax_s	get_syntax_state(t_syntax_s prev, int *p_depth, \
+t_token_type type)
 {
-	if (prev == none)
+	if (prev == none || prev == start)
 		return (prev_is_none(p_depth, type));
 	else if (prev == exist)
 		return (prev_is_exist(p_depth, type));
@@ -102,23 +103,23 @@ int	is_syntax_err(t_token_list token_list)
 	int			paren_depth;
 	t_syntax_s	prev;
 	t_syntax_s	new;
-	t_token		*node;
+	t_token		*token;
 
-	prev = none;
+	prev = start;
 	paren_depth = 0;
-	node = token_list.head;
-	while (node->type != end)
+	token = token_list.head;
+	while (token->type != end)
 	{
-		new = get_syntax_state(prev, &paren_depth, node->type);
+		new = get_syntax_state(prev, &paren_depth, token->type);
 		printf("state: %u\n", new);
 		if (new == error)
 		{
 			//temp out
-			printf("minishell: syntax error near unexpected token `%s'\n", node->string);
+			printf("minishell: syntax error near unexpected token `%s'\n", token->string);
 			return (1);
 		}
 		prev = new;
-		node = node->next;
+		token = token->next;
 	}
 	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
 	|| prev == none)
