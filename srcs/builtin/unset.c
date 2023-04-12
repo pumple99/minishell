@@ -6,12 +6,12 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:27:13 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 16:52:59 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:19:31 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
-#include "main.h"
+#include "minishell.h"
 #include <stdlib.h>
 
 int	builtin_unset(t_admin *hash_map, char ***envp, char **args)

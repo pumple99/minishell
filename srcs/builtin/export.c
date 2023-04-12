@@ -6,11 +6,11 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:01:15 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:19:26 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "minishell.h"
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
