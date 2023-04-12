@@ -21,5 +21,10 @@ struct	s_node
 
 t_node	*create_node(char *export_arg);
 void	add_node(t_admin	*hash_map, char *new_arg);
+t_node	*search_node(t_admin *hash_map, char *key);
+void	delete_node(t_admin *hash_map, char *key, int *re_build_flag);
+
+//utils.c
+int		get_index(char *str);
 
 #endif
