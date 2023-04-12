@@ -6,13 +6,13 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:18:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 17:53:12 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/12 18:19:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include "libft.h"
-#include "main.h"
+#include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
 
