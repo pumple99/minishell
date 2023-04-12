@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   list_search_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 20:23:40 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 16:52:38 by dongyshi         ###   ########.fr       */
+/*   Created: 2023/04/06 17:20:52 by dongyshi          #+#    #+#             */
+/*   Updated: 2023/04/10 17:48:23 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "list.h"
+#include "libft.h"
 
-void	builtin_env(char *envp[])
+t_node	*search_node(t_admin *hash_map, char *key)
 {
-	int	i;
+	int		index;
+	t_node	*cur_node;
 
-	i = 0;
-	while (envp[i])
+	index = get_index(key);
+	cur_node = hash_map[index].head->next;
+	while (cur_node != hash_map[index].tail)
 	{
-		printf("%s\n", envp[i]);
-		i++;
+		if (ft_strncmp(cur_node->key, key, ft_strlen(key)) == 0)
+			return (cur_node);
+		cur_node = cur_node->next;
 	}
+	return (NULL);
 }
