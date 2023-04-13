@@ -6,28 +6,30 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 22:00:52 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:12:48 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
+#include <stdlib.h>
 
 static int	get_quote_split_len(char *str)
 {
 	int		len;
 	char	first_char;
 
-	first_char = *(str++);
+	first_char = *str;
 	if (first_char == '\"' || first_char == '\'')
 	{
-		len = 2;
-		while (*(str++) != first_char)
+		len = 1;
+		while (str[len] != first_char && str[len] != 0)
 			++len;
+		++len;
 	}
 	else
 	{
 		len = 1;
-		while (str[len] != '\'' && str[len] != '\"')
+		while (str[len] != 0 && str[len] != '\'' && str[len] != '\"')
 			++len;
 	}
 	return (len);

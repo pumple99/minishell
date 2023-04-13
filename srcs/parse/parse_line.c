@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:08:15 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 18:02:46 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:13:52 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_token_list	parse_line(char *line)
 #include <stdio.h>
 int main()
 {
-	char	*line = "   \t\t\t\n\n";
-	t_token_list	token_list = tokenize_line(line);
+	char	*line = "(ls) && abc\"sdlk$lskc'''\"dddslk  sdk'dkjd$dlk'dk\"\"";
+	t_token_list	token_list = parse_line(line);
 	t_token *token = token_list.head;
 	while (token->type != end)
 	{
-		printf("%u: %s\n", token->type, token->string);
+		printf("type: %u, expand: %u, stirng: %s\n", token->type, token->expand, token->string);
 		token = token->next;
 	}
-	printf("syntax err: %d\n", is_syntax_err(token_list));
+	// printf("syntax err: %d\n", is_syntax_err(token_list));
 }

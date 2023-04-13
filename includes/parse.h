@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 21:55:49 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/12 21:21:46 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,11 @@ int				is_syntax_err(t_token_list token_list);
 void			join_quote_split(t_token_list tl);
 
 //quote_split.c
-
+void			quote_split(t_token_list tl);
 
 //expand.c
 int				is_include_quote(char *str);
+int				is_param_expandable(char *str);
 void			expand_token_list(t_token_list tl);
 
 #endif
