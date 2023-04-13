@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 18:02:52 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:14:33 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	is_syntax_err(t_token_list token_list)
 	while (token->type != end)
 	{
 		new = get_syntax_state(prev, &paren_depth, token->type);
-		printf("state: %u\n", new);
 		if (new == error)
 		{
 			//temp out

@@ -6,11 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 21:55:51 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/12 21:19:21 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
+#include "../../libft/libft.h"
 
 static void	quote_removal(t_token_list tl)
 {
@@ -42,12 +43,31 @@ int	is_include_quote(char *str)
 	return (0);
 }
 
+int	is_param_expandable(char *str)
+{
+	char	c;
+
+	if (*str == '\'')
+		return (0);
+	while (*str)
+	{
+		if (*str == '$')
+		{
+			c = *(str + 1);
+			if (ft_isalpha(c) || c == '_' || c == '?')
+				return (1);
+		}
+		++str;
+	}
+	return (0);
+}
+
 void	expand_token_list(t_token_list tl)
 {
-	quote_split();
-	expand_param();
-	expand_word_split();
-	expand_filename();
-	quote_removal(tl);
-	join_quote_split(tl);
+	quote_split(tl);
+	// expand_param(tl);
+	// expand_word_split();
+	// expand_filename();
+	// quote_removal(tl);
+	// join_quote_split(tl);
 }
