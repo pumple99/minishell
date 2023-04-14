@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:02:18 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:38:01 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	expand_token_list(t_admin *hash_map, t_token_list *tl)
 	quote_split(tl);
 	expand_param(hash_map, tl);
 	expand_word_split(tl);
-	// expand_filename();
+	expand_filename(tl);
 	quote_removal(tl);
 	join_quote_split(tl);
 }
