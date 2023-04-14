@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 16:11:05 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:13:36 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ t_token_list	tokenize_line(char *line)
 	t_state			state;
 	t_state			new_state;
 
-	token_list = make_token_list();
+	token_list.head = 0;
+	token_list.tail = 0;
 	state = init_state();
 	while (*line)
 	{

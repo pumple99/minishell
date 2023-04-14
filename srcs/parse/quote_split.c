@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/12 17:12:48 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:48:22 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,40 +66,38 @@ static void	allocate_expand_type(t_token *token)
 		token->expand = non_quote;
 }
 
-static void	quote_split_word(t_token *first_token, char *str)
+static void	quote_split_word(t_token_list *tl, t_token *first_token, char *str)
 {
 	char	*temp;
 	t_token	*temp_token;
 
 	temp_token = first_token;
-	first_token->string = get_quote_split_str(&str);
-	allocate_expand_type(first_token);
 	while (*str)
 	{
 		temp = get_quote_split_str(&str);
 		temp_token = insert_token_to_next(temp_token, temp);
 		allocate_expand_type(temp_token);
 	}
+	delete_certain_token(tl, first_token);
 	if (temp_token->expand == quote_word)
 		temp_token->expand = quote_end;
 	else
 		temp_token->expand = non_quote_end;
 }
 
-void	quote_split(t_token_list tl)
+void	quote_split(t_token_list *tl)
 {
 	t_token	*token;
 	char	*str;
 
-	token = tl.head;
+	token = tl->head;
 	while (token->type != end)
 	{
 		if (token->expand == not_expanded && token->type == word \
 		&& is_include_quote(token->string))
 		{
 			str = token->string;
-			quote_split_word(token, str);
-			free(str);
+			quote_split_word(tl, token, str);
 		}
 		token = token->next;
 	}

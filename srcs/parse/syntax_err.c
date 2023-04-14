@@ -6,97 +6,43 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/12 17:14:33 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:57:10 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
+#include "../../libft/pf_printf.h"
 
-static t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
+static int	genral_syntax_err(t_token *token)
 {
-	if (type == paren_r || type == and || type == or || type == pipe)
-		return (error);
-	else if (type == word)
-		return (exist);
-	else if (type == paren_l)
-	{
-		++(*p_depth);
-		return (none);
-	}
-	else
-		return (a_bracket);
+	fd_printf(2, "minishell: syntax error near unexpected token `%s'\n" \
+	, token->string);
+	return (1);
 }
 
-static t_syntax_s	prev_is_exist(int *p_depth, t_token_type type)
+// last_token means token before end token
+static int	readline_syntax_err(int paren_depth, t_syntax_s prev, \
+t_token *last_token)
 {
-	if (type == word)
-		return (exist);
-	else if (type == paren_l)
-		return (error);
-	else if (type == and || type == or || type == pipe)
-		return (none);
-	else if (type == paren_r)
+	t_state	state;
+	char	*str;
+
+	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
+	|| prev == none)
+		return (fd_printf(2, \
+		"minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
+	if (last_token->type == word)
 	{
-		if (*p_depth > 0)
-		{
-			--(*p_depth);
-			return (done);
-		}
-		else
-			return (error);
+		str = last_token->string;
+		state = init_state();
+		while (*str)
+			state = get_tokenize_state(state, str++);
+		if (state.num_s == quote)
+			return (fd_printf(2, \
+		"minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
 	}
-	else
-		return (a_bracket);
+	return (0);
 }
-
-static t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
-{
-	if (type == paren_l || type == word)
-		return (error);
-	else if (type == and || type == or || type == pipe)
-		return (none);
-	else if (type == paren_r)
-	{
-		if (*p_depth > 0)
-		{
-			--(*p_depth);
-			return (done);
-		}
-		else
-			return (error);
-	}
-	else
-		return (done_a_bracket);
-}
-
-static t_syntax_s	get_syntax_state(t_syntax_s prev, int *p_depth, \
-t_token_type type)
-{
-	if (prev == none || prev == start)
-		return (prev_is_none(p_depth, type));
-	else if (prev == exist)
-		return (prev_is_exist(p_depth, type));
-	else if (prev == done)
-		return (prev_is_done(p_depth, type));
-	else if (prev == a_bracket)
-	{
-		if (type == word)
-			return (exist);
-		else
-			return (error);
-	}
-	else
-	{
-		if (type == word)
-			return (done);
-		else
-			return (error);
-	}
-}
-
-//use if flexible
-
-#include <stdio.h>
 
 int	is_syntax_err(t_token_list token_list)
 {
@@ -104,6 +50,7 @@ int	is_syntax_err(t_token_list token_list)
 	t_syntax_s	prev;
 	t_syntax_s	new;
 	t_token		*token;
+	t_token		*prev_token;
 
 	prev = start;
 	paren_depth = 0;
@@ -112,16 +59,10 @@ int	is_syntax_err(t_token_list token_list)
 	{
 		new = get_syntax_state(prev, &paren_depth, token->type);
 		if (new == error)
-		{
-			//temp out
-			printf("minishell: syntax error near unexpected token `%s'\n", token->string);
-			return (1);
-		}
+			return (genral_syntax_err(token));
 		prev = new;
+		prev_token = token;
 		token = token->next;
 	}
-	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
-	|| prev == none)
-		return (printf("minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
-	return (0);
+	return (readline_syntax_err(paren_depth, prev, prev_token));
 }

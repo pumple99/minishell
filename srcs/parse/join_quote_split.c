@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 20:31:15 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:50:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ static void	delete_residue(t_token *first_token)
 	delete_next_token(first_token);
 }
 
-void	join_quote_split(t_token_list tl)
+void	join_quote_split(t_token_list *tl)
 {
 	t_token	*token;
 	char	*joined_word;
 
-	token = tl.head;
+	token = tl->head;
 	while (token->type != end)
 	{
 		if (token->expand == non_quote || token->expand == quote_word)
@@ -82,6 +82,8 @@ void	join_quote_split(t_token_list tl)
 			token->string = joined_word;
 			token->expand = not_expanded;
 		}
+		else
+			token->expand = not_expanded;
 		token = token->next;
 	}
 }

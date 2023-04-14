@@ -6,19 +6,20 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/12 21:19:21 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:02:18 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/parse.h"
 #include "../../libft/libft.h"
+#include "../../includes/list.h"
 
-static void	quote_removal(t_token_list tl)
+static void	quote_removal(t_token_list *tl)
 {
 	t_token	*token;
 	char	*str;
 
-	token = tl.head;
+	token = tl->head;
 	while (token->type != end)
 	{
 		if (token->expand == quote_word || token->expand == quote_end)
@@ -62,12 +63,12 @@ int	is_param_expandable(char *str)
 	return (0);
 }
 
-void	expand_token_list(t_token_list tl)
+void	expand_token_list(t_admin *hash_map, t_token_list *tl)
 {
 	quote_split(tl);
-	// expand_param(tl);
-	// expand_word_split();
+	expand_param(hash_map, tl);
+	expand_word_split(tl);
 	// expand_filename();
-	// quote_removal(tl);
-	// join_quote_split(tl);
+	quote_removal(tl);
+	join_quote_split(tl);
 }
