@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:10:30 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 21:10:47 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,12 @@ void			expand_param(t_admin *hash_map, t_token_list *tl);
 
 //expand_word_split.c
 void			expand_word_split(t_token_list *tl);
+
+//expand_filename.c
+void			expand_filename(t_token_list *tl);
+
+//get_wild_card_str.c
+int				is_include_wild_card(t_token *first_token);
+char			*get_wild_card_str(t_token *first_token);
 
 #endif

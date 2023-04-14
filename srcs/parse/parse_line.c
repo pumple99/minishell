@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:08:15 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 16:01:59 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:03:18 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_token_list	parse_line(t_admin *hash_map, char *line)
 #include <stdio.h>
 int main()
 {
-	char	*line = "slkj '' lsdjk $$$ || dk |||";
+	char	*line = "(* ||  ab*c/dk'**'j\"sil*\"slk | hihi)";
 	t_token_list	token_list = parse_line(0, line);
 	t_token *token = token_list.head;
 	while (token->type != end)
