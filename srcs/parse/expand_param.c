@@ -6,13 +6,14 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/13 16:42:37 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:37:41 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../../includes/parse.h"
 #include "../../libft/libft.h"
+#include "../../includes/list.h"
 
 static char	*get_search_str(char **p_str)
 {
@@ -34,24 +35,48 @@ static char	*get_search_str(char **p_str)
 		search_str[len] = (*p_str)[len];
 		++len;
 	}
-	*p_str += (len - 1);
+	(*p_str) += (len - 1);
 	return (search_str);
 }
 
-//*p_str is a address right next to $
+//test_func
 static char	*get_param_value(t_admin *hash_map, char **p_str)
 {
-	char	*search_str;
-	char	*re;
-	int		len;
+	//test_func
+	char *re;
 
-	if (**p_str == '?')
-		return (*p_str += 1, searcho_node(hash_map, "?")->value);
-	search_str = get_search_str(p_str);
-	re = searcho_node(hash_map, search_str)->value;
-	free(search_str);
+	re = (char *)malloc(10);
+	if (hash_map == p_str)
+		return (0);
+	get_search_str(p_str);
+	re[9] = 0;
+	re[0] = 'a';
+	re[1] = 'b';
+	re[2] = 'c';
+	re[3] = ' ';
+	re[4] = ' ';
+	re[5] = 'e';
+	re[6] = 'n';
+	re[7] = 'd';
+	re[8] = 0;
 	return (re);
 }
+
+//*p_str is a address right next to $
+// static char	*get_param_value(t_admin *hash_map, char **p_str)
+// {
+// 	char	*search_str;
+// 	t_node	*node;
+
+// 	if (**p_str == '?')
+// 		return (*p_str += 1, search_node(hash_map, "?")->value);
+// 	search_str = get_search_str(p_str);
+// 	node = search_node(hash_map, search_str);
+// 	free(search_str);
+// 	if (node)
+// 		return (node->value);
+// 	return (0);
+// }
 
 static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 {
@@ -95,8 +120,11 @@ static void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
 		{
 			++str;
 			param_value = get_param_value(hash_map, &str);
-			while (*param_value)
-				expand[len++] = *(param_value++);
+			if (param_value)
+			{
+				while (*param_value)
+					expand[len++] = *(param_value++);
+			}
 		}
 		else
 			expand[len++] = *str;
@@ -104,12 +132,12 @@ static void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
 	}
 }
 
-void	expand_param(t_admin *hash_map, t_token_list tl)
+void	expand_param(t_admin *hash_map, t_token_list *tl)
 {
 	t_token	*token;
 	char	*expand_str;
 
-	token = tl.head;
+	token = tl->head;
 	while (token->type != end)
 	{
 		if (token->type == word && is_param_expandable(token->string))
