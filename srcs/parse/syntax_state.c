@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:09:59 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:37:52 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
 {
-	if (type == paren_r || type == and || type == or || type == pipe)
+	if (type == paren_r || type == and || type == or || type == _pipe)
 		return (error);
 	else if (type == word)
 		return (exist);
@@ -33,7 +33,7 @@ static t_syntax_s	prev_is_exist(int *p_depth, t_token_type type)
 		return (exist);
 	else if (type == paren_l)
 		return (error);
-	else if (type == and || type == or || type == pipe)
+	else if (type == and || type == or || type == _pipe)
 		return (none);
 	else if (type == paren_r)
 	{
@@ -53,7 +53,7 @@ static t_syntax_s	prev_is_done(int *p_depth, t_token_type type)
 {
 	if (type == paren_l || type == word)
 		return (error);
-	else if (type == and || type == or || type == pipe)
+	else if (type == and || type == or || type == _pipe)
 		return (none);
 	else if (type == paren_r)
 	{
