@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 21:10:47 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:04:38 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef	enum e_expand_type
 	quote_end,
 	non_quote,
 	non_quote_end,
-	not_expanded = 22
+	not_expanded,
+	wild_card = 23
 }	t_expand_type;
 
 typedef struct s_token
@@ -81,6 +82,19 @@ typedef enum e_syntax_s
 	error
 }	t_syntax_s;
 
+//tl_basic_func.c
+t_token			*new_token(char *token_str);
+void			add_token(t_token_list *tl, char *token_str);
+void			delete_next_token(t_token *prev_token);
+t_token			*delete_certain_token(t_token_list *tl, t_token *token);
+t_token			*insert_token_to_next(t_token *prev_token, char *str);
+
+//tl_utils
+void			delete_residue(t_token *first_token);
+t_token			*delete_one_word(t_token_list *tl, t_token *first_token);
+void			insert_token_list(t_token_list *tl, t_token *prev, \
+ t_token *first_of_tl);
+
 //tokenize_state.c
 t_state			get_tokenize_state(t_state prev_state, char *str);
 t_state			init_state(void);
@@ -89,13 +103,6 @@ t_state			init_state(void);
 int				is_arr_size_plus(t_state prev, t_state new);
 int				is_pre_break_condition(t_state prev, t_state new);
 t_token_type	get_token_type(char *str);
-
-//tokenize_list.c
-t_token			*new_token(char *token_str);
-void			add_token(t_token_list *tl, char *token_str);
-void			delete_next_token(t_token *prev_token);
-void			delete_certain_token(t_token_list *tl, t_token *token);
-t_token			*insert_token_to_next(t_token *prev_token, char *str);
 
 //tokenize.c
 t_token_list	tokenize_line(char *line);
