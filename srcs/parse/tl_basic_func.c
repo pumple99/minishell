@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_list.c                                    :+:      :+:    :+:   */
+/*   tl_basic_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:13:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 14:42:30 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:41:31 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	delete_next_token(t_token *prev_token)
 	free(to_delete);
 }
 
-void	delete_certain_token(t_token_list *tl, t_token *token)
+t_token	*delete_certain_token(t_token_list *tl, t_token *token)
 {
 	t_token	*prev;
 
@@ -78,7 +78,7 @@ void	delete_certain_token(t_token_list *tl, t_token *token)
 		tl->head = token->next;
 		free(token->string);
 		free(token);
-		return ;
+		return (0);
 	}
 	prev = tl->head;
 	while (prev->next)
@@ -88,8 +88,9 @@ void	delete_certain_token(t_token_list *tl, t_token *token)
 			prev->next = token->next;
 			free(token->string);
 			free(token);
-			return ;
+			return (prev);
 		}
 		prev = prev->next;
 	}
+	return (0);
 }

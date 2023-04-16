@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 14:50:49 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 17:22:23 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,6 @@ static void	fill_empty_str(t_token *first_token, char *empty_str)
 			break;
 		temp = temp->next;
 	}
-}
-
-static void	delete_residue(t_token *first_token)
-{
-	while (first_token->next->expand != quote_end && \
-	first_token->next->expand != non_quote_end)
-	{
-		delete_next_token(first_token);
-	}
-	delete_next_token(first_token);
 }
 
 void	join_quote_split(t_token_list *tl)
