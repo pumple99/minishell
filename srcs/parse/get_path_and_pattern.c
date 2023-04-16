@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_path.c                                         :+:      :+:    :+:   */
+/*   get_path_and_pattern.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/16 17:43:06 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/16 18:03:58 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	make_path(char **path, char *wild_card_str, int path_len, int add_len);
+void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list) // path를 할당하고, pattern 리스트를 생성해주는 함수.
+{
+	*path = get_path(wild_card_str);
+	if (*path == NULL)
+	{
+		*path = getcwd(NULL, 0);
+		*absolute_path = ft_strdup("");
+		get_pattern(pattern_list, 0, wild_card_str);
+	}
+	else
+	{
+		*absolute_path = ft_strdup(*path);
+		get_pattern(pattern_list, ft_strlen(*path), wild_card_str);
+	}
+}
 
-char	*get_path(char *wild_card_str) // 무조건 별이 들어오는 부분.
+static char	*get_path(char *wild_card_str) // 무조건 별이 들어오는 부분.
 {
 	int		i;
 	int		path_len;
@@ -48,7 +62,7 @@ char	*get_path(char *wild_card_str) // 무조건 별이 들어오는 부분.
 	return (path);
 }
 
-void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str)
+static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str)
 {
 	int	start_idx;
 	int	end_idx;
@@ -70,19 +84,4 @@ void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str)
 		}
 		++end_idx;
 	}
-}
-
-int main(void)
-{
-	char	*str = "/AAA/BB/***/*D/*/**";
-	char	*path = get_path(str);
-	t_token_list	*pattern;
-
-	printf("%s\n", path);
-	get_pattern(pattern, ft_strlen(path), str);
-	t_token *head = pattern->head;
-	while (head != NULL) {
-		printf("%s\n", head->string);
-	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/16 17:40:44 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:12:56 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,29 @@ void	expand_filename(t_token_list *tl)
 	{
 		if ((token->type == non_quote || token->type == non_quote_end) && ft_strchr(token->string, '*') != NULL)
 		{
-			//expand(tl);
+			matched_list = expand(token);
 		}
 		token = token->next;
 	}
 }
 
-void	expand(t_token *token)
+t_token_list	*expand(t_token *token)
 {
 	t_token_list	*matched_result; // 매칭되는 애들은 여기에 다 붙어있음.
 	t_token_list	*pattern_list; // 와일드 카드 뒷부분의 패턴들은 다 여기에 붙어있음.
-	char	*path; // 매칭을 할 패턴들의 경로.
-	char	*absolute_path; // 경로의 유무를 확인하는 플래그. => 와일드 카드 앞에 경로 존재 시 matched_result에 노드 추가시 경로도 추가해야함.
-	char	*wild_card_str; // 와일드 카드가 존재하는 문자열
+	char			*path; // 매칭을 할 패턴들의 경로.
+	char			*absolute_path; // 경로의 유무를 확인하는 플래그. => 와일드 카드 앞에 경로 존재 시 matched_result에 노드 추가시 경로도 추가해야함.
+	char			*wild_card_str; // 와일드 카드가 존재하는 문자열
 
 	init_list(&matched_result);
 	init_list(&pattern_list);
-	wild_card_str = get_wild_card_str(token); // '*'가 존재하는 문자열 가져온다. (도움 필요)
-	path = get_path(wild_card_str); // '*' 앞에 경로가 존재한다면, 가져온다. => 리스트에 저장 시 경로도 저장해야 한다.
-	absolute_path = ft_strdup(path);
-	if (path == NULL)
-	{
-		path = getcwd(NULL, 0);
-		get_pattern(pattern_list, 0, wild_card_str); // "~*~/" || "~*~NULL" 을 한 패턴으로 모두 가져온다.
-	}
-	get_pattern(pattern_list, ft_strlen(path), wild_card_str); // "~*~/" || "~*~NULL" 을 한 패턴으로 모두 가져온다.
+	wild_card_str = get_wild_card_str(token);
+	get_path_and_pattern(wild_card_str, &path, &absolute_path, pattern_list);
 	fill_list(matched_result, path, absolute_path, pattern_list->head); // 해당 문자열을 가지고, 재귀함수로 들어간다.
 	matched_result->tail->next = NULL;
 	free(path);
 	free(wild_card_str);
-	if (absolute_path != NULL)
-		free(absolute_path);
+	free(absolute_path);
 }
 
 int isMatch(char *string, char *pattern)
@@ -187,14 +179,6 @@ void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path)
 {
 	t_token	*token;
 
-	if (absolute_path == NULL)
-	{
-		add_token(matched_list_ptr, ft_strjoin("", path));
-		matched_list_ptr->tail->expand = wild_card;
-	}
-	else
-	{
-		add_token(matched_list_ptr, ft_strjoin(absolute_path, path));
-		matched_list_ptr->tail->expand = wild_card;
-	}
+	add_token(matched_list_ptr, ft_strjoin(absolute_path, path));
+	matched_list_ptr->tail->expand = wild_card;
 }
