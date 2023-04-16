@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:36:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/11 16:13:07 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:37:55 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_token_type	get_token_type(char *str)
 	else if (ft_strncmp(str, "||", 3) == 0)
 		return (or);
 	else if (ft_strncmp(str, "|", 2) == 0)
-		return (pipe);
+		return (_pipe);
 	else
 		return (word);
 }

@@ -6,14 +6,13 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/16 19:12:56 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/16 20:43:25 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
-#include "list.h"
-#include "libft.h"
-#include "minishell.h"
+#include "../../includes/parse.h"
+#include "../../libft/libft.h"
+#include "../../includes/minishell.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -22,45 +21,150 @@
 #include <sys/stat.h>
 #include <dirent.h> 
 
-void	init_admin(t_admin **admin);
-int		isMatch(char *string, char *pattern);
+static t_token	*get_wild_card_expand_list(t_token *token);
+static int		isMatch(char *string, char *pattern);
+static void		recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern);
+static void		adding_to_list(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern);
+static void		add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path);
+static void		init_list(t_token_list **matched_result);
 
 void	expand_filename(t_token_list *tl)
 {
 	t_token	*token;
-	char	**matched_list;
+	t_token	*wild_card_expand_list;
 
 	token = tl->head;
-	while (token->type != tl->tail)
+	while (token->type != end)
 	{
-		if ((token->type == non_quote || token->type == non_quote_end) && ft_strchr(token->string, '*') != NULL)
+		if (token->type == word && is_include_wild_card(token))
 		{
-			matched_list = expand(token);
+			wild_card_expand_list = get_wild_card_expand_list(token);
+			if (wild_card_expand_list)
+			{
+				insert_token_list(tl, delete_one_word(tl, token), \
+				wild_card_expand_list);
+			}
+			while (token->expand != not_expanded && \
+			token->expand != non_quote_end  && token->expand != quote_end)
+				token = token->next;
 		}
 		token = token->next;
 	}
 }
 
-t_token_list	*expand(t_token *token)
+static t_token	*get_wild_card_expand_list(t_token *token)
 {
-	t_token_list	*matched_result; // 매칭되는 애들은 여기에 다 붙어있음.
-	t_token_list	*pattern_list; // 와일드 카드 뒷부분의 패턴들은 다 여기에 붙어있음.
-	char			*path; // 매칭을 할 패턴들의 경로.
-	char			*absolute_path; // 경로의 유무를 확인하는 플래그. => 와일드 카드 앞에 경로 존재 시 matched_result에 노드 추가시 경로도 추가해야함.
-	char			*wild_card_str; // 와일드 카드가 존재하는 문자열
+	t_token_list	*matched_result;
+	t_token_list	*pattern_list;
+	char			*path;
+	char			*absolute_path;
+	char			*wild_card_str;
 
 	init_list(&matched_result);
 	init_list(&pattern_list);
 	wild_card_str = get_wild_card_str(token);
 	get_path_and_pattern(wild_card_str, &path, &absolute_path, pattern_list);
-	fill_list(matched_result, path, absolute_path, pattern_list->head); // 해당 문자열을 가지고, 재귀함수로 들어간다.
+	recursive_search_file(matched_result, path, absolute_path, pattern_list->head);
+	if (matched_result->head == NULL)
+		return (free(path), free(wild_card_str), free(absolute_path), NULL);
 	matched_result->tail->next = NULL;
-	free(path);
-	free(wild_card_str);
-	free(absolute_path);
+	return (free(path), free(wild_card_str), free(absolute_path), matched_result->head);
 }
 
-int isMatch(char *string, char *pattern)
+static void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
+{
+	DIR				*dir_ptr;
+	struct dirent	*filename;
+	struct stat		buf;
+	char			*path_filename;
+
+	char			*prev_path_filename;
+
+	if((dir_ptr = opendir(path)) == NULL)
+	{
+		return ;
+	}
+	if (pattern->next == NULL)
+	{
+		adding_to_list(matched_list_ptr, path, abosolute_path, pattern);
+		return ;
+	}
+	while ((filename = readdir(dir_ptr)))
+	{
+		path_filename = ft_strjoin(path, "/");
+		prev_path_filename = path_filename;
+		path_filename = ft_strjoin(path_filename, filename->d_name);
+		free(prev_path_filename);
+		if (stat(path_filename, &buf) == -1)
+			continue ;
+		if (isMatch(filename->d_name, pattern->string) == 1)
+		{
+			if (S_ISDIR(buf.st_mode) == 1)
+			{
+				recursive_search_file(matched_list_ptr, path_filename, abosolute_path, pattern->next);
+			}
+		}
+		free(path_filename);
+	}
+	closedir(dir_ptr);
+}
+
+static void	adding_to_list(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
+{
+	DIR				*dir_ptr;
+	struct dirent	*filename;
+	struct stat		buf;
+	char			*path_filename;
+	int				dir_flag;
+	t_token			*token;
+
+	char			*prev_path_filename;
+
+	dir_flag = 0;
+	if (pattern->string[ft_strlen(pattern->string) - 1] == '/')
+		dir_flag = 1;
+	if((dir_ptr = opendir(path)) == NULL)
+	{
+		return ;
+	}
+	while ((filename = readdir(dir_ptr)))
+	{
+		path_filename = ft_strjoin(path, "/");
+		prev_path_filename = path_filename;
+		path_filename = ft_strjoin(path_filename, filename->d_name);
+		free(prev_path_filename);
+		if (stat(path_filename, &buf) == -1)
+			continue ;
+		if (isMatch(filename->d_name, pattern->string) == 1)
+		{
+			if (S_ISDIR(buf.st_mode) == 1)
+				add_list(matched_list_ptr, path_filename, abosolute_path);
+			else if (S_ISREG(buf.st_mode) == 1 && dir_flag != 1)
+				add_list(matched_list_ptr, path_filename, abosolute_path);
+		}
+		free(path_filename);
+	}
+	closedir(dir_ptr);
+}
+
+static void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path)
+{
+	t_token	*token;
+
+	add_token(matched_list_ptr, ft_strjoin(absolute_path, path));
+	matched_list_ptr->tail->expand = wild_card;
+}
+
+static void	init_list(t_token_list **matched_result)
+{
+	(*matched_result) = (t_token_list *)malloc(sizeof(t_token_list));
+	if ((*matched_result) == NULL)
+		malloc_error();
+	(*matched_result)->head = NULL;
+	(*matched_result)->tail = NULL;
+}
+
+static int isMatch(char *string, char *pattern)
 {
 	int pattern_len;
 	int	string_len;
@@ -97,88 +201,4 @@ int isMatch(char *string, char *pattern)
 		if (pattern[i] != '*') return 0;
 	}
 	return 1;
-}
-
-void	init_list(t_token_list **matched_result)
-{
-	(*matched_result) = (t_token_list *)malloc(sizeof(t_token_list));
-	if ((*matched_result) == NULL)
-		malloc_error();
-	(*matched_result)->head = NULL;
-	(*matched_result)->tail = NULL;
-}
-
-void	fill_list(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
-{
-	DIR				*dir_ptr;
-	struct dirent	*filename;
-	struct stat		buf;
-	char			*path_filename;
-
-	if((dir_ptr = opendir(path)) == NULL)
-	{
-		return ;
-	}
-	if (pattern->next == NULL)
-	{
-		adding_to_list(matched_list_ptr, path, abosolute_path, pattern);
-		return ;
-	}
-	while ((filename = readdir(dir_ptr)))
-	{
-		path_filename = ft_strjoin(path, filename);
-		if (stat(path_filename, &buf) == -1)
-			continue ;
-		if (isMatch(filename, pattern->string) == 1)
-		{
-			if (S_ISDIR(buf.st_mode) == 1)
-			{
-				fill_list(matched_list_ptr, path_filename, abosolute_path, pattern->next);
-			}
-		}
-		free(path_filename);
-	}
-	closedir(dir_ptr);
-}
-
-void	adding_to_list(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
-{
-	DIR				*dir_ptr;
-	struct dirent	*filename;
-	struct stat		buf;
-	char			*path_filename;
-	int				dir_flag;
-
-	t_token			*token;
-
-	dir_flag = 0;
-	if (pattern->string[ft_strlen(pattern->string) - 1] == '/')
-		dir_flag = 1;
-	if((dir_ptr = opendir(path)) == NULL)
-	{
-		return ;
-	}
-	while ((filename = readdir(dir_ptr)))
-	{
-		path_filename = ft_strjoin(path, filename);
-		if (stat(path_filename, &buf) == -1)
-			continue ;
-		if (isMatch(filename, pattern->string) == 1)
-		{
-			if (S_ISDIR(buf.st_mode) == 1)
-				add_list(matched_list_ptr, path_filename, abosolute_path);
-			else if (S_ISREG(buf.st_mode) == 1 && dir_flag != 1)
-				add_list(matched_list_ptr, path_filename, abosolute_path);
-		}
-		free(path_filename);
-	}
-	closedir(dir_ptr);
-}
-
-void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path)
-{
-	t_token	*token;
-
-	add_token(matched_list_ptr, ft_strjoin(absolute_path, path));
-	matched_list_ptr->tail->expand = wild_card;
 }

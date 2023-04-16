@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_wild_card_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:28:19 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 18:05:28 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 19:23:32 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,28 +114,4 @@ char	*get_wild_card_str(t_token *first_token)
 	}
 	copy_wild_card_str(token, wild_card_str, &idx);
 	return (wild_card_str);
-}
-
-void	expand_filename(t_token_list *tl)
-{
-	t_token	*token;
-	t_token	*wild_card_expand_list;
-
-	token = tl->head;
-	while (token->type != end)
-	{
-		if (token->type == word && is_include_wild_card(token))
-		{
-			wild_card_expand_list = get_wild_card_expand_list();
-			if (wild_card_expand_list)
-			{
-				insert_token_list(tl, delete_one_word(tl, token), \
-				wild_card_expand_list);
-			}
-			while (token->expand != not_expanded && \
-			token->expand != non_quote_end  && token->expand != quote_end)
-				token = token->next;
-		}
-		token = token->next;
-	}
 }

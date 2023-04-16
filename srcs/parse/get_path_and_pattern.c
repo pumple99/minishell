@@ -6,18 +6,24 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/16 18:03:58 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/16 20:39:18 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "parse.h"
-#include "libft.h"
+#include "../../includes/parse.h"
+#include "../../libft/libft.h"
+#include "../../includes/minishell.h"
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+static char	*get_path(char *wild_card_str);
+static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str);
+
 void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list) // path를 할당하고, pattern 리스트를 생성해주는 함수.
 {
+	int	path_len;
+
 	*path = get_path(wild_card_str);
 	if (*path == NULL)
 	{
@@ -27,8 +33,11 @@ void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path
 	}
 	else
 	{
+		path_len = ft_strlen(*path);
+		if ((*path)[path_len - 1] == '/')
+			(*path)[path_len - 1] = '\0';
 		*absolute_path = ft_strdup(*path);
-		get_pattern(pattern_list, ft_strlen(*path), wild_card_str);
+		get_pattern(pattern_list, path_len, wild_card_str);
 	}
 }
 
