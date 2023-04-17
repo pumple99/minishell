@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/16 20:39:18 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:14:08 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 static char	*get_path(char *wild_card_str);
 static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str);
 
-void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list) // path를 할당하고, pattern 리스트를 생성해주는 함수.
+void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list)
 {
 	int	path_len;
 
@@ -28,7 +28,7 @@ void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path
 	if (*path == NULL)
 	{
 		*path = getcwd(NULL, 0);
-		*absolute_path = ft_strdup("");
+		*absolute_path = getcwd(NULL, 0);
 		get_pattern(pattern_list, 0, wild_card_str);
 	}
 	else
@@ -36,12 +36,12 @@ void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path
 		path_len = ft_strlen(*path);
 		if ((*path)[path_len - 1] == '/')
 			(*path)[path_len - 1] = '\0';
-		*absolute_path = ft_strdup(*path);
+		*absolute_path = ft_strdup("");
 		get_pattern(pattern_list, path_len, wild_card_str);
 	}
 }
 
-static char	*get_path(char *wild_card_str) // 무조건 별이 들어오는 부분.
+static char	*get_path(char *wild_card_str)
 {
 	int		i;
 	int		path_len;
@@ -84,6 +84,8 @@ static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_car
 		{
 			add_token(pattern_list, ft_substr(wild_card_str, start_idx, end_idx - start_idx + 1));
 			start_idx = end_idx + 1;
+			if (wild_card_str[end_idx + 1] == '\0')
+				break ;
 		}
 		else if (wild_card_str[end_idx] == 0)
 		{
