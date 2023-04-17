@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 18:04:38 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/16 20:47:57 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef enum e_token_type
 	heredoc,
 	and,
 	or,
-	pipe,
+	_pipe,
 	end = 17
 }	t_token_type;
 
@@ -73,7 +73,7 @@ typedef struct s_token_list
 
 typedef enum e_syntax_s
 {
-	start = 23,
+	start = 24,
 	none,
 	exist,
 	a_bracket,
