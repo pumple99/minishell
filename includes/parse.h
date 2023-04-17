@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/17 17:24:06 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/16 20:47:57 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_token_list
 
 typedef enum e_syntax_s
 {
-	start = 23,
+	start = 24,
 	none,
 	exist,
 	a_bracket,
