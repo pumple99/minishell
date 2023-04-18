@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 20:47:57 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:18:14 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_token			*insert_token_to_next(t_token *prev_token, char *str);
 //tl_utils
 void			delete_residue(t_token *first_token);
 t_token			*delete_one_word(t_token_list *tl, t_token *first_token);
+t_token			*find_next_word_or_operation(t_token *curr_token);
 void			insert_token_list(t_token_list *tl, t_token *prev, \
  t_token *first_of_tl);
 
