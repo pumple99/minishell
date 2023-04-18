@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/17 17:14:08 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:36:54 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_car
 			add_token(pattern_list, ft_substr(wild_card_str, start_idx, end_idx - start_idx + 1));
 			start_idx = end_idx + 1;
 			if (wild_card_str[end_idx + 1] == '\0')
+			{
+				pattern_list->tail->next = NULL;
 				break ;
+			}
 		}
 		else if (wild_card_str[end_idx] == 0)
 		{
