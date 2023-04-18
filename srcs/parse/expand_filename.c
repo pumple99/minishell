@@ -26,23 +26,24 @@ void	expand_filename(t_token_list *tl)
 {
 	t_token	*token;
 	t_token	*wild_card_expand_list;
+	t_token	*temp;
 
 	token = tl->head;
 	while (token->type != end)
 	{
 		if (token->type == word && is_include_wild_card(token))
 		{
+			temp = token->next;
 			wild_card_expand_list = get_wild_card_expand_list(token);
 			if (wild_card_expand_list)
 			{
 				insert_token_list(tl, delete_one_word(tl, token), \
 				wild_card_expand_list);
 			}
-			while (token->next->type != end && token->expand != not_expanded && \
-			token->expand != non_quote_end  && token->expand != quote_end)
-				token = token->next;
+			token = temp;
 		}
-		token = token->next;
+		else
+			token = token->next;
 	}
 }
 
