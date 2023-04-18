@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/17 18:01:15 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:52:20 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 static void		init_list(t_token_list **matched_result);
 static t_token	*get_wild_card_expand_list(t_token *token);
+static void		free_pattern_list(t_token_list **pattern);
+
 
 void	expand_filename(t_token_list *tl)
 {
@@ -57,10 +59,13 @@ static t_token	*get_wild_card_expand_list(t_token *token)
 	wild_card_str = get_wild_card_str(token);
 	get_path_and_pattern(wild_card_str, &path, &absolute_path, pattern_list);
 	recursive_search_file(matched_result, path, absolute_path, pattern_list->head);
+	free_pattern_list(&pattern_list);
+	t_token	*head = matched_result->head;
+	free(matched_result);
 	if (matched_result->head == NULL)
-		return (free(path), free(wild_card_str), free(absolute_path), NULL);
+		return (free(path), free(wild_card_str), free(absolute_path), head);
 	matched_result->tail->next = NULL;
-	return (free(path), free(wild_card_str), free(absolute_path), matched_result->head);
+	return (free(path), free(wild_card_str), free(absolute_path), head);
 }
 
 static void	init_list(t_token_list **matched_result)
@@ -70,4 +75,20 @@ static void	init_list(t_token_list **matched_result)
 		malloc_error();
 	(*matched_result)->head = NULL;
 	(*matched_result)->tail = NULL;
+}
+
+static void	free_pattern_list(t_token_list **pattern)
+{
+	t_token	*del_token;
+	t_token	*cur_token;
+
+	cur_token = (*pattern)->head;
+	while (cur_token != NULL)
+	{
+		del_token = cur_token;
+		cur_token = cur_token->next;
+		free(del_token->string);
+		free(del_token);
+	}
+	free(*pattern);
 }
