@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/18 15:52:20 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:22:36 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ void	expand_filename(t_token_list *tl)
 	token = tl->head;
 	while (token->type != end)
 	{
-		if (token->type == word && is_include_wild_card(token))
+		if (token->type == heredoc)
+			token = token->next->next;
+		else if (token->type == word && is_include_wild_card(token))
 		{
-			temp = token->next;
+			temp = find_next_word_or_operation(token);
 			wild_card_expand_list = get_wild_card_expand_list(token);
 			if (wild_card_expand_list)
 			{

@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 17:16:16 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 18:03:29 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:17:36 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,21 @@ void	delete_residue(t_token *first_token)
 // until type == word and expand == ~_end
 t_token	*delete_one_word(t_token_list *tl, t_token *first_token)
 {
-
 	if (first_token->expand == non_quote || first_token->expand == quote_word)
 		delete_residue(first_token);
 	return (delete_certain_token(tl, first_token));
+}
+
+t_token	*find_next_word_or_operation(t_token *curr_token)
+{
+	t_token	*token;
+
+	if (curr_token->expand == not_expanded)
+		return (curr_token->next);
+	token = curr_token;
+	while (token->expand == non_quote || token->expand == quote_word)
+		token = token->next;
+	return (token->next);
 }
 
 void	insert_token_list(t_token_list *tl, t_token *prev, t_token *first_of_tl)
