@@ -6,11 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/17 17:05:38 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/18 21:37:08 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include "../includes/parse.h"
 
 static t_token	*move_to_and_or_or(t_token *token)
@@ -66,6 +67,8 @@ void	free_tl(t_token_list *tl)
 	while (cur->type != end)
 	{
 		next = cur->next;
+		if (cur->type == heredoc)
+			unlink(next->string);
 		free(cur->string);
 		free(cur);
 		cur = next;
