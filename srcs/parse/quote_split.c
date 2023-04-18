@@ -88,6 +88,7 @@ static void	quote_split_word(t_token_list *tl, t_token *first_token, char *str)
 void	quote_split(t_token_list *tl)
 {
 	t_token	*token;
+	t_token *temp;
 	char	*str;
 
 	token = tl->head;
@@ -97,8 +98,11 @@ void	quote_split(t_token_list *tl)
 		&& is_include_quote(token->string))
 		{
 			str = token->string;
+			temp = token->next;
 			quote_split_word(tl, token, str);
+			token = temp;
 		}
-		token = token->next;
+		else
+			token = token->next;
 	}
 }

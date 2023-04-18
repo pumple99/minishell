@@ -142,4 +142,7 @@ void			recursive_search_file(t_token_list *matched_list_ptr, char *path, char *a
 int				is_include_wild_card(t_token *first_token);
 char			*get_wild_card_str(t_token *first_token);
 
+//is_match.c
+int				is_match(char *string, char *pattern);
+
 #endif
