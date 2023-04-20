@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 19:08:20 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:38:11 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,26 @@
 #include "list.h"
 #include "parse.h"
 
+typedef struct s_fds
+{
+	int	left[2];
+	int	right[2];
+}	t_fds;
+
 typedef enum e_builtin_num
 {
-	cd = 31,
+	cd = 32,
 	echo,
 	env,
 	_exit,
 	export,
 	pwd,
-	unset = 37
+	unset = 38
 }			t_builtin_num;
 
 //execute_minimal.c
 int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, int is_pipe);
+
 //execute_minimal_utils.c
 char	*has_paren(t_token *token);
 int		is_builtin(char *minimal_cmd);
