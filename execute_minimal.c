@@ -6,13 +6,15 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:25:52 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/20 01:18:51 by sindong-yeo      ###   ########.fr       */
+
+/*   Updated: 2023/04/20 01
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parse.h"
 #include "libft/libft.h"
 #include <stdlib.h>
+
 
 typedef enum e_builtin_num
 {
@@ -35,6 +37,7 @@ int	execute_minimal(t_token *token, int is_pipe)
 	char	*involve_parel;
 	char	**minimal_cmd;
 	int		builtin_num;
+
 
 	//execute_redirection
 	involve_parel = has_paren(token);
