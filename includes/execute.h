@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 19:45:37 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:38:11 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ typedef struct s_fds
 
 typedef enum e_builtin_num
 {
-	cd = 31,
+	cd = 32,
 	echo,
 	env,
 	_exit,
 	export,
 	pwd,
-	unset = 37
+	unset = 38
 }			t_builtin_num;
 
 //execute_minimal.c

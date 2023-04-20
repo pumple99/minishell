@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/18 21:22:36 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:41:59 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 static void		init_list(t_token_list **matched_result);
 static t_token	*get_wild_card_expand_list(t_token *token);
 static void		free_pattern_list(t_token_list **pattern);
+static void		change_last_expand_type(t_token *list);
 
 
 void	expand_filename(t_token_list *tl)
@@ -39,6 +40,7 @@ void	expand_filename(t_token_list *tl)
 			wild_card_expand_list = get_wild_card_expand_list(token);
 			if (wild_card_expand_list)
 			{
+				change_last_expand_type(wild_card_expand_list);
 				insert_token_list(tl, delete_one_word(tl, token), \
 				wild_card_expand_list);
 			}
@@ -47,6 +49,16 @@ void	expand_filename(t_token_list *tl)
 		else
 			token = token->next;
 	}
+}
+
+static void		change_last_expand_type(t_token *list)
+{
+	t_token	*curr;
+
+	curr = list;
+	while (curr->next)
+		curr = curr->next;
+	curr->expand = wild_card_end;
 }
 
 static t_token	*get_wild_card_expand_list(t_token *token)

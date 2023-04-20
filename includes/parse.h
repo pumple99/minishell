@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/18 21:18:14 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/20 22:37:52 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef	enum e_expand_type
 	non_quote,
 	non_quote_end,
 	not_expanded,
-	wild_card = 23
+	wild_card,
+	wild_card_end = 24
 }	t_expand_type;
 
 typedef struct s_token
@@ -73,13 +74,13 @@ typedef struct s_token_list
 
 typedef enum e_syntax_s
 {
-	start = 24,
+	start = 25,
 	none,
 	exist,
 	a_bracket,
 	done,
 	done_a_bracket,
-	error
+	error = 31
 }	t_syntax_s;
 
 //tl_basic_func.c
