@@ -25,6 +25,8 @@ int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, int is_pipe
 	char	**minimal_cmd;
 	int		builtin_num;
 
+	if (execute_redirection())
+		return (1);
 	involve_paren = has_paren(token);
 	if (involve_paren)
 		return (execute_subshell(involve_paren, is_pipe));
