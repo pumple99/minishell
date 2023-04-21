@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 20:31:01 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 21:25:59 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@ typedef enum e_builtin_num
 	unset = 38
 }			t_builtin_num;
 
+typedef struct s_fd_node
+{
+	int					fd;
+	struct s_fd_node	*next;
+}	t_fd_node;
+
+typedef struct s_fd_list
+{
+	t_fd_node	*first_node;
+	int			err;
+}	t_fd_list;
+
 //execute_minimal.c
 int		execute_minimal(t_admin *hash_map, char ***envp, \
 t_token *token, int is_pipe);
@@ -40,6 +52,10 @@ t_token *token, int is_pipe);
 //execute_minimal_utils.c
 char	*has_paren(t_token *token);
 int		is_builtin(char *minimal_cmd);
+
+//execute_redirection.c
+t_fd_list	execute_redirection(t_token *token);
+int			close_redirect_fds(t_fd_list fd_list, int re);
 
 //execute_cmd.c
 int		execute_builtin_cmd(t_admin *hash_map, char ***envp, \
