@@ -6,13 +6,13 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 20:07:32 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:09:49 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include "libft.h"
-#include <stdlib.h>
+#include <unistd.h>
 
 static void	set_exit_status(int child_status, int *exit_status);
 static void	set_questionmark(t_admin *hash_map, int exit_status);

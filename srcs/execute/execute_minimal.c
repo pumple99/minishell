@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:05:08 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:33:13 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, int is_pipe
 		return (1);
 	involve_paren_str = has_paren(token);
 	if (involve_paren_str)
-		return (execute_subshell(involve_paren_str, envp, is_pipe));
+		return (execute_subshell(hash_map, involve_paren_str, envp, is_pipe));
 	else
 	{
 		minimal_cmd = make_two_dimensional_array(token);

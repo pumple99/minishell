@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 15:54:46 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:33:44 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ char **minimal_cmd, int is_pipe)
 			is_executable(cmd_with_path);
 			execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
 		}
+		wait_last_child(hash_map, pid, 1);
 	}
 }
