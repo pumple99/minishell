@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:51:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 20:21:56 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:01:58 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	make_hash_map(t_admin *hash_map, char *envp[], char ***new_envp)
 	i = -1;
 	while (envp[++i])
 		add_node(hash_map, envp[i]);
+	add_node(hash_map, "?=0");
 	make_new_envp(hash_map, new_envp);
 }
 
@@ -34,7 +35,7 @@ static void	init_hash_map(t_admin *hash_map)
 	int	i;
 	
 	i = -1;
-	while (++i <= 52)
+	while (++i <= 53)
 	{
 		hash_map[i].head = (t_node *)malloc(sizeof(t_node));
 		if (hash_map[i].head == NULL)
