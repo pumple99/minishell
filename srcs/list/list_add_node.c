@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:45:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/11 16:44:09 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:46:01 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-static int	get_comp_length(char *np_key, char *cur_node_key);
+static int		get_comp_length(char *np_key, char *cur_node_key);
 static void		adding(t_admin *ap, t_node *np);
 static void		add_front_loc(t_node *curp, t_node *np);
 static void		add_this_loc(t_node *curp, t_node *np);
