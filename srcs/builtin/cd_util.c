@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:18:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:19:16 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:46:10 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,17 @@ int	using_env(t_admin *hash_map, char *path_to_move)
 	if (*last_char == '/')
 		*last_char = '\0';
 	pwd_node = search_node(hash_map, "PWD");
-	if (pwd_node == NULL) // 경로를 변경할 수 없는 경우.
+	if (pwd_node == NULL)
 		return (1);
 	oldpwd_node = search_node(hash_map, "OLDPWD");
 	if (oldpwd_node != NULL)
 		changing_oldpwd(hash_map, pwd_node);
 	changing_pwd(hash_map, pwd_node, path_to_move);
-	return (0); // 경로를 변경할 수 있는 경우
+	return (0);
 }
 
 static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node)
 {
-	// pwd, oldpwd는 반드시 존재하는 노드
 	char	*oldpwd;
 
 	oldpwd = ft_strjoin("OLDPWD=", pwd_node->value);
@@ -52,7 +51,6 @@ static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node)
 
 static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, char *path_to_move)
 {
-	// pwd는 반드시 존재하는 노드
 	char	*_pwd;
 	char	*pwd;
 
