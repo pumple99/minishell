@@ -70,6 +70,10 @@ char	*get_path(char **path_list, char *cmd);
 char	*find_path(char **path_list, char *cmd);
 
 //execute_subshell.c
-int		execute_subshell(char *involve_paren_str, char ***envp, int is_pipe);
+int		execute_subshell(t_admin *hash_map, char *involve_paren_str, \
+char ***envp, int is_pipe);
+
+//wait_last_child.c
+void	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt);
 
 #endif

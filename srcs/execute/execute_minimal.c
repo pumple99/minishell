@@ -32,7 +32,7 @@ int is_pipe)
 	involve_paren_str = has_paren(token);
 	if (involve_paren_str)
 		return (close_redirect_fds(fd_list, \
-		execute_subshell(involve_paren_str, envp, is_pipe)));
+		execute_subshell(hash_map, involve_paren_str, envp, is_pipe)));
 	else
 	{
 		minimal_cmd = make_two_dimensional_array(token);
