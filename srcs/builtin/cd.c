@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 17:17:33 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:19:20 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:45:18 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static char	*make_path(t_admin *hash_map, char *arg);
 static char	*using_cdpath(t_admin *hash_map, char *arg);
 static int	is_movable(char *arg);
 static void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_pwd);
-static void	changing_pwd(t_admin *hash_map);
-static void	changing_oldpwd(t_admin *hash_map, char *prev_pwd);
-int			using_env(t_admin *hash_map, char *path_to_move);
+static int	using_env(t_admin *hash_map, char *path_to_move);
 static void	free_param(char *pwd, char *path_to_move);
 
 // "getcwd"가 오류날 경우에 대한 체크 아직 못함.
@@ -64,8 +62,10 @@ static char	*make_path(t_admin *hash_map, char *arg)
 	if (path_to_move != NULL)
 		return (printf("%s\n", path_to_move), path_to_move); // CDPATH를 사용할때는 절대경로 출력 해야함.
 	else
+	{
 		if (is_movable(arg))
 			return (ft_strdup(arg));
+	}
 	return (NULL);
 }
 
@@ -125,8 +125,7 @@ static int	is_movable(char *arg)
 static void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_pwd)
 {
 	int	cant_change;
-	// 여기에 들어오는 경우에는, 반드시!!!!!!!!! arg가 이동 가능한 변수일때만 들어온다
-	// path_to_move는 이동 가능한 상대경로 일때만 들어올 수 있음.
+	// path_to_move는 이동 가능한 경로 일때만 들어올 수 있음.
 	cant_change = 0;
 	if (prev_pwd != NULL)
 	{
@@ -137,44 +136,6 @@ static void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_pwd)
 		cant_change = using_env(hash_map, path_to_move);
 	// if (cant_change) // 아예 바꾸지 못하는 경우
 		// do something
-}
-
-static void	changing_pwd(t_admin *hash_map)
-{
-	t_node	*pwd_node;
-	char	*pwd;
-	char	*_pwd;
-
-	pwd_node = search_node(hash_map, "PWD");
-	if (pwd_node != NULL)
-	{
-		pwd = getcwd(NULL, 0);
-		// if (pwd == NULL)
-			// do something
-		_pwd = pwd;
-		pwd = ft_strjoin("PWD=", pwd);
-		free(_pwd);
-		add_node(hash_map, pwd);
-	}
-}
-
-static void	changing_oldpwd(t_admin *hash_map, char *prev_pwd)
-{
-	t_node	*oldpwd_node;
-	char	*_oldpwd;
-	char	*oldpwd;
-
-	oldpwd_node = search_node(hash_map, "OLDPWD");
-	if (oldpwd_node != NULL)
-	{
-		oldpwd = ft_strdup(prev_pwd);
-		if (oldpwd == NULL)
-			malloc_error();
-		_oldpwd = oldpwd;
-		oldpwd = ft_strjoin("OLDPWD=", oldpwd);
-		free(_oldpwd);
-		add_node(hash_map, oldpwd);
-	}
 }
 
 static void	free_param(char *pwd, char *path_to_move)
