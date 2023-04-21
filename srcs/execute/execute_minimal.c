@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 21:25:52 by seunghoy          #+#    #+#             */
-
-/*   Updated: 2023/04/20 01
+/*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
+/*   Updated: 2023/04/21 16:05:08 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +20,15 @@ static int	count_array_size(t_token *token);
 
 int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, int is_pipe)
 {
-	char	*involve_paren;
+	char	*involve_paren_str;
 	char	**minimal_cmd;
 	int		builtin_num;
 
 	if (execute_redirection())
 		return (1);
-	involve_paren = has_paren(token);
-	if (involve_paren)
-		return (execute_subshell(involve_paren, is_pipe));
+	involve_paren_str = has_paren(token);
+	if (involve_paren_str)
+		return (execute_subshell(involve_paren_str, envp, is_pipe));
 	else
 	{
 		minimal_cmd = make_two_dimensional_array(token);
@@ -73,7 +72,7 @@ static int	count_array_size(t_token *token)
 {
 	int	cnt = 0;
 
-	while (!is_stop(token))
+	while (!is_and_or_pipe_end(token))
 	{
 		if (is_redirection(token))
 			token = token->next->next;
