@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 19:38:07 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:22:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,28 @@ char **minimal_cmd, int is_pipe)
 	char	*cmd_with_path;
 	pid_t	pid;
 
-	path_list = get_path_list_from_env_path(hash_map); // 2차원 배열로 하나 생성하기.
-	/*
-		* PATH환경변수의 유무에 따라서 path_list의 값이 달라짐.
-		유 : path_list는 2차원 배열
-		무 : path_list == NULL
-	*/
-	if (is_pipe) // => 이미 fork가 되어있는 상태. 그냥 실행하기
+	if (is_pipe) // 이미 fork가 되어있는 상태. 그냥 실행하기
 	{
+		if (ft_strlen(minimal_cmd[0]) == 0)
+			exit(0);
+		path_list = get_path_list_from_env_path(hash_map); // 2차원 배열로 하나 생성하기.
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);
 		execve(cmd_with_path, minimal_cmd, *envp);
 	}
-	else // is_pipe == 0 => fork가 되어있지 않은 상태. fork후 실행하기.
+	else // fork가 되어있지 않은 상태. fork후 실행하기.
 	{
 		pid = fork();
 		// if (fork < -1)
 		// 	error handling
 		if (pid == 0)
 		{
+			if (ft_strlen(minimal_cmd[0]) == 0)
+				exit(0);
+			path_list = get_path_list_from_env_path(hash_map); // 2차원 배열로 하나 생성하기.
 			cmd_with_path = get_path(path_list, minimal_cmd[0]);
 			is_executable(cmd_with_path);
 			execve(cmd_with_path, minimal_cmd, *envp);
 		}
 	}
-	free(cmd_with_path);
-	free_double_pointer(path_list);
 }
