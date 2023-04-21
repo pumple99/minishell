@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 19:30:53 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:51:33 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**get_path_list_from_env_path(t_admin *hash_map)
 
 void	is_executable(char *cmd_with_path)
 {
-	if (access(cmd_with_path, F_OK) == -1)
+	if (access(cmd_with_path, F_OK) == -1 || ft_strchr(cmd_with_path, '/') == 0)
 	{
 		write(2, "bash: ", 7);
 		write(2, cmd_with_path, ft_strlen(cmd_with_path));
