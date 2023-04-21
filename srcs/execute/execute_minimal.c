@@ -25,6 +25,8 @@ int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, int is_pipe
 	char	**minimal_cmd;
 	int		builtin_num;
 
+	if (execute_redirection())
+		return (1);
 	involve_paren = has_paren(token);
 	if (involve_paren)
 		return (execute_subshell(involve_paren, is_pipe));
@@ -71,7 +73,7 @@ static int	count_array_size(t_token *token)
 {
 	int	cnt = 0;
 
-	while (!is_stop(token))
+	while (!is_and_or_pipe_end(token))
 	{
 		if (is_redirection(token))
 			token = token->next->next;

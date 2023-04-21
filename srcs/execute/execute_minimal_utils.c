@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 19:04:41 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:20:51 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "execute.h"
 
 static int	count_paren(t_token *token);
+static void	make_involve_paren(char **involve_paren, char *new_string);
 static char	*remove_outer_paren(char *prev_involve_paren);
 
 int	is_builtin(char *minimal_cmd)
@@ -54,15 +55,13 @@ char	*has_paren(t_token *token)
 		malloc_error();
 	while (token->type != end)
 	{
-		if (paren_depth == 0 && is_or_and_end(token))
+		if (paren_depth == 0 && is_and_or_pipe_end(token))
 			break;
 		if (token->type == paren_l)
 			++paren_depth;
 		else if (token->type == paren_r)
 			--paren_depth;
-		involve_paren = ft_strjoin(involve_paren, token->string);
-		if (involve_paren == NULL)
-			malloc_error();
+		make_involve_paren(&involve_paren, token->string);
 		token = token->next;
 	}
 	return (remove_outer_paren(involve_paren));
@@ -71,14 +70,34 @@ char	*has_paren(t_token *token)
 static int	count_paren(t_token *token)
 {
 	int	cnt;
+	int	paren_depth;
 
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && is_and_or_pipe_end(token))
+			break;
 		if (token->type == paren_l)
+		{
+			++paren_depth;
 			return (1);
+		}
+		else if (token->type == paren_r)
+			--paren_depth;
 		token = token->next;
 	}
 	return (0);
+}
+
+static void	make_involve_paren(char **involve_paren, char *new_string)
+{
+	char	*prev_involve_paren;
+
+	prev_involve_paren = *involve_paren;
+	*involve_paren = char_join(*involve_paren, new_string, ' ');
+	if (*involve_paren == NULL)
+		malloc_error();
+	free(prev_involve_paren);
 }
 
 static char	*remove_outer_paren(char *prev_involve_paren)
