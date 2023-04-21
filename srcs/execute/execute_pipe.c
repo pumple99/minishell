@@ -6,11 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/20 20:12:33 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/21 19:16:40 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "../includes/parse.h"
 #include "../includes/execute.h"
 
@@ -81,7 +82,7 @@ int	make_pipe_and_execute_minimal(t_token *token, int pipe_total)
 	else if (pid == 0 && pipe_count == pipe_total)
 		fd_change(0, &fds);
 	if (pid == 0)
-		return (execute_minimal());
+		return (exit(execute_minimal()));
 	else
 		return (wait());
 }
