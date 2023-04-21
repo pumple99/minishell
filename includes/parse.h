@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/20 22:37:52 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:45:07 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,11 @@ void			expand_word_split(t_token_list *tl);
 //expand_filename.c
 void			expand_filename(t_token_list *tl);
 void			get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list);
+
+//expand_filename_utils.c
+void	init_list(t_token_list **matched_result);
+void	free_pattern_list(t_token_list **pattern);
+t_token	*get_head_token(t_token_list **matched_result);
 
 //recursive_search_file
 void			recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern);
