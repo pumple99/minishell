@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 15:22:16 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:54:46 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ char **minimal_cmd, int is_pipe)
 	char	*cmd_with_path;
 	pid_t	pid;
 
-	if (is_pipe) // 이미 fork가 되어있는 상태. 그냥 실행하기
+	if (is_pipe)
 	{
 		if (ft_strlen(minimal_cmd[0]) == 0)
 			exit(0);
-		path_list = get_path_list_from_env_path(hash_map); // 2차원 배열로 하나 생성하기.
+		path_list = get_path_list_from_env_path(hash_map); 
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);
-		execve(cmd_with_path, minimal_cmd, *envp);
+		execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
 	}
-	else // fork가 되어있지 않은 상태. fork후 실행하기.
+	else
 	{
 		pid = fork();
 		// if (fork < -1)
@@ -59,10 +59,10 @@ char **minimal_cmd, int is_pipe)
 		{
 			if (ft_strlen(minimal_cmd[0]) == 0)
 				exit(0);
-			path_list = get_path_list_from_env_path(hash_map); // 2차원 배열로 하나 생성하기.
+			path_list = get_path_list_from_env_path(hash_map);
 			cmd_with_path = get_path(path_list, minimal_cmd[0]);
 			is_executable(cmd_with_path);
-			execve(cmd_with_path, minimal_cmd, *envp);
+			execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
 		}
 	}
 }

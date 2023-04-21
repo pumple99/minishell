@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 15:20:51 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:31:06 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ int	is_builtin(char *minimal_cmd)
 
 char	*has_paren(t_token *token)
 {
-	char	*involve_paren;
+	char	*involve_paren_str;
 	int		paren_depth;
 
 	if (count_paren(token) == 0)
 		return (NULL);
 	paren_depth = 0;
-	involve_paren = ft_strdup("");
-	if (involve_paren == NULL)
+	involve_paren_str = ft_strdup("");
+	if (involve_paren_str == NULL)
 		malloc_error();
 	while (token->type != end)
 	{
@@ -61,10 +61,10 @@ char	*has_paren(t_token *token)
 			++paren_depth;
 		else if (token->type == paren_r)
 			--paren_depth;
-		make_involve_paren(&involve_paren, token->string);
+		make_involve_paren(&involve_paren_str, token->string);
 		token = token->next;
 	}
-	return (remove_outer_paren(involve_paren));
+	return (remove_outer_paren(involve_paren_str));
 }
 
 static int	count_paren(t_token *token)
@@ -89,24 +89,24 @@ static int	count_paren(t_token *token)
 	return (0);
 }
 
-static void	make_involve_paren(char **involve_paren, char *new_string)
+static void	make_involve_paren(char **involve_paren_str, char *new_string)
 {
 	char	*prev_involve_paren;
 
-	prev_involve_paren = *involve_paren;
-	*involve_paren = char_join(*involve_paren, new_string, ' ');
-	if (*involve_paren == NULL)
+	prev_involve_paren = *involve_paren_str;
+	*involve_paren_str = char_join(*involve_paren_str, new_string, ' ');
+	if (*involve_paren_str == NULL)
 		malloc_error();
 	free(prev_involve_paren);
 }
 
 static char	*remove_outer_paren(char *prev_involve_paren)
 {
-	char	*involve_paren;
+	char	*involve_paren_str;
 
-	involve_paren = ft_substr(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
-	if (involve_paren == NULL)
+	involve_paren_str = ft_substr(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
+	if (involve_paren_str == NULL)
 		malloc_error();
 	free(prev_involve_paren);
-	return (involve_paren);
+	return (involve_paren_str);
 }
