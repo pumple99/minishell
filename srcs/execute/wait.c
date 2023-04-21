@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 19:52:13 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:07:32 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,13 @@
 static void	set_exit_status(int child_status, int *exit_status);
 static void	set_questionmark(t_admin *hash_map, int exit_status);
 
-void	wait_last_child(t_admin *hash_map, pid_t last_child_pid)
+void	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 {
 	int		exit_status;
 	int		child_status;
 	pid_t	pid_num;
 
-	pid_num = 0;
-	while (pid_num != -1)
+	while (child_cnt--)
 	{
 		pid_num = wait(&child_status);
 		if (pid_num == last_child_pid)
