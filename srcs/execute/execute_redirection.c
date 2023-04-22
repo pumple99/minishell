@@ -6,11 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 21:16:46 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:19:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <fcntl.h>
 #include "includes/parse.h"
 #include "includes/execute.h"
 
@@ -28,27 +29,28 @@ static int	change_fd(t_token *redirect_token, t_fd_list *fd_list)
 {
 	int		fd;
 	char	*str;
+	int		o_flag;
+	int		stdi_or_o;
 
 	str = redirect_token->next->string;
 	if (is_ambiguous(redirect_token))
 		return (fd_list->err = 1, 1);
+	o_flag = O_RDONLY;
+	stdi_or_o = STDIN_FILENO;
 	if (redirect_token->type == redirect_r)
 	{
-		fd = check_open(str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		check_dup2(fd, STDOUT);
+		stdi_or_o = STDOUT_FILENO;
+		o_flag = O_WRONLY | O_CREAT | O_TRUNC;
 	}
 	else if (redirect_token->type == append)
 	{
-		fd = check_open(str, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		check_dup2(fd, STDOUT);
+		stdi_or_o = STDOUT_FILENO;
+		o_flag = O_WRONLY | O_CREAT | O_APPEND;
 	}
-	else
-	{
-		fd = check_open(str, O_RDONLY);
-		if (fd == -1)
-			return (fd_list->err = 1, 1);
-		check_dup2(fd, STDIN);
-	}
+	fd = open_s(str, o_flag);
+	if (fd == -1)
+		return (fd_list->err = 1, 1);
+	dup2_s(fd, stdi_or_o);
 	return (add_fd_to_list(fd_list, fd), 0);
 }
 
