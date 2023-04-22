@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:39:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 18:34:25 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:16:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	perr_exit(char *str);
 int		dup_s(int fd);
 int		dup2_s(int fd1, int fd2);
 int		close(fd);
+int		open_s(char *path, int o_flag);
 
 #endif
