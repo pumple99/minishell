@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 21:25:59 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:48:01 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@ typedef struct s_fd_list
 	t_fd_node	*first_node;
 	int			err;
 }	t_fd_list;
+
+//execute.c
+int		execute(t_token_list *tl, t_admin *hash_map, char ***envp);
+
+//execute_utils.c
+void	save_stdio(int *stdio_fds);
+void	restore_stdio(int *stdio_fds);
+
+//execute_pipe.c
+int		execute_pipe(t_admin *hash_map, char ***envp, t_token *token);
 
 //execute_minimal.c
 int		execute_minimal(t_admin *hash_map, char ***envp, \

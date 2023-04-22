@@ -6,12 +6,14 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 18:30:07 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 20:48:19 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/parse.h"
+#include "safe_function.h"
+#include "parse.h"
+#include "execute.h"
 
 static t_token	*move_to_and_or_or(t_token *token)
 {
@@ -51,18 +53,24 @@ static void	free_unlink_tl(t_token_list *tl)
 	free(cur);
 }
 
-void	execute(t_token_list *tl)
+static void	close_dup_stdio(int *stdio_fds)
 {
-	t_token			*token;
-	int				exit_status;
-	static int		stdio_fds[2];
+	close_s(stdio_fds[0]);
+	close_s(stdio_fds[1]);
+}
+
+int	execute(t_token_list *tl, t_admin *hash_map, char ***envp)
+{
+	t_token	*token;
+	int		exit_status;
+	int		stdio_fds[2];
 
 	token = tl->head;
 	if (token->type != end)
 	{
 		save_stdio(stdio_fds);
 		execute_heredoc(tl);
-		exit_status = execute_pipe(token);
+		exit_status = execute_pipe(hash_map, envp, token);
 		restore_stdio(stdio_fds);
 		while (token->type != end)
 		{
@@ -71,10 +79,11 @@ void	execute(t_token_list *tl)
 			|| (exit_status != 0 && token->type == or))
 			{
 				token = token->next;
-				exit_status = execute_pipe(token);
+				exit_status = execute_pipe(hash_map, envp, token);
 				restore_stdio(stdio_fds);
 			}
 		}
+		close_dup_stdio(stdio_fds);
 	}
-	free_unlink_tl(tl);
+	return (free_unlink_tl(tl), exit_status);
 }
