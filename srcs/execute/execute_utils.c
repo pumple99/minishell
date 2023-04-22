@@ -6,10 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:27:13 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 19:03:18 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:30:37 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "../includes/parse.h"
 
 int	is_or_and_end(t_token *token)
@@ -33,4 +34,19 @@ int	is_redirection(t_token *token)
 		return (1);
 	else
 		return (0);
+}
+
+void	save_stdio(int *stdio_fds)
+{
+	if (stdio_fds[0] == 0 && stdio_fds[1] == 0)
+	{
+		stdio_fds[0] = dup_s(STDIN_FILENO);
+		stdio_fds[1] = dup_s(STDOUT_FILENO);
+	}
+}
+
+void	restore_stdio(int *stdio_fds)
+{
+	dup2_s(stdio_fds[0], STDIN_FILENO);
+	dup2_s(stdio_fds[1], STDOUT_FILENO);
 }
