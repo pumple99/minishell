@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_heap_safe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:07:53 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/22 20:38:55 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:48:57 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	*malloc_s(int size_of_container)
 	re = malloc(size_of_container);
 	if (re == NULL || prev_errno != errno)
 		perr_exit("minishell: malloc failed");
-	else
-		return (re);
+	return (re);
 }

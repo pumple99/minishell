@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 18:16:16 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:47:58 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int	dup_s(int fd)
 	int	re;
 
 	re = dup(fd);
-	if (re != -1)
-		return (re);
-	perr_exit("minishell: dup failed");
+	if (re == -1)
+		perr_exit("minishell: dup failed");
+	return (re);
 }
 
 int	dup2_s(int fd1, int fd2)
@@ -30,9 +30,9 @@ int	dup2_s(int fd1, int fd2)
 	int	re;
 
 	re = dup2(fd1, fd2);
-	if (re != -1)
-		return (re);
-	perr_exit("minishell: dup2 failed");
+	if (re == -1)
+		perr_exit("minishell: dup2 failed");
+	return (re);
 }
 
 int	close_s(int fd)
@@ -40,9 +40,9 @@ int	close_s(int fd)
 	int	re;
 
 	re = close(fd);
-	if (re != -1)
-		return (re);
-	perr_exit("minishell: close failed");
+	if (re == -1)
+		perr_exit("minishell: close failed");
+	return (re);
 }
 
 int	open_s(char *path, int o_flag)
