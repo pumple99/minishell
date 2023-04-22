@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:27:13 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 18:30:37 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 18:57:32 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ int	is_redirection(t_token *token)
 
 void	save_stdio(int *stdio_fds)
 {
-	if (stdio_fds[0] == 0 && stdio_fds[1] == 0)
-	{
-		stdio_fds[0] = dup_s(STDIN_FILENO);
-		stdio_fds[1] = dup_s(STDOUT_FILENO);
-	}
+	stdio_fds[0] = dup_s(STDIN_FILENO);
+	stdio_fds[1] = dup_s(STDOUT_FILENO);
 }
 
 void	restore_stdio(int *stdio_fds)
