@@ -6,15 +6,17 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/18 20:46:31 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:06:32 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include "../includes/parse.h"
-#include "../libft/libft.h"
+#include <unistd.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include "includes/parse.h"
+#include "libft/libft.h"
 
 #define HEREDOC_BASENAME ".heredoc_temp_file_"
 #define FILE_NUM_STEP 65537
@@ -78,12 +80,12 @@ static void	read_heredoc(char *filename, char *limiter)
 	int		fd;
 	char	*line;
 
-	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	// check_open_fd(HEREDOC_TEMP, fd);
+	fd = open_s(filename, O_WRONLY | O_CREAT | O_TRUNC);
+	if (fd == -1)
+		return ;
 	while (1)
 	{
-		write(1, "> ", 2);
-		// line = check_gnl(get_next_line(0));
+		line = readline("> ");
 		if (line == 0 || is_same_with_limiter(limiter, line))
 		{
 			free(line);
@@ -92,7 +94,7 @@ static void	read_heredoc(char *filename, char *limiter)
 		write(fd, line, ft_strlen(line));
 		free(line);
 	}
-	// check_close(fd);
+	close_s(fd);
 }
 
 void	execute_heredoc(t_token_list *tl)
