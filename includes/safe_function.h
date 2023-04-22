@@ -20,6 +20,7 @@ void	perr_exit(char *str);
 int		dup_s(int fd);
 int		dup2_s(int fd1, int fd2);
 int		close(fd);
+int		open_s(char *path, int o_flag);
 
 
 //use_dir_safe.c
