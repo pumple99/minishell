@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_dir_safe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 20:39:08 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/22 21:47:26 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int chdir_s(const char *path)
 	int re;
 
 	re = chdir(path);
-	if (re != -1)
-		return (re);
-	perror("minishell: chdir failed");
+	if (re == -1)
+		perror("minishell: chdir failed");
+	return (re);
 }
 
 int	closedir_s(DIR *dirp)
@@ -30,9 +30,9 @@ int	closedir_s(DIR *dirp)
 	int	re;
 
 	re = closedir(dirp);
-	if (re != -1)
-		return (re);
-	perror("minishell: closedir failed");
+	if (re == -1)
+		perror("minishell: closedir failed");
+	return (re);
 }
 
 struct dirent	*readdir_s(DIR *dirp)
@@ -46,9 +46,8 @@ struct dirent	*readdir_s(DIR *dirp)
 		return (re);
 	else
 	{
-		if (prev_errno == errno)
-			return (NULL);
-		else
+		if (prev_errno != errno)
 			perror("minishell: readdir failed");
+		return (NULL);
 	}
 }
