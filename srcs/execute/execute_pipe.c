@@ -6,14 +6,14 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:11:30 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:20:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "../includes/parse.h"
-#include "../includes/execute.h"
+#include "../includes/parse_bonus.h"
+#include "../includes/execute_bonus.h"
 
 static void	close_left_and_move(int *l, int *r, int count)
 {

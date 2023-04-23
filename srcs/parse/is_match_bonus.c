@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   is_match.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:19:27 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/04/23 00:54:41 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:09 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "parse.h"
+#include "parse_bonus.h"
 
 static int	is_wildcard(t_match *values, char *pattern);
 static void	init_values(t_match *values, char *string, char *pattern);

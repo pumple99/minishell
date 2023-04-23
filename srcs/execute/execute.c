@@ -6,14 +6,14 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:09:41 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:20:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "safe_function.h"
-#include "parse.h"
-#include "execute.h"
+#include "parse_bonus.h"
+#include "execute_bonus.h"
 
 static t_token	*move_to_and_or_or(t_token *token)
 {

@@ -6,11 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:36:36 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:19:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 
 //prev state is inside, outside, op_paren, or op_end
 static t_state	prev_general(t_state prev_state, char *str)

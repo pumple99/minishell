@@ -6,11 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:17:49 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:13 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include <stdlib.h>
 
 static int	get_quote_split_len(char *str)

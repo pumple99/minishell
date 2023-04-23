@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:14:55 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "includes/parse.h"
+#include "includes/parse_bonus.h"
 #include "libft/libft.h"
 
 #define HEREDOC_BASENAME ".heredoc_temp_file_"

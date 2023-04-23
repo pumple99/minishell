@@ -6,11 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:08:15 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:14:38 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../includes/list.h"
 
 t_token_list	parse_line(t_admin *hash_map, char *line)

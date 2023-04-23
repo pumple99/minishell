@@ -6,11 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:57:10 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:13 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../libft/pf_printf.h"
 
 static int	genral_syntax_err(t_token *token)

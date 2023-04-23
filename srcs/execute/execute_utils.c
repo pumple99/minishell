@@ -6,12 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:27:13 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 18:57:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:00 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../includes/parse.h"
+#include "../includes/parse_bonus.h"
 
 int	is_or_and_end(t_token *token)
 {

@@ -6,14 +6,14 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:54 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:20:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
-#include "includes/parse.h"
-#include "includes/execute.h"
+#include "includes/parse_bonus.h"
+#include "includes/execute_bonus.h"
 
 static void	add_fd_to_list(t_fd_list *fd_list, int fd)
 {

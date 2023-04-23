@@ -6,11 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:00:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:08 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../libft/libft.h"
 #include "../../includes/minishell.h"
 #include <unistd.h>

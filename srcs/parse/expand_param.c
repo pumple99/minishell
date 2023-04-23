@@ -6,12 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:13:10 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:07 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../libft/libft.h"
 #include "../../includes/list.h"
 

@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 01:03:33 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:20:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "execute.h"
+#include "execute_bonus.h"
 #include "libft/libft.h"
 #include "builtin.h"
 #include "safe_function.h"

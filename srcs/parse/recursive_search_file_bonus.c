@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:58:36 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:13 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <dirent.h> 
 
 #include "../../libft/libft.h"
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../includes/minishell.h"
 #include "safe_function.h"
 

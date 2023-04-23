@@ -6,12 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:13:45 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:15:10 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/parse.h"
+#include "../../includes/parse_bonus.h"
 #include "../../libft/libft.h"
 
 static char	*get_empty_str(t_token *first_token)
