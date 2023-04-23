@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:54 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:44:43 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
-#include "includes/parse.h"
-#include "includes/execute.h"
+#include "parse.h"
+#include "execute.h"
+#include "safe_function.h"
 
 static void	add_fd_to_list(t_fd_list *fd_list, int fd)
 {

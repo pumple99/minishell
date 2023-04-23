@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   use_fd_safe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 21:47:58 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:21:11 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "../../includes/safe_function.h"
+#include "safe_function.h"
 
 int	dup_s(int fd)
 {

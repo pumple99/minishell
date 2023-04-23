@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   list_add_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:45:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 16:46:01 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:38:47 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "list.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static int		get_comp_length(char *np_key, char *cur_node_key);
 static void		adding(t_admin *ap, t_node *np);
@@ -25,7 +25,7 @@ void	add_node(t_admin *hash_map, char *new_arg)
 	t_node	*np;
 
 	index = get_index(new_arg);
-	np = create_node(new_arg); // new_arg의 내용들을 할당해서 복사함.
+	np = create_node(new_arg);
 	if (hash_map[index].node_cnt == 0)
 	{
 		hash_map[index].node_cnt++;
@@ -34,7 +34,7 @@ void	add_node(t_admin *hash_map, char *new_arg)
 	adding(&hash_map[index], np);
 }
 
-static void	adding(t_admin *ap, t_node *np) // 실제 해쉬 리스트에 추가하는 로직.
+static void	adding(t_admin *ap, t_node *np)
 {
 	t_node	*cur_node;
 	int		comp_val;
@@ -42,11 +42,11 @@ static void	adding(t_admin *ap, t_node *np) // 실제 해쉬 리스트에 추가
 	cur_node = ap->head->next;
 	while (cur_node != ap->tail)
 	{
-		comp_val = ft_strncmp(np->key, cur_node->key, get_comp_length(np->key, cur_node->key)); // 두개(np->key, cur_node->key) 중 더 긴값에 대해 처리해야함.
+		comp_val = ft_strncmp(np->key, cur_node->key, get_comp_length(np->key, cur_node->key));
 		if (comp_val == 0)
-			return (add_this_loc(cur_node, np)); // cur 위치에 추가하기.
+			return (add_this_loc(cur_node, np));
 		else if (comp_val < 0)
-			return (ap->node_cnt++, add_front_loc(cur_node, np)); //cur_node의 앞 자리에 추가하기.
+			return (ap->node_cnt++, add_front_loc(cur_node, np));
 		else
 			cur_node = cur_node->next;
 	}
@@ -66,7 +66,7 @@ static int	get_comp_length(char *np_key, char *cur_node_key)
 		return (np_len);
 }
 
-static void	add_front_loc(t_node *curp, t_node *np) // curp노드 앞(head)쪽에 노드 추가하기.
+static void	add_front_loc(t_node *curp, t_node *np)
 {
 	np->prev = curp->prev;
 	np->next = curp;
@@ -74,7 +74,7 @@ static void	add_front_loc(t_node *curp, t_node *np) // curp노드 앞(head)쪽�
 	curp->prev = np;
 }
 
-static void	add_this_loc(t_node *curp, t_node *np) // 현재 노드에 값 덮어쓰기.
+static void	add_this_loc(t_node *curp, t_node *np)
 {
 	free(curp->key);
 	free(curp->value);

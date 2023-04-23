@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_err.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:57:10 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:34:25 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
-#include "../../libft/pf_printf.h"
+#include "parse.h"
+#include "pf_printf.h"
 
 static int	genral_syntax_err(t_token *token)
 {

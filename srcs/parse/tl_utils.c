@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tl_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 17:16:16 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:18:40 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:36:20 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "parse.h"
 
 void	delete_residue(t_token *first_token)
 {

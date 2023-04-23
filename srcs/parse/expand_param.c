@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   expand_param.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:13:10 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:31:08 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/parse.h"
-#include "../../libft/libft.h"
-#include "../../includes/list.h"
+#include "parse.h"
+#include "libft.h"
+#include "list.h"
+#include "safe_function.h"
 
 static char	*get_search_str(char **p_str)
 {

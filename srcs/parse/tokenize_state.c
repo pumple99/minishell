@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_state.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:36:36 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:19:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:36:38 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "parse.h"
 
 //prev state is inside, outside, op_paren, or op_end
 static t_state	prev_general(t_state prev_state, char *str)

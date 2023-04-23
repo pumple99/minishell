@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:36:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 19:37:55 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:37:01 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
-#include "../../libft/libft.h"
+#include "parse.h"
+#include "libft.h"
 
 int	is_arr_size_plus(t_state prev, t_state new)
 {

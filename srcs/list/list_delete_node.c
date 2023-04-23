@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   list_delete_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:26:46 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/10 17:48:30 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:30:32 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
 #include <stdlib.h>
+#include "list.h"
 
 void	delete_node(t_admin *hash_map, char *key, int *re_build_flag)
 {
@@ -33,5 +33,4 @@ void	delete_node(t_admin *hash_map, char *key, int *re_build_flag)
 		free(del_node->key);
 		free(del_node->value);
 	}
-
 }

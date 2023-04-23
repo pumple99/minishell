@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:16:35 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:40:54 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 20:25:43 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_no_arg(int arg_cnt);
 
 int	builtin_exit(char **args)
 {
-	printf("exit\n");
+	write(1, "exit\n", 5);
 	check_args(args);
 	return (1);
 }

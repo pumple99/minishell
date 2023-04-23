@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tl_basic_func.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:13:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:18:29 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:35:59 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/parse.h"
+#include "parse.h"
+#include "safe_function.h"
 
 t_token	*new_token(char *token_str)
 {

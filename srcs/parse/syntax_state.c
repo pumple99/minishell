@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 19:37:52 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:35:40 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
+#include "parse.h"
 
 static t_syntax_s	prev_is_none(int *p_depth, t_token_type type)
 {
