@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_find_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:07:53 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/22 21:50:59 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:59:18 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	*using_cdpath(t_admin *hash_map, char *arg)
 			path_to_move = char_join(cdpath_list[i], arg, '/');
 		else
 			path_to_move = ft_strjoin(path_to_move, arg);
+		if (path_to_move == NULL)
+			malloc_error();
 		if (access(path_to_move, X_OK) == 0)
 			return (free_double_pointer(cdpath_list), path_to_move);
 		free(path_to_move);

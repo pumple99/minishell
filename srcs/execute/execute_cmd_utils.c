@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 20:51:33 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:01:54 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
+#include "safe_function.h"
 
 char	**get_path_list_from_env_path(t_admin *hash_map)
 {
@@ -60,8 +61,6 @@ char	*find_path(char **path_list, char *cmd)
 	while (path_list[++i])
 	{
 		cmd_with_path = char_join(path_list[i], cmd[0], '/');
-		if (cmd_with_path == NULL)
-			MallocError();
 		if (access(cmd_with_path, X_OK) == 0) // 존재하는 커맨드일 경우.
 			return (cmd_with_path);
 		free(cmd_with_path);

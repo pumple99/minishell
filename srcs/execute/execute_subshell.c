@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_subshell.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 20:40:05 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:49:42 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <unistd.h>
 #include "execute.h"
 #include "../includes/parse.h"
-#include <unistd.h>
+#include "list.h"
+#include "safe_function.h"
 
 static char	**make_argv(char *involve_paren_str);
 static char	*get_path_to_execute_minishell(void);
@@ -33,9 +34,7 @@ char ***envp, int is_pipe)
 	}
 	else
 	{
-		pid = fork();
-		// if (pid < 0)
-			// error handling
+		pid = fork_s();
 		if (pid == 0)
 		{
 			argv = make_argv(involve_paren_str);
@@ -50,9 +49,7 @@ static char	**make_argv(char *involve_paren_str)
 {
 	char	**argv;
 
-	argv = (char **)malloc(sizeof(char *) * 3);
-	if (argv == NULL)
-		malloc_error();
+	argv = (char **)malloc_s(sizeof(char *) * 3);
 	argv[0] = ft_strdup("minishell");
 	if (argv[0] == NULL)
 		malloc_error();
@@ -67,11 +64,7 @@ static char	*get_path_to_execute_minishell(void)
 	char	*path;
 	char	*pwd;
 
-	pwd = getcwd(NULL, 0);
-	// if (pwd == NULL)
-		// error handling
+	pwd = getcwd_s(NULL, 0);
 	path = char_join(pwd, "minishell", '/');
-	if (path == NULL)
-		malloc_error();
 	return (path);
 }

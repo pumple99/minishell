@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 21:25:22 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:03:33 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "execute.h"
 #include "libft/libft.h"
 #include "builtin.h"
-#include <stdlib.h>
+#include "safe_function.h"
 
 static char	**make_two_dimensional_array(t_token *token);
 static int	count_array_size(t_token *token);
@@ -54,9 +55,7 @@ static char	**make_two_dimensional_array(t_token *token)
 
 	idx = 0;
 	arr_size = count_array_size(token);
-	cmd_arr = (char **)malloc(sizeof(char *) * (arr_size + 1));
-	if (cmd_arr == NULL)
-		malloc_error();
+	cmd_arr = (char **)malloc_s(sizeof(char *) * (arr_size + 1));
 	while (!is_and_or_pipe_end(token))
 	{
 		if (is_redirection(token))

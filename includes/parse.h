@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 20:45:07 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:54:35 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,17 @@ typedef enum e_syntax_s
 	done_a_bracket,
 	error = 31
 }	t_syntax_s;
+
+typedef struct	s_match
+{
+	int	pattern_len;
+	int	string_len;
+	int	string_index;
+	int	pattern_index;
+	int	last_wildcard_idx;
+	int	str_backtrack_idx;
+	int	next_to_wildcard_idx;
+}				t_match;
 
 //tl_basic_func.c
 t_token			*new_token(char *token_str);

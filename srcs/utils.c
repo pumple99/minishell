@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:36:57 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/17 18:01:10 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:59:36 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "../libft/libft.h"
+#include "safe_function.h"
 
 void	free_double_pointer(char **pptr)
 {
@@ -26,12 +27,6 @@ void	free_double_pointer(char **pptr)
 	free(pptr);
 }
 
-void	malloc_error(void)
-{
-	write(2, "Malloc Error\n", 14);
-	exit(1);
-}
-
 char	*char_join(char *s1, char *s2, char c)
 {
 	size_t	len1;
@@ -41,9 +36,7 @@ char	*char_join(char *s1, char *s2, char c)
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	sj = (char *)malloc(len1 + len2 + 2);
-	if (sj == 0)
-		return (0);
+	sj = (char *)malloc_s(len1 + len2 + 2);
 	idx = -1;
 	while (++idx < len1)
 		sj[idx] = s1[idx];
