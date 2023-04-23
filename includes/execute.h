@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:55:57 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:46:53 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ int			execute(t_token_list *tl, t_admin *hash_map, char ***envp);
 //execute_utils.c
 void		save_stdio(int *stdio_fds);
 void		restore_stdio(int *stdio_fds);
+int			is_redirection(t_token *token);
+int			is_and_or_pipe_end(t_token *token);
+int			is_or_and_end(t_token *token);
 
 //execute_pipe.c
 int			execute_pipe(t_admin *hash_map, char ***envp, t_token *token);

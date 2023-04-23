@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 15:44:20 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:48:58 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "list.h"
 #include "libft.h"
-#include <unistd.h>
 
 static void	set_exit_status(int child_status, int *exit_status);
 static void	set_questionmark(t_admin *hash_map, int exit_status);
@@ -57,7 +57,7 @@ static void	set_questionmark(t_admin *hash_map, int exit_status)
 
 	exit_status_char = ft_itoa(exit_status);
 	prev_exit_status_char = exit_status_char;
-	exit_status_char = ft_strjoin("?=", exit_status_char);
+	exit_status_char = char_join("?", exit_status_char, '=');
 	add_node(hash_map, exit_status_char);
 	free(exit_status_char);
 	free(prev_exit_status_char);

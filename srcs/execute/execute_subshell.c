@@ -6,13 +6,13 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 18:49:42 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:47:38 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "execute.h"
-#include "../includes/parse.h"
+#include "parse.h"
 #include "list.h"
 #include "safe_function.h"
 
@@ -30,7 +30,7 @@ char ***envp, int is_pipe)
 	{
 		argv = make_argv(involve_paren_str);
 		path = get_path_to_execute_minishell();
-		execve(path, argv, *envp); //execve가 에러가 나면?
+		execve(path, argv, *envp);
 	}
 	else
 	{
@@ -39,7 +39,7 @@ char ***envp, int is_pipe)
 		{
 			argv = make_argv(involve_paren_str);
 			path = get_path_to_execute_minishell();
-			execve(path, argv, *envp); //execve가 에러가 나면?
+			execve(path, argv, *envp);
 		}
 		wait_last_child(hash_map, pid, 1);
 	}

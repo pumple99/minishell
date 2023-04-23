@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expand_word_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:45:14 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:23:49 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../../includes/parse.h"
-#include "../../libft/libft.h"
+#include "parse.h"
+#include "libft.h"
+#include "safe_function.h"
 
 static int	is_include_delimiter(char *str)
 {

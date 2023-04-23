@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 01:01:54 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:40:44 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*find_path(char **path_list, char *cmd)
 	while (path_list[++i])
 	{
 		cmd_with_path = char_join(path_list[i], cmd[0], '/');
-		if (access(cmd_with_path, X_OK) == 0) // 존재하는 커맨드일 경우.
+		if (access(cmd_with_path, X_OK) == 0)
 			return (cmd_with_path);
 		free(cmd_with_path);
 	}

@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:58:36 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 20:32:17 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h> 
-
-#include "../../libft/libft.h"
-#include "../../includes/parse.h"
-#include "../../includes/minishell.h"
+#include "libft.h"
+#include "parse.h"
+#include "minishell.h"
 #include "safe_function.h"
 
 static void		add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path);

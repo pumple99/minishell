@@ -3,24 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   get_path_and_pattern.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:00:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:30:30 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
-#include "../../libft/libft.h"
-#include "../../includes/minishell.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "parse.h"
+#include "libft.h"
+#include "minishell.h"
+#include "safe_function.h"
 
 static char	*get_path(char *wild_card_str);
-static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str);
+static void	get_pattern(t_token_list *pattern_list, \
+int path_len, char *wild_card_str);
 
-void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list)
+void	get_path_and_pattern(char *wild_card_str, char **path, \
+char **absolute_path, t_token_list *pattern_list)
 {
 	int	path_len;
 
@@ -71,7 +74,8 @@ static char	*get_path(char *wild_card_str)
 	return (path);
 }
 
-static void	get_pattern(t_token_list *pattern_list, int path_len, char *wild_card_str)
+static void	get_pattern(t_token_list *pattern_list, \
+int path_len, char *wild_card_str)
 {
 	int	start_idx;
 	int	end_idx;
