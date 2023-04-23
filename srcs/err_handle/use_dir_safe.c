@@ -6,11 +6,12 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 20:20:54 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:45:17 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 #include <dirent.h>
 #include <sys/errno.h>
 
@@ -41,7 +42,7 @@ struct dirent	*readdir_s(DIR *dirp)
 
 	prev_errno = errno;
 	re = readdir(dirp);
-	if (readdir != NULL) 
+	if (re != NULL) 
 		return (re);
 	else
 	{

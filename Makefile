@@ -6,13 +6,13 @@
 #    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/23 23:36:45 by sindong-yeo      ###   ########.fr        #
+#    Updated: 2023/04/23 23:41:28 by sindong-yeo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 CC := cc
-CFLAGS := -Werror -Wall -Wextra
+CFLAGS := #-Werror -Wall -Wextra
 LDFLAGS := -L/opt/homebrew/opt/readline/lib
 DEBUG_FLAGS := -g
 LIB := libft.a

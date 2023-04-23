@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:40:44 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:56:07 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
+#include "execute.h"
+#include "minishell.h"
 #include "safe_function.h"
 
 char	**get_path_list_from_env_path(t_admin *hash_map)
@@ -60,14 +62,14 @@ char	*find_path(char **path_list, char *cmd)
 	i = -1;
 	while (path_list[++i])
 	{
-		cmd_with_path = char_join(path_list[i], cmd[0], '/');
+		cmd_with_path = char_join(path_list[i], &cmd[0], '/');
 		if (access(cmd_with_path, X_OK) == 0)
 			return (cmd_with_path);
 		free(cmd_with_path);
 	}
 	cmd_with_path = ft_strdup(cmd);
 	if (cmd_with_path == NULL)
-		MallocError();
+		malloc_error();
 	return (cmd_with_path);
 }
 

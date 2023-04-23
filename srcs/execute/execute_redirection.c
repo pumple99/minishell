@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:44:43 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:58:23 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ static void	add_fd_to_list(t_fd_list *fd_list, int fd)
 	node->fd = fd;
 	node->next = fd_list->first_node;
 	fd_list->first_node = node;
+}
+
+static int	is_ambiguous(t_token *redirect_token)
+{
+	if (redirect_token->type == heredoc)
+		return (0);
+	if (redirect_token->next->expand == wild_card)
+	{
+		write_s(2, "minishell: ambiguous redirect\n", 30);
+		return (1);
+	}
+	return (0);
 }
 
 static int	change_fd(t_token *redirect_token, t_fd_list *fd_list)
@@ -53,18 +65,6 @@ static int	change_fd(t_token *redirect_token, t_fd_list *fd_list)
 		return (fd_list->err = 1, 1);
 	dup2_s(fd, stdi_or_o);
 	return (add_fd_to_list(fd_list, fd), 0);
-}
-
-static int	is_ambiguous(t_token *redirect_token)
-{
-	if (redirect_token->type == heredoc)
-		return (0);
-	if (redirect_token->next->expand == wild_card)
-	{
-		write_s(2, "minishell: ambiguous redirect\n", 30);
-		return (1);
-	}
-	return (0);
 }
 
 t_fd_list	execute_redirection(t_token *token)

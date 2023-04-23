@@ -6,11 +6,11 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:07:53 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 20:21:35 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:45:36 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 #include <sys/errno.h>
 #include "safe_function.h"
 

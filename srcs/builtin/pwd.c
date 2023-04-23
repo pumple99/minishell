@@ -6,13 +6,14 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:43:41 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:51:34 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:43:51 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include "list.h"
+#include "libft.h"
 #include "safe_function.h"
 
 int	builtin_pwd(t_admin *hash_map)

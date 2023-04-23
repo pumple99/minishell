@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:12:56 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/24 00:00:54 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/parse.h"
-#include "../../libft/libft.h"
+#include <stdlib.h>
+#include "parse.h"
+#include "libft.h"
 
 static t_token	*get_wild_card_expand_list(t_token *token);
 static void		change_last_expand_type(t_token *list);
