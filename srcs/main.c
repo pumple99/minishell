@@ -6,20 +6,21 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 21:14:48 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:24:43 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <termios.h>
+#include <readline/history.h>
+#include <readline/readline.h>
 
 #include "list.h"
 #include "signal.h"
 #include "minishell.h"
 #include "builtin.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <termios.h>
-#include <readline/history.h>
-#include <readline/readline.h>
 
 void	handler(int signum);
 
@@ -49,8 +50,8 @@ int	main(int argc, char *argv[], char *envp[])
 		line_read = readline("minishell >");
 		if (line_read && *line_read != ' ')
 			add_history (line_read);
-		if (rl_eof_found)
-			return (free(line_read), 0);
+		//if (rl_eof_found)
+		//	return (free(line_read), 0);
 		free(line_read);
 	}
 	return (0);
