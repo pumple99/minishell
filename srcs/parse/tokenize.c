@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/13 22:13:36 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:18:59 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_token_size(char *src)
 			break ;
 		++token_size;
 		if (new_state.num_s == op_end || new_state.num_s == op_paren)
-			break;
+			break ;
 		state = new_state;
 	}
 	return (token_size);
@@ -49,9 +49,7 @@ static char	*copy_token_in_line(char *src)
 	state = init_state();
 	str_idx = 0;
 	token_size = get_token_size(src);
-	copy_token = (char *)malloc(token_size + 1);
-	if (copy_token == 0)
-		return (0);
+	copy_token = (char *)malloc_s(token_size + 1);
 	copy_token[token_size] = '\0';
 	while (*src)
 	{
@@ -60,7 +58,7 @@ static char	*copy_token_in_line(char *src)
 			break ;
 		copy_token[str_idx++] = *(src++);
 		if (new_state.num_s == op_end || new_state.num_s == op_paren)
-			break;
+			break ;
 		state = new_state;
 	}
 	return (copy_token);

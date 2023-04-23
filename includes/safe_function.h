@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAFE_FUNCTION
-# define SAFE_FUNCTION
+#ifndef SAFE_FUNCTION_H
+# define SAFE_FUNCTION_H
 
 #include <dirent.h>
 
@@ -20,11 +20,10 @@ void	perr_exit(char *str);
 void	malloc_error(void);
 
 //use_fd_safe.c
-int		dup_s(int fd);
-int		dup2_s(int fd1, int fd2);
-int		close(fd);
-int		open_s(char *path, int o_flag);
-
+int				dup_s(int fd);
+int				dup2_s(int fd1, int fd2);
+int				close_s(int fd);
+int				open_s(char *path, int o_flag);
 
 //use_dir_safe.c
 int				chdir_s(const char *path);

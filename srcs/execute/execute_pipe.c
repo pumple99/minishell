@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 20:10:42 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:11:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ t_token *token, int child_total)
 		if (child_count != 1)
 			token = get_next_pipe(token);
 		if (child_count != child_total)
-			check_pipe(fds.left);
-		pid = check_fork();
+			pipe_s(fds.left);
+		pid = fork_s();
 		if (pid != 0)
 			close_left_and_move(fds.left, fds.right, child_count);
 	}
@@ -100,7 +100,7 @@ int	execute_pipe(t_admin *hash_map, char ***envp, t_token *token)
 	while (temp->type != end)
 	{
 		if (paren_depth == 0 && is_or_and_end(temp))
-			break;
+			break ;
 		if (temp->type == paren_l)
 			++paren_depth;
 		else if (temp->type == paren_r)

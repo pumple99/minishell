@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 14:50:17 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:45:14 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ static char	*get_word_split_str(char **str)
 	while ((*str)[len] != 0 && (*str)[len] != ' ' && (*str)[len] != '\t' \
 	&& (*str)[len] != '\n')
 		++len;
-	split_str = (char *)malloc(len + 1);
-	if (split_str == 0)
-		return (0);
+	split_str = (char *)malloc_s(len + 1);
 	split_str[len] = 0;
 	idx = -1;
 	while (++idx < len)

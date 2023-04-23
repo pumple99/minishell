@@ -30,16 +30,16 @@ void	is_executable(char *cmd_with_path)
 {
 	if (access(cmd_with_path, F_OK) == -1 || ft_strchr(cmd_with_path, '/') == 0)
 	{
-		write(2, "bash: ", 7);
-		write(2, cmd_with_path, ft_strlen(cmd_with_path));
-		write(2, ": Command not found\n", 21);
+		write_s(2, "bash: ", 7);
+		write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
+		write_s(2, ": Command not found\n", 21);
 		exit(127);
 	}
 	if (access(cmd_with_path, X_OK) == -1)
 	{
-		write(2, "bash: ", 7);
-		write(2, cmd_with_path, ft_strlen(cmd_with_path));
-		write(2, ": Permission denied\n", 21);
+		write_s(2, "bash: ", 7);
+		write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
+		write_s(2, ": Permission denied\n", 21);
 		exit(1);
 	}
 }

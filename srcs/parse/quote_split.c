@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 14:48:22 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:17:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ static char	*get_quote_split_str(char **str)
 	int		len;
 
 	len = get_quote_split_len(*str);
-	split_str = (char *)malloc(len + 1);
-	if (split_str == 0)
-		return (0);
+	split_str = (char *)malloc_s(len + 1);
 	split_str[len] = 0;
 	idx = -1;
 	while (++idx < len)
@@ -88,7 +86,7 @@ static void	quote_split_word(t_token_list *tl, t_token *first_token, char *str)
 void	quote_split(t_token_list *tl)
 {
 	t_token	*token;
-	t_token *temp;
+	t_token	*temp;
 	char	*str;
 
 	token = tl->head;

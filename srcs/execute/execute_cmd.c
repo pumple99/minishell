@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 20:33:44 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:10:19 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ char **minimal_cmd, int is_pipe)
 	{
 		if (ft_strlen(minimal_cmd[0]) == 0)
 			exit(0);
-		path_list = get_path_list_from_env_path(hash_map); 
+		path_list = get_path_list_from_env_path(hash_map);
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);
 		execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
 	}
 	else
 	{
-		pid = fork();
+		pid = fork_s();
 		// if (fork < -1)
 		// 	error handling
 		if (pid == 0)

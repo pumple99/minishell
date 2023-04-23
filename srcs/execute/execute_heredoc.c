@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 21:06:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:41:32 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	read_heredoc(char *filename, char *limiter)
 			free(line);
 			break ;
 		}
-		write(fd, line, ft_strlen(line));
+		write_s(fd, line, ft_strlen(line));
 		free(line);
 	}
 	close_s(fd);
@@ -110,7 +110,7 @@ void	execute_heredoc(t_token_list *tl)
 			heredoc_filename = get_heredoc_filename();
 			read_heredoc(heredoc_filename, token->next->string);
 			free(token->string);
-			token->string = (char *)malloc(2);
+			token->string = (char *)malloc_s(2);
 			(token->string)[0] = '<';
 			(token->string)[1] = 0;
 			token = token->next;

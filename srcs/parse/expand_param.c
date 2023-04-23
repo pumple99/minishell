@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/14 15:37:41 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:13:10 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ static char	*get_search_str(char **p_str)
 	while ((*p_str)[len] != 0 && (ft_isalnum((*p_str)[len]) \
 	|| (*p_str)[len] == '_'))
 		++len;
-	search_str = (char *)malloc(len + 1);
-	if (search_str == 0)
-		return (0);
+	search_str = (char *)malloc_s(len + 1);
 	search_str[len] = 0;
 	len = 0;
 	while ((*p_str)[len] != 0 && (ft_isalnum((*p_str)[len]) \
@@ -39,44 +37,21 @@ static char	*get_search_str(char **p_str)
 	return (search_str);
 }
 
-//test_func
+//*p_str is a address right next to $
 static char	*get_param_value(t_admin *hash_map, char **p_str)
 {
-	//test_func
-	char *re;
+	char	*search_str;
+	t_node	*node;
 
-	re = (char *)malloc(10);
-	if (hash_map == p_str)
-		return (0);
-	get_search_str(p_str);
-	re[9] = 0;
-	re[0] = 'a';
-	re[1] = 'b';
-	re[2] = 'c';
-	re[3] = ' ';
-	re[4] = ' ';
-	re[5] = 'e';
-	re[6] = 'n';
-	re[7] = 'd';
-	re[8] = 0;
-	return (re);
+	if (**p_str == '?')
+		return (*p_str += 1, search_node(hash_map, "?")->value);
+	search_str = get_search_str(p_str);
+	node = search_node(hash_map, search_str);
+	free(search_str);
+	if (node)
+		return (node->value);
+	return (0);
 }
-
-//*p_str is a address right next to $
-// static char	*get_param_value(t_admin *hash_map, char **p_str)
-// {
-// 	char	*search_str;
-// 	t_node	*node;
-
-// 	if (**p_str == '?')
-// 		return (*p_str += 1, search_node(hash_map, "?")->value);
-// 	search_str = get_search_str(p_str);
-// 	node = search_node(hash_map, search_str);
-// 	free(search_str);
-// 	if (node)
-// 		return (node->value);
-// 	return (0);
-// }
 
 static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 {
@@ -98,9 +73,7 @@ static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 			++len;
 		++str;
 	}
-	empty_str = (char *)malloc(len + 1);
-	if (empty_str == 0)
-		return (0);
+	empty_str = (char *)malloc_s(len + 1);
 	empty_str[len] = 0;
 	return (empty_str);
 }

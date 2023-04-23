@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_wild_card_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:28:19 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 19:23:32 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:45:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,7 @@ char	*get_wild_card_str(t_token *first_token)
 		return (ft_strdup(first_token->string));
 	token = first_token;
 	len = get_wild_card_strlen(first_token);
-	wild_card_str = (char *)malloc(len + 1);
-	if (wild_card_str == 0)
-		return (0);
+	wild_card_str = (char *)malloc_s(len + 1);
 	wild_card_str[len] = 0;
 	idx = 0;
 	while (token->expand != non_quote_end && token->expand != quote_end)

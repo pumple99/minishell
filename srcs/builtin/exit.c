@@ -17,7 +17,7 @@ static int	count_args(char **args);
 static void	check_args(char **args);
 static int	is_no_arg(int arg_cnt);
 
-int		builtin_exit(char **args)
+int	builtin_exit(char **args)
 {
 	printf("exit\n");
 	check_args(args);

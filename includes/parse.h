@@ -47,7 +47,7 @@ typedef enum e_token_type
 	end = 17
 }	t_token_type;
 
-typedef	enum e_expand_type
+typedef enum e_expand_type
 {
 	quote_word = 18,
 	quote_end,
@@ -106,7 +106,7 @@ void			delete_residue(t_token *first_token);
 t_token			*delete_one_word(t_token_list *tl, t_token *first_token);
 t_token			*find_next_word_or_operation(t_token *curr_token);
 void			insert_token_list(t_token_list *tl, t_token *prev, \
- t_token *first_of_tl);
+t_token *first_of_tl);
 
 //tokenize_state.c
 t_state			get_tokenize_state(t_state prev_state, char *str);
@@ -146,15 +146,17 @@ void			expand_word_split(t_token_list *tl);
 
 //expand_filename.c
 void			expand_filename(t_token_list *tl);
-void			get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path, t_token_list *pattern_list);
+void			get_path_and_pattern(char *wild_card_str, char **path, \
+char **absolute_path, t_token_list *pattern_list);
 
 //expand_filename_utils.c
-void	init_list(t_token_list **matched_result);
-void	free_pattern_list(t_token_list **pattern);
-t_token	*get_head_token(t_token_list **matched_result);
+void			init_list(t_token_list **matched_result);
+void			free_pattern_list(t_token_list **pattern);
+t_token			*get_head_token(t_token_list **matched_result);
 
 //recursive_search_file
-void			recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern);
+void			recursive_search_file(t_token_list *matched_list_ptr, \
+char *path, char *abosolute_path, t_token *pattern);
 
 //get_wild_card_str.c
 int				is_include_wild_card(t_token *first_token);

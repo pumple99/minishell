@@ -54,7 +54,7 @@ char	*has_paren(t_token *token)
 	while (token->type != end)
 	{
 		if (paren_depth == 0 && is_and_or_pipe_end(token))
-			break;
+			break ;
 		if (token->type == paren_l)
 			++paren_depth;
 		else if (token->type == paren_r)
@@ -74,7 +74,7 @@ static int	count_paren(t_token *token)
 	while (token->type != end)
 	{
 		if (paren_depth == 0 && is_and_or_pipe_end(token))
-			break;
+			break ;
 		if (token->type == paren_l)
 		{
 			++paren_depth;
@@ -100,7 +100,8 @@ static char	*remove_outer_paren(char *prev_involve_paren)
 {
 	char	*involve_paren_str;
 
-	involve_paren_str = ft_substr(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
+	involve_paren_str = ft_substr(prev_involve_paren, 1, \
+	ft_strlen(prev_involve_paren) - 2);
 	if (involve_paren_str == NULL)
 		malloc_error();
 	free(prev_involve_paren);

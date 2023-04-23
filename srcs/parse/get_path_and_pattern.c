@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path_and_pattern.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/18 15:36:54 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:00:39 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	get_path_and_pattern(char *wild_card_str, char **path, char **absolute_path
 	*path = get_path(wild_card_str);
 	if (*path == NULL)
 	{
-		*path = getcwd(NULL, 0);
-		*absolute_path = getcwd(NULL, 0);
+		*path = getcwd_s(NULL, 0);
+		*absolute_path = getcwd_s(NULL, 0);
 		get_pattern(pattern_list, 0, wild_card_str);
 	}
 	else

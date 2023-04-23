@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 20:09:49 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:44:20 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 static void	set_exit_status(int child_status, int *exit_status);
 static void	set_questionmark(t_admin *hash_map, int exit_status);
 
-void	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
+int	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 {
 	int		exit_status;
 	int		child_status;
 	pid_t	pid_num;
 
+	exit_status = 0;
 	while (child_cnt--)
 	{
 		pid_num = wait(&child_status);
@@ -32,6 +33,7 @@ void	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 			set_questionmark(hash_map, exit_status);
 		}
 	}
+	return (exit_status);
 }
 
 static void	set_exit_status(int child_status, int *exit_status)
