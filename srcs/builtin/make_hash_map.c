@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   make_hash_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:51:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:40:40 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:03:57 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#include "minishell.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "list.h"
+#include "minishell.h"
+#include "safe_function.h"
 
 static void	init_hash_map(t_admin *hash_map);
 

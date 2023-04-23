@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:11:15 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:48:46 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "minishell.h"
 #include "execute.h"
+#include "safe_function.h"
 
 static int	count_paren(t_token *token);
 static void	make_involve_paren(char **involve_paren, char *new_string);
@@ -21,22 +22,19 @@ static char	*remove_outer_paren(char *prev_involve_paren);
 
 int	is_builtin(char *minimal_cmd)
 {
-	char	*cmd_len;
-
-	cmd_len = ft_strlen(minimal_cmd);
-	if (ft_strncmp(minimal_cmd, "cd", cmd_len) == 0)
+	if (ft_strncmp(minimal_cmd, "cd", 3) == 0)
 		return (cd);
-	else if (ft_strncmp(minimal_cmd, "echo", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "echo", 5) == 0)
 		return (echo);
-	else if (ft_strncmp(minimal_cmd, "env", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "env", 4) == 0)
 		return (env);
-	else if (ft_strncmp(minimal_cmd, "exit", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "exit", 5) == 0)
 		return (exit);
-	else if (ft_strncmp(minimal_cmd, "export", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "export", 7) == 0)
 		return (export);
-	else if (ft_strncmp(minimal_cmd, "pwd", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "pwd", 4) == 0)
 		return (pwd);
-	else if (ft_strncmp(minimal_cmd, "unset", cmd_len) == 0)
+	else if (ft_strncmp(minimal_cmd, "unset", 6) == 0)
 		return (unset);
 	else
 		return (0);
@@ -95,8 +93,6 @@ static void	make_involve_paren(char **involve_paren_str, char *new_string)
 
 	prev_involve_paren = *involve_paren_str;
 	*involve_paren_str = char_join(*involve_paren_str, new_string, ' ');
-	if (*involve_paren_str == NULL)
-		malloc_error();
 	free(prev_involve_paren);
 }
 

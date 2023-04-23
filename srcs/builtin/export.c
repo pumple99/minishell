@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:19:26 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:42:51 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "libft.h"
+
 #include <stdlib.h>
 #include <stdio.h>
-
+#include "minishell.h"
+#include "libft.h"
+#include "list.h"
 static int	inspect_arg(char *export_arg, int *return_val);
 static int	is_error(char *arg, int *return_val);
 static void	print_hash_map(t_admin *hash_map);
@@ -23,12 +24,12 @@ int	builtin_export(t_admin *hash_map, char ***envp, char **args)
 {
 	int	i;
 	int	return_val;
-	int	re_build_flag; // envp를 새롭게 생성하는 것을 체크.
+	int	re_build_flag;
 
 	i = 0;
 	return_val = 0;
 	re_build_flag = 0;
-	if (args[1] == NULL) // 인자가 없으면, 해쉬 맵 출력
+	if (args[1] == NULL)
 		return (print_hash_map(hash_map), 0);
 	while (args[++i])
 	{
@@ -46,9 +47,9 @@ static int	inspect_arg(char *arg, int *return_val)
 {
 	int	i;
 
+	i = 1;
 	if (!ft_isalpha(arg[0]) && arg[0] != '_')
 		return (is_error(arg, return_val));
-	i = 1;
 	while (arg[i] && arg[i] != '=')
 	{
 		if (ft_isalnum(arg[i]) || arg[i] == '_')

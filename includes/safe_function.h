@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   safe_function.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:39:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 17:03:20 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:43:32 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SAFE_FUNCTION_H
 # define SAFE_FUNCTION_H
 
+#include <dirent.h>
+
 //err_exit.c
-void			perr_exit(char *str);
+void	perr_exit(char *str);
+void	malloc_error(void);
 
 //use_fd_safe.c
 int				dup_s(int fd);

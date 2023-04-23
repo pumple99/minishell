@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_pwd_oldpwd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:07:27 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:01:14 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
+#include "safe_function.h"
 
 static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
 t_node **oldpwd_node);
@@ -72,8 +73,6 @@ char *path_to_move)
 	if (prev_pwd == NULL)
 		malloc_error();
 	pwd = char_join(prev_pwd, path_to_move, '/');
-	if (pwd == NULL)
-		malloc_error();
 	free(prev_pwd);
 	add_node(hash_map, pwd);
 	free(pwd);

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:27:13 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:19:31 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:52:01 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "list.h"
 #include "minishell.h"
-#include <stdlib.h>
 
 int	builtin_unset(t_admin *hash_map, char ***envp, char **args)
 {
 	int		i;
 	int		re_build_flag;
 
-	if (args == NULL) // 아무런 매개변수도 들어오지 않은 경우
+	if (args == NULL)
 		return (0);
 	i = -1;
 	re_build_flag = 0;

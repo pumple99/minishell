@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:45 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:03:33 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "execute.h"
 #include "libft/libft.h"
 #include "builtin.h"
-#include <stdlib.h>
+#include "safe_function.h"
 
 static char	**make_two_dimensional_array(t_token *token);
 static int	count_array_size(t_token *token);

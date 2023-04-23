@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_subshell.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:42:24 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 18:49:42 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <unistd.h>
 #include "execute.h"
 #include "../includes/parse.h"
-#include <unistd.h>
+#include "list.h"
+#include "safe_function.h"
 
 static char	**make_argv(char *involve_paren_str);
 static char	*get_path_to_execute_minishell(void);
@@ -34,8 +35,6 @@ char ***envp, int is_pipe)
 	else
 	{
 		pid = fork_s();
-		// if (pid < 0)
-			// error handling
 		if (pid == 0)
 		{
 			argv = make_argv(involve_paren_str);
@@ -66,10 +65,6 @@ static char	*get_path_to_execute_minishell(void)
 	char	*pwd;
 
 	pwd = getcwd_s(NULL, 0);
-	// if (pwd == NULL)
-		// error handling
 	path = char_join(pwd, "minishell", '/');
-	if (path == NULL)
-		malloc_error();
 	return (path);
 }

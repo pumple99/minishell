@@ -3,25 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   is_match.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:19:27 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/04/18 15:21:10 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:54:41 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-typedef struct	s_match
-{
-	int	pattern_len;
-	int	string_len;
-	int	string_index;
-	int	pattern_index;
-	int	last_wildcard_idx;
-	int	str_backtrack_idx;
-	int	next_to_wildcard_idx;
-}				t_match;
+#include "parse.h"
 
 static int	is_wildcard(t_match *values, char *pattern);
 static void	init_values(t_match *values, char *string, char *pattern);

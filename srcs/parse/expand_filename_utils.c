@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:44:04 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:43:26 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 01:03:16 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
 #include <stdlib.h>
+#include "parse.h"
+#include "safe_function.h"
 
 void	init_list(t_token_list **matched_result)
 {

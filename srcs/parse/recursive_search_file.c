@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:24:34 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:58:36 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../../libft/libft.h"
-#include "../../includes/parse.h"
-#include "../../includes/minishell.h"
 
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h> 
 
+#include "../../libft/libft.h"
+#include "../../includes/parse.h"
+#include "../../includes/minishell.h"
+#include "safe_function.h"
+
 static void		add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path);
 static int		is_link_file(char *filename);
 static void		config_for_directory(t_token *pattern, char *path, int *dir_flag, DIR **dir_pptr);
-
 
 void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
 {
@@ -36,8 +36,6 @@ void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abo
 	while ((filename = readdir_s(dir_ptr)))
 	{
 		path_filename = char_join(path, filename->d_name, '/');
-		if (path_filename == NULL)
-			malloc_error();
 		if (stat(path_filename, &buf) == -1 || is_link_file(filename->d_name))
 		{
 			free(path_filename);

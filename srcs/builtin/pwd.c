@@ -3,31 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:43:41 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 16:00:15 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 00:51:34 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
 #include <stdio.h>
 #include <unistd.h>
+#include "list.h"
+#include "safe_function.h"
 
 int	builtin_pwd(t_admin *hash_map)
 {
-	t_node	*pwd;
-	char	*_pwd;
+	t_node	*pwd_node;
+	char	*pwd;
 
-	pwd = search_node(hash_map, "PWD");
-	if (pwd == NULL)
+	pwd_node = search_node(hash_map, "PWD");
+	if (pwd_node == NULL)
 	{
-		_pwd = getcwd_s(NULL, 0);
-		// if (_pwd == NULL)
-			// ...? 뭐를 해야하지.
-		printf("%s\n", _pwd);
+		pwd = getcwd_s(NULL, 0);
+		write_s(1, pwd, ft_strlen(pwd));
+		write_s(1, "\n", 1);
 	}
 	else
-		return (printf("%s\n", pwd->value), 0);
+	{
+		write_s(1, pwd, ft_strlen(pwd));
+		write_s(1, "\n", 1);
+	}
 	return (0);
 }
