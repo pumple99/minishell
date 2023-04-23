@@ -6,13 +6,14 @@
 #    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/23 21:16:01 by sindong-yeo      ###   ########.fr        #
+#    Updated: 2023/04/23 23:36:45 by sindong-yeo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 CC := cc
 CFLAGS := -Werror -Wall -Wextra
+LDFLAGS := -L/opt/homebrew/opt/readline/lib
 DEBUG_FLAGS := -g
 LIB := libft.a
 LIB_DIR := libft
@@ -44,15 +45,14 @@ OBJS := $(SRCS:%.c=%.o)
 
 $(NAME) :: $(LIB)
 $(NAME) :: $(OBJS) $(CHANGABLE_HEADERS)
-	$(CC) $(CFLAGS) $(OBJS_M) $(OBJS_C) $(LIB) \
-		$(DEBUG_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LIB) $(DEBUG_FLAGS) -o $(NAME) 
 
 all : $(NAME)
 
 #bonus : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< $(DEBUG_FLAGS) -o $@ -I. -I$(LIB_DIR) -I$(INCLUDES)
+	$(CC) $(CFLAGS) -c $< $(DEBUG_FLAGS) -o $@ -I. -I$(LIB_DIR) -I$(INCLUDES) -I/opt/homebrew/opt/readline/include
 
 $(LIB) :
 	make -C $(LIB_DIR) all
@@ -60,7 +60,7 @@ $(LIB) :
 
 clean :
 	make -C $(LIB_DIR) clean
-	rm -rf $(OBJS_C) $(OBJS_B) $(OBJS_M) $(LIB)
+	rm -rf $(OBJS) $(LIB)
 
 fclean : clean
 	make -C $(LIB_DIR) fclean
