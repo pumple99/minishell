@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:00:31 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:42:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ static char	**make_argv(char *involve_paren_str)
 {
 	char	**argv;
 
-	argv = (char **)malloc(sizeof(char *) * 3);
-	if (argv == NULL)
-		malloc_error();
+	argv = (char **)malloc_s(sizeof(char *) * 3);
 	argv[0] = ft_strdup("minishell");
 	if (argv[0] == NULL)
 		malloc_error();

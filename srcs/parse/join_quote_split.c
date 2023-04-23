@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 17:22:23 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:45:31 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ static char	*get_empty_str(t_token *first_token)
 			break;
 		temp = temp->next;
 	}
-	empty_str = (char *)malloc(total + 1);
-	if (empty_str == 0)
-		return (0);
+	empty_str = (char *)malloc_s(total + 1);
 	empty_str[total] = 0;
 	return (empty_str);
 }

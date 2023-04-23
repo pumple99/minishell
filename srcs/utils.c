@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:36:57 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 15:58:22 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:47:17 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ char	*char_join(char *s1, char *s2, char c)
 
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	sj = (char *)malloc(len1 + len2 + 2);
-	if (sj == 0)
-		return (0);
+	sj = (char *)malloc_s(len1 + len2 + 2);
 	idx = -1;
 	while (++idx < len1)
 		sj[idx] = s1[idx];
