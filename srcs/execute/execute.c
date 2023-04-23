@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 20:48:19 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:15:21 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	free_unlink_tl(t_token_list *tl)
 	{
 		next = cur->next;
 		if (cur->type == heredoc)
-			unlink(next->string);
+			unlink_s(next->string);
 		free(cur->string);
 		free(cur);
 		cur = next;

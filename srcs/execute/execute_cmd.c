@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 20:33:44 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:48:31 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char **minimal_cmd, int is_pipe)
 	}
 	else
 	{
-		pid = fork();
+		pid = fork_s();
 		// if (fork < -1)
 		// 	error handling
 		if (pid == 0)
