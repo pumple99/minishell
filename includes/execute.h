@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/22 20:48:01 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:44:36 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int		execute_subshell(t_admin *hash_map, char *involve_paren_str, \
 char ***envp, int is_pipe);
 
 //wait_last_child.c
-void	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt);
+int		wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt);
 
 #endif
