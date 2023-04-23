@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 21:06:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:59:18 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static void	read_heredoc(char *filename, char *limiter)
 			free(line);
 			break ;
 		}
-		write(fd, line, ft_strlen(line));
+		write_s(fd, line, ft_strlen(line));
 		free(line);
 	}
 	close_s(fd);

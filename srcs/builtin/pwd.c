@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:43:41 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 16:52:58 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:00:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	builtin_pwd(t_admin *hash_map)
 	pwd = search_node(hash_map, "PWD");
 	if (pwd == NULL)
 	{
-		_pwd = getcwd(NULL, 0);
+		_pwd = getcwd_s(NULL, 0);
 		// if (_pwd == NULL)
 			// ...? 뭐를 해야하지.
 		printf("%s\n", _pwd);

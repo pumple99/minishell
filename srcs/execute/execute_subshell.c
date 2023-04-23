@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_subshell.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/21 20:40:05 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:00:31 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char ***envp, int is_pipe)
 	}
 	else
 	{
-		pid = fork();
+		pid = fork_s();
 		// if (pid < 0)
 			// error handling
 		if (pid == 0)
@@ -67,7 +67,7 @@ static char	*get_path_to_execute_minishell(void)
 	char	*path;
 	char	*pwd;
 
-	pwd = getcwd(NULL, 0);
+	pwd = getcwd_s(NULL, 0);
 	// if (pwd == NULL)
 		// error handling
 	path = char_join(pwd, "minishell", '/');

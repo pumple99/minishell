@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_create_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:58:56 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/11 16:43:29 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:59:35 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_node	*create_node(char *arg)
 	np = (t_node *)malloc(sizeof(t_node));
 	if (np == NULL)
 	{
-			write(2, "Malloc Error", 13);
+			write_s(2, "Malloc Error", 13);
 			exit(1);
 	}
 	np->prev = NULL;

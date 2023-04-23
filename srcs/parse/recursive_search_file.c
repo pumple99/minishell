@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/18 15:21:15 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:24:34 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abo
 	int				dir_flag;
 
 	config_for_directory(pattern, path, &dir_flag, &dir_ptr);
-	while ((filename = readdir(dir_ptr)))
+	while ((filename = readdir_s(dir_ptr)))
 	{
 		path_filename = char_join(path, filename->d_name, '/');
 		if (path_filename == NULL)
@@ -58,7 +58,7 @@ void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abo
 		}
 		free(path_filename);
 	}
-	closedir(dir_ptr);
+	closedir_s(dir_ptr);
 }
 
 static void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path)

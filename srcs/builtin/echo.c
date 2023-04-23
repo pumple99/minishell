@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 15:58:22 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:58:27 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	builtin_echo(char **args)
 
 	option_flag = 0;
 	if (args[1] == NULL)
-		write(1, "\n", 1);
+		write_s(1, "\n", 1);
 	check_option(args, &option_flag);
 	return_val = print_args(args, option_flag);
 	if (option_flag == 0)
-		write(1, "\n", 1);
+		write_s(1, "\n", 1);
 	return (return_val);
 }
 
@@ -51,7 +51,7 @@ static int	print_args(char **args, int option_flag)
 	while (args[i])
 	{
 		word_length = ft_strlen(args[i]);
-		if (word_length != write(1, args[i], word_length))
+		if (word_length != write_s(1, args[i], word_length))
 		{
 			// write error가 발생한 부분 어떻게 처리할지 생각해보기.
 			return (-1);

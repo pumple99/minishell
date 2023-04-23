@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 18:19:24 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 15:59:27 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	is_ambiguous(t_token *redirect_token)
 		return (0);
 	if (redirect_token->next->expand == wild_card)
 	{
-		write(2, "minishell: ambiguous redirect\n", 30);
+		write_s(2, "minishell: ambiguous redirect\n", 30);
 		return (1);
 	}
 	return (0);
