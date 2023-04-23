@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_new_envp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 22:21:27 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 18:18:55 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:41:00 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	make_new_envp(t_admin *hash_map, char ***envp)
 
 	free_double_pointer(*envp);
 	array_size = get_array_size(hash_map); // 새로 생성할 배열의 크기 구하기
-	(*envp) = (char **)malloc(sizeof(char *) * (array_size + 1));
-	if (*envp == NULL)
-		malloc_error();
+	(*envp) = (char **)malloc_s(sizeof(char *) * (array_size + 1));
 	fill_array(hash_map, envp);
 	(*envp)[array_size] = NULL;
 }

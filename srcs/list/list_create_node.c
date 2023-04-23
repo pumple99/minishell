@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:58:56 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 15:59:35 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:42:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ t_node	*create_node(char *arg)
 	t_node	*np;
 	char	*asm_opr_pos;
 
-	np = (t_node *)malloc(sizeof(t_node));
-	if (np == NULL)
-	{
-			write_s(2, "Malloc Error", 13);
-			exit(1);
-	}
+	np = (t_node *)malloc_s(sizeof(t_node));
 	np->prev = NULL;
 	np->next = NULL;
 	asm_opr_pos = ft_strchr(arg, (int)'=');

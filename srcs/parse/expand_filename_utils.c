@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:44:04 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 20:45:53 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:43:26 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 void	init_list(t_token_list **matched_result)
 {
-	(*matched_result) = (t_token_list *)malloc(sizeof(t_token_list));
-	if ((*matched_result) == NULL)
-		malloc_error();
+	(*matched_result) = (t_token_list *)malloc_s(sizeof(t_token_list));
 	(*matched_result)->head = NULL;
 	(*matched_result)->tail = NULL;
 }

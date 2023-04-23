@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_hash_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:51:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 17:01:58 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:40:40 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,8 @@ static void	init_hash_map(t_admin *hash_map)
 	i = -1;
 	while (++i <= 53)
 	{
-		hash_map[i].head = (t_node *)malloc(sizeof(t_node));
-		if (hash_map[i].head == NULL)
-			malloc_error();
-		hash_map[i].tail = (t_node *)malloc(sizeof(t_node));
-		if (hash_map[i].tail == NULL)
-			malloc_error();
+		hash_map[i].head = (t_node *)malloc_s(sizeof(t_node));
+		hash_map[i].tail = (t_node *)malloc_s(sizeof(t_node));
 		hash_map[i].head->next = hash_map[i].tail;
 		hash_map[i].head->prev = NULL;
 		hash_map[i].tail->prev = hash_map[i].head;

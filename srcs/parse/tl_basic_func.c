@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:13:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 17:41:31 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:46:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,7 @@ t_token	*new_token(char *token_str)
 {
 	t_token	*new;
 
-	new = (t_token *)malloc(sizeof(t_token));
-	if (new == 0)
-	{
-		//malloc err here
-		return (0);
-	}
+	new = (t_token *)malloc_s(sizeof(t_token));
 	new->string = token_str;
 	new->type = get_token_type(token_str);
 	new->next = 0;

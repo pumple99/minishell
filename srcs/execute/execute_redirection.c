@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 15:59:27 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:41:54 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	add_fd_to_list(t_fd_list *fd_list, int fd)
 {
 	t_fd_node	*node;
 
-	node = (t_fd_node *)malloc(sizeof(t_fd_node));
+	node = (t_fd_node *)malloc_s(sizeof(t_fd_node));
 	node->fd = fd;
 	node->next = fd_list->first_node;
 	fd_list->first_node = node;

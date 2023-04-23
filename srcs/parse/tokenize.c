@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/13 22:13:36 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 16:46:23 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ static char	*copy_token_in_line(char *src)
 	state = init_state();
 	str_idx = 0;
 	token_size = get_token_size(src);
-	copy_token = (char *)malloc(token_size + 1);
-	if (copy_token == 0)
-		return (0);
+	copy_token = (char *)malloc_s(token_size + 1);
 	copy_token[token_size] = '\0';
 	while (*src)
 	{
