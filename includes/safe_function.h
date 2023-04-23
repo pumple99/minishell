@@ -3,25 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   safe_function.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:39:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 20:43:10 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:03:20 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SAFE_FUNCTION
-# define SAFE_FUNCTION
+#ifndef SAFE_FUNCTION_H
+# define SAFE_FUNCTION_H
 
 //err_exit.c
-void	perr_exit(char *str);
+void			perr_exit(char *str);
 
 //use_fd_safe.c
-int		dup_s(int fd);
-int		dup2_s(int fd1, int fd2);
-int		close(fd);
-int		open_s(char *path, int o_flag);
-
+int				dup_s(int fd);
+int				dup2_s(int fd1, int fd2);
+int				close_s(int fd);
+int				open_s(char *path, int o_flag);
 
 //use_dir_safe.c
 int				chdir_s(const char *path);

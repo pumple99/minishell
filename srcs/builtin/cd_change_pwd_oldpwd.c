@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_pwd_oldpwd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/22 21:51:34 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:07:27 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 #include "list.h"
 #include "libft.h"
 
-static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, t_node **oldpwd_node);
+static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
+t_node **oldpwd_node);
 static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node);
-static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, char *path_to_move);
+static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
+char *path_to_move);
 
-void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_directory)
+void	changing_env(t_admin *hash_map, char *path_to_move, \
+char *prev_directory)
 {
 	t_node	*pwd_node;
 	t_node	*oldpwd_node;
@@ -34,7 +37,8 @@ void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_directory)
 		changing_pwd(hash_map, pwd_node, path_to_move);
 }
 
-static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, t_node **oldpwd_node)
+static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
+t_node **oldpwd_node)
 {
 	*pwd_node = search_node(hash_map, "PWD");
 	*oldpwd_node = search_node(hash_map, "OLDPWD");
@@ -58,7 +62,8 @@ static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node)
 	}
 }
 
-static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, char *path_to_move)
+static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
+char *path_to_move)
 {
 	char	*prev_pwd;
 	char	*pwd;

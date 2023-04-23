@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 15:40:31 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:11:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	execute_pipe(t_admin *hash_map, char ***envp, t_token *token)
 	while (temp->type != end)
 	{
 		if (paren_depth == 0 && is_or_and_end(temp))
-			break;
+			break ;
 		if (temp->type == paren_l)
 			++paren_depth;
 		else if (temp->type == paren_r)

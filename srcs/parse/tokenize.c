@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:39:29 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:46:23 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:18:59 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_token_size(char *src)
 			break ;
 		++token_size;
 		if (new_state.num_s == op_end || new_state.num_s == op_paren)
-			break;
+			break ;
 		state = new_state;
 	}
 	return (token_size);
@@ -58,7 +58,7 @@ static char	*copy_token_in_line(char *src)
 			break ;
 		copy_token[str_idx++] = *(src++);
 		if (new_state.num_s == op_end || new_state.num_s == op_paren)
-			break;
+			break ;
 		state = new_state;
 	}
 	return (copy_token);
