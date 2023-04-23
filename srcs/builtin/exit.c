@@ -6,20 +6,22 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:16:35 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 20:25:43 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:43:11 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "safe_function.h"
 
 static int	count_args(char **args);
 static void	check_args(char **args);
 static int	is_no_arg(int arg_cnt);
+long long	ft_atol(const char *str, int *flag);
 
 int	builtin_exit(char **args)
 {
-	write(1, "exit\n", 5);
+	write_s(1, "exit\n", 5);
 	check_args(args);
 	return (1);
 }

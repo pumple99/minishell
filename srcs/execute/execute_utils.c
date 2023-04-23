@@ -6,12 +6,13 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:27:13 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:47:46 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:59:41 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "parse.h"
+#include "safe_function.h"
 
 int	is_or_and_end(t_token *token)
 {

@@ -6,11 +6,12 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:07:20 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 20:22:25 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:45:47 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 char	*getcwd_s(char *buf, size_t size)
 {

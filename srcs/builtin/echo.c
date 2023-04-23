@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 20:25:07 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:42:32 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include "list.h"
 #include "libft.h"
+#include "safe_function.h"
 
 static void	check_option(char **args, int *option_flag);
 static int	print_args(char **args, int option_flag);

@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 18:42:51 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:43:24 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "minishell.h"
+#include "builtin.h"
 #include "libft.h"
 #include "list.h"
+
 static int	inspect_arg(char *export_arg, int *return_val);
 static int	is_error(char *arg, int *return_val);
 static void	print_hash_map(t_admin *hash_map);

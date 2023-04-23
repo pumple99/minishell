@@ -6,13 +6,14 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:41:58 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:52:39 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include "execute.h"
+#include "builtin.h"
 #include "libft.h"
 #include "safe_function.h"
 
@@ -23,7 +24,7 @@ char **minimal_cmd, int builtin_num)
 		return (builtin_cd(hash_map, envp, minimal_cmd));
 	else if (builtin_num == export)
 		return (builtin_export(hash_map, envp, minimal_cmd));
-	else if (builtin_num == _exit)
+	else if (builtin_num == __exit)
 		return (builtin_exit(minimal_cmd));
 	else if (builtin_num == echo)
 		return (builtin_echo(minimal_cmd));

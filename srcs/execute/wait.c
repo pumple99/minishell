@@ -6,13 +6,15 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:48:58 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 00:00:13 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "list.h"
 #include "libft.h"
+#include "minishell.h"
 
 static void	set_exit_status(int child_status, int *exit_status);
 static void	set_questionmark(t_admin *hash_map, int exit_status);

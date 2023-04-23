@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:47:38 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:58:56 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "execute.h"
 #include "parse.h"
 #include "list.h"
+#include "libft.h"
+#include "minishell.h"
 #include "safe_function.h"
 
 static char	**make_argv(char *involve_paren_str);

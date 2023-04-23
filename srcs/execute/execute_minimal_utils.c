@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 18:48:46 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:57:14 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 static int	count_paren(t_token *token);
 static void	make_involve_paren(char **involve_paren, char *new_string);
-static char	*remove_outer_paren(char *prev_involve_paren);
 
 int	is_builtin(char *minimal_cmd)
 {
@@ -94,16 +93,4 @@ static void	make_involve_paren(char **involve_paren_str, char *new_string)
 	prev_involve_paren = *involve_paren_str;
 	*involve_paren_str = char_join(*involve_paren_str, new_string, ' ');
 	free(prev_involve_paren);
-}
-
-static char	*remove_outer_paren(char *prev_involve_paren)
-{
-	char	*involve_paren_str;
-
-	involve_paren_str = ft_substr(prev_involve_paren, 1, \
-	ft_strlen(prev_involve_paren) - 2);
-	if (involve_paren_str == NULL)
-		malloc_error();
-	free(prev_involve_paren);
-	return (involve_paren_str);
 }

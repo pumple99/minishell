@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:46:53 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 23:53:33 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum e_builtin_num
 	cd = 32,
 	echo,
 	env,
-	_exit,
+	__exit,
 	export,
 	pwd,
 	unset = 38
@@ -81,6 +81,7 @@ char		**get_path_list_from_env_path(t_admin *hash_map);
 void		is_executable(char *cmd_with_path);
 char		*get_path(char **path_list, char *cmd);
 char		*find_path(char **path_list, char *cmd);
+char		*remove_outer_paren(char *prev_involve_paren);
 
 //execute_subshell.c
 int			execute_subshell(t_admin *hash_map, char *involve_paren_str, \
@@ -89,5 +90,8 @@ char ***envp, int is_pipe);
 //wait_last_child.c
 int			wait_last_child(t_admin *hash_map, pid_t last_child_pid, \
 int child_cnt);
+
+//execute_minishell.c
+void		execute_heredoc(t_token_list *tl);
 
 #endif
