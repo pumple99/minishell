@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:45:57 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:17:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void	quote_split_word(t_token_list *tl, t_token *first_token, char *str)
 void	quote_split(t_token_list *tl)
 {
 	t_token	*token;
-	t_token *temp;
+	t_token	*temp;
 	char	*str;
 
 	token = tl->head;

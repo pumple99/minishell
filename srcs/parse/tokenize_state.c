@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:36:36 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/16 17:12:57 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:19:39 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static t_state	prev_is_op_may_change(t_state prev_state, char *str)
 }
 
 // else condition is same with condition below
-// if (prev_state.num_s == outside || prev_state.num_s == op_end \
+// if (prev_state.num_s == outside || prev_state.num_s == op_end
 // 	|| prev_state.num_s == op_paren || prev_state.num_s == inside)
 // 		return (prev_general(prev_state, str));
 t_state	get_tokenize_state(t_state prev_state, char *str)

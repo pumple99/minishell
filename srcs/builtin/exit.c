@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:16:35 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/12 17:47:59 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:08:23 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	count_args(char **args);
 static void	check_args(char **args);
 long long	ft_atol(const char *str, int *flag);
 
-int		builtin_exit(char **args)
+int	builtin_exit(char **args)
 {
 	printf("exit\n");
 	// ARGS상태를 점검하기.

@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:13:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:46:12 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:18:29 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	add_token(t_token_list *tl, char *token_str)
 t_token	*insert_token_to_next(t_token *prev_token, char *str)
 {
 	t_token	*new;
-	
+
 	new = new_token(str);
 	new->next = prev_token->next;
 	prev_token->next = new;

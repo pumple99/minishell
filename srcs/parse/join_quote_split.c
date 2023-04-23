@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:45:31 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 17:13:45 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*get_empty_str(t_token *first_token)
 	{
 		total += ft_strlen(temp->string);
 		if (temp->expand == quote_end || temp->expand == non_quote_end)
-			break;
+			break ;
 		temp = temp->next;
 	}
 	empty_str = (char *)malloc_s(total + 1);
@@ -48,7 +48,7 @@ static void	fill_empty_str(t_token *first_token, char *empty_str)
 		while (*str)
 			empty_str[idx++] = *(str++);
 		if (temp->expand == quote_end || temp->expand == non_quote_end)
-			break;
+			break ;
 		temp = temp->next;
 	}
 }
