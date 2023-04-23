@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:07:09 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:03:59 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 21:13:48 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,4 @@ void	sigint(void);
 void	sigquit(void);
 void	handler(int signum);
 
-#endif SIGNAL_H
+#endif
