@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   use_file_safe.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:34:39 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/22 21:41:08 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:21:21 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
 int	unlink_s(char *path)
 {

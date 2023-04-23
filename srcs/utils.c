@@ -6,11 +6,10 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:36:57 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:59:36 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 19:17:57 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "../libft/libft.h"
 #include "safe_function.h"

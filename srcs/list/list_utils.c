@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:35:22 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/21 17:06:49 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:39:56 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 
-int		get_index(char *str) // hash_map의 몇번째 인덱스 리스트에 추가할지 정하기.
+int		get_index(char *str)
 {
 	char	region;
 	int		index;

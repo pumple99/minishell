@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:10:19 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:41:58 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execute.h"
-#include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include "execute.h"
+#include "libft.h"
+#include "safe_function.h"
 
 int	execute_builtin_cmd(t_admin *hash_map, char ***envp, \
 char **minimal_cmd, int builtin_num)
@@ -48,13 +49,11 @@ char **minimal_cmd, int is_pipe)
 		path_list = get_path_list_from_env_path(hash_map);
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);
-		execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
+		execve(cmd_with_path, minimal_cmd, *envp);
 	}
 	else
 	{
 		pid = fork_s();
-		// if (fork < -1)
-		// 	error handling
 		if (pid == 0)
 		{
 			if (ft_strlen(minimal_cmd[0]) == 0)
@@ -62,7 +61,7 @@ char **minimal_cmd, int is_pipe)
 			path_list = get_path_list_from_env_path(hash_map);
 			cmd_with_path = get_path(path_list, minimal_cmd[0]);
 			is_executable(cmd_with_path);
-			execve(cmd_with_path, minimal_cmd, *envp); //execve가 에러가 나면?
+			execve(cmd_with_path, minimal_cmd, *envp);
 		}
 		wait_last_child(hash_map, pid, 1);
 	}

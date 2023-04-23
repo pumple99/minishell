@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 01:01:14 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/23 20:23:24 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node)
 	}
 	else
 	{
-		oldpwd = ft_strjoin("OLDPWD=", pwd_node->value);
-		if (oldpwd == NULL)
-			malloc_error();
+		oldpwd = char_join("OLDPWD", pwd_node->value, '=');
 		add_node(hash_map, oldpwd);
 		free(oldpwd);
 	}
@@ -69,11 +67,9 @@ char *path_to_move)
 	char	*prev_pwd;
 	char	*pwd;
 
-	prev_pwd = ft_strjoin("PWD=", pwd_node->value);
-	if (prev_pwd == NULL)
-		malloc_error();
+	prev_pwd = char_join("PWD", pwd_node->value, '=');
 	pwd = char_join(prev_pwd, path_to_move, '/');
-	free(prev_pwd);
 	add_node(hash_map, pwd);
+	free(prev_pwd);
 	free(pwd);
 }

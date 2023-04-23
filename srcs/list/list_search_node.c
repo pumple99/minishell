@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   list_search_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:20:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/10 17:48:23 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:39:47 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "list.h"
 #include "libft.h"
 

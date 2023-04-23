@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   use_write_getcwd_safe.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:07:20 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/22 21:49:47 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:22:25 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "../../includes/safe_function.h"
 
 char	*getcwd_s(char *buf, size_t size)
 {

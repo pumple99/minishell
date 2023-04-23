@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:41:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 19:42:42 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include <unistd.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "includes/parse.h"
-#include "libft/libft.h"
+#include "parse.h"
+#include "libft.h"
+#include "safe_function.h"
 
 #define HEREDOC_BASENAME ".heredoc_temp_file_"
 #define FILE_NUM_STEP 65537

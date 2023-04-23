@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 17:08:05 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/23 20:25:07 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#include "libft.h"
 #include <stdio.h>
 #include <unistd.h>
+#include "list.h"
+#include "libft.h"
 
 static void	check_option(char **args, int *option_flag);
 static int	print_args(char **args, int option_flag);
@@ -35,7 +35,7 @@ int	builtin_echo(char **args)
 
 static void	check_option(char **args, int *option_flag)
 {
-	if (ft_strncmp(args[1], "-n", ft_strlen(args[1])) == 0)
+	if (ft_strncmp(args[1], "-n", 3) == 0)
 		*option_flag = 1;
 }
 
@@ -51,11 +51,7 @@ static int	print_args(char **args, int option_flag)
 	while (args[i])
 	{
 		word_length = ft_strlen(args[i]);
-		if (word_length != write_s(1, args[i], word_length))
-		{
-			// write error가 발생한 부분 어떻게 처리할지 생각해보기.
-			return (-1);
-		}
+		word_length != write_s(1, args[i], word_length);
 		i++;
 	}
 	return (0);
