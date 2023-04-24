@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:56:07 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:21:03 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	is_executable(char *cmd_with_path)
 char	*get_path(char **path_list, char *cmd)
 {
 	if (path_list == NULL)
-		return (ft_strdup(cmd));
+		return (ft_strdup_s(cmd));
 	else
 		return (find_path(path_list, cmd));
 }
@@ -67,9 +67,7 @@ char	*find_path(char **path_list, char *cmd)
 			return (cmd_with_path);
 		free(cmd_with_path);
 	}
-	cmd_with_path = ft_strdup(cmd);
-	if (cmd_with_path == NULL)
-		malloc_error();
+	cmd_with_path = ft_strdup_s(cmd);
 	return (cmd_with_path);
 }
 
@@ -77,9 +75,7 @@ char	*remove_outer_paren(char *prev_involve_paren)
 {
 	char	*involve_paren;
 
-	involve_paren = ft_substr(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
-	if (involve_paren == NULL)
-		malloc_error();
+	involve_paren = ft_substr_s(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
 	free(prev_involve_paren);
 	return (involve_paren);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_function.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:39:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:48:21 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:18:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SAFE_FUNCTION_H
 
 #include <dirent.h>
+#include <unistd.h>
 
 //err_exit.c
 void			perr_exit(char *str);
@@ -40,8 +41,15 @@ int				write_s(int fd, const char *str, int _strlen);
 //use_process_safe.c
 int				pipe_s(int *fildes);
 pid_t			fork_s(void);
+int				execve_s(const char *path, char *const argv[], \
+							char *const envp[]);
+
 
 //use_file_safe.c
 int				unlink_s(char *path);
+
+//use_libft_safe.c
+char			*ft_strdup_s(const char *str);
+char			*ft_substr_s(const char *str, unsigned int start, size_t len);
 
 #endif

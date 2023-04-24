@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
+#    By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/23 23:41:28 by sindong-yeo      ###   ########.fr        #
+#    Updated: 2023/04/24 17:26:06 by dongyshi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 CC := cc
 CFLAGS := #-Werror -Wall -Wextra
-LDFLAGS := -L/opt/homebrew/opt/readline/lib
+LDFLAGS := -L/Users/dongyshi/.brew/opt/readline/lib
 DEBUG_FLAGS := -g
 LIB := libft.a
 LIB_DIR := libft
@@ -25,7 +25,7 @@ SRCS_BUILTIN = $(addprefix builtin/, cd.c cd_change_pwd_oldpwd.c cd_find_path.c 
 					make_new_envp.c pwd.c unset.c)
 SRCS_ERR = $(addprefix err_handle/, err_exit.c use_dir_safe.c use_fd_safe.c \
 					use_file_safe.c use_heap_safe.c use_process_safe.c \
-					use_write_getcwd_safe.c)
+					use_write_getcwd_safe.c use_libft_safe.c)
 SRCS_EXECUTE = $(addprefix execute/, execute.c execute_cmd.c execute_cmd_utils.c \
 					execute_heredoc.c execute_minimal.c execute_minimal_utils.c \
 					execute_pipe.c execute_redirection.c execute_subshell.c execute_utils.c \
@@ -52,7 +52,7 @@ all : $(NAME)
 #bonus : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c $< $(DEBUG_FLAGS) -o $@ -I. -I$(LIB_DIR) -I$(INCLUDES) -I/opt/homebrew/opt/readline/include
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(INCLUDES) -I/Users/dongyshi/.brew/opt/readline/include -c $< $(DEBUG_FLAGS) -o $@ 
 
 $(LIB) :
 	make -C $(LIB_DIR) all

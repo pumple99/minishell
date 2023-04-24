@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 01:03:33 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:21:19 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ static char	**make_two_dimensional_array(t_token *token)
 			token = token->next->next;
 		else
 		{
-			cmd_arr[idx] = ft_strdup(token->string);
-			if (cmd_arr[idx] == NULL)
-				malloc_error();
+			cmd_arr[idx] = ft_strdup_s(token->string);
 			++idx;
 			token = token->next;
 		}

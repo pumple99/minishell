@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 20:32:17 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:20:18 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,12 @@ static void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_
 	abs_len = ft_strlen(absolute_path);
 	if (abs_len == 0)
 	{
-		add_string = ft_substr(path, 0, 300);
-		if (add_string == NULL)
-			malloc_error();
+		add_string = ft_substr_s(path, 0, 30000);
 		add_token(matched_list_ptr, add_string);
 	}
 	else
 	{
-		add_string = ft_substr(path, abs_len + 1, 300);
-		if (add_string == NULL)
-			malloc_error();
+		add_string = ft_substr_s(path, abs_len + 1, 30000);
 		add_token(matched_list_ptr, add_string);
 	}
 	matched_list_ptr->tail->expand = wild_card;

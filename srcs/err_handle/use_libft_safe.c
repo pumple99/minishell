@@ -1,44 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   use_process_safe.c                                 :+:      :+:    :+:   */
+/*   use_libft_safe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/22 21:19:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 17:17:18 by dongyshi         ###   ########.fr       */
+/*   Created: 2023/04/24 17:05:09 by dongyshi          #+#    #+#             */
+/*   Updated: 2023/04/24 17:09:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 #include "safe_function.h"
 
-int	pipe_s(int *fildes)
+char	*ft_strdup_s(const char *str)
 {
-	int	re;
+	char	*re;
 
-	re = pipe(fildes);
-	if (re == -1)
-		perr_exit("minishell: pipe failed");
+	re = ft_strdup(str);
+	if (re == NULL)
+		malloc_error();
 	return (re);
 }
 
-pid_t	fork_s(void)
+char	*ft_substr_s(const char *str, unsigned int start, size_t len)
 {
-	pid_t	pid;
+	char	*re;
 
-	pid = fork();
-	if (pid == -1)
-		perr_exit("minishell: fork failed");
-	return (pid);
-}
-
-int	execve_s(const char *path, char *const argv[], char *const envp[])
-{
-	int	re;
-
-	re = execve(path, argv, envp);
+	re = ft_substr(str, start, len);
 	if (re == NULL)
-		perror("minishell: execve failed");
+		malloc_error();
 	return (re);
 }

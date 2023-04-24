@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:57:14 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:21:11 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ char	*has_paren(t_token *token)
 	if (count_paren(token) == 0)
 		return (NULL);
 	paren_depth = 0;
-	involve_paren_str = ft_strdup("");
-	if (involve_paren_str == NULL)
-		malloc_error();
+	involve_paren_str = ft_strdup_s("");
 	while (token->type != end)
 	{
 		if (paren_depth == 0 && is_and_or_pipe_end(token))
