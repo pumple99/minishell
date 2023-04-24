@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:20:18 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:56:14 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,43 @@
 #include "minishell.h"
 #include "safe_function.h"
 
-static void		add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path);
-static int		is_link_file(char *filename);
-static void		config_for_directory(t_token *pattern, char *path, int *dir_flag, DIR **dir_pptr);
+static void		add_list(t_token_list *matched_list_ptr, \
+							char *path, char *absolute_path);
+static int		get_file_name(DIR *dir_ptr, struct dirent **filename);
+static int		get_filename_with_path(const char *path, \
+										struct dirent *filename, \
+										struct stat buf, char **path_filename);
 
-void	recursive_search_file(t_token_list *matched_list_ptr, char *path, char *abosolute_path, t_token *pattern)
+void	recur_search(t_token_list *matched_lp, char *path, \
+						char *abs_path, t_token *pattern)
 {
-	DIR				*dir_ptr;
-	struct dirent	*filename;
-	struct stat		buf;
-	char			*path_filename;
-	int				dir_flag;
+	t_recur	v;
 
-	config_for_directory(pattern, path, &dir_flag, &dir_ptr);
-	while ((filename = readdir_s(dir_ptr)))
+	config_for_directory(pattern, path, &v.dir_flag, &v.dir_ptr);
+	while (1)
 	{
-		path_filename = char_join(path, filename->d_name, '/');
-		if (stat(path_filename, &buf) == -1 || is_link_file(filename->d_name))
-		{
-			free(path_filename);
+		if (!get_file_name(v.dir_ptr, &v.filename))
+			break ;
+		if (!get_filename_with_path(path, v.filename, v.buf, &v.path_filename))
 			continue ;
-		}
-		if (is_match(filename->d_name, pattern->string))
+		if (is_match(v.filename->d_name, pattern->string))
 		{
-			if (S_ISDIR(buf.st_mode))
-			{
-				if (pattern->next == NULL)
-					add_list(matched_list_ptr, path_filename, abosolute_path);
-				else
-					recursive_search_file(matched_list_ptr, path_filename, abosolute_path, pattern->next);
-			}
-			else if (S_ISREG(buf.st_mode))
-				if (pattern->next == NULL && dir_flag == 0)
-					add_list(matched_list_ptr, path_filename, abosolute_path);
+			if (S_ISDIR(v.buf.st_mode) && pattern->next == NULL)
+				add_list(matched_lp, v.path_filename, abs_path);
+			else if (S_ISDIR(v.buf.st_mode))
+				recur_search(matched_lp, v.path_filename, \
+								abs_path, pattern->next);
+			else if (S_ISREG(v.buf.st_mode))
+				if (pattern->next == NULL && v.dir_flag == 0)
+					add_list(matched_lp, v.path_filename, abs_path);
 		}
-		free(path_filename);
+		free(v.path_filename);
 	}
-	closedir_s(dir_ptr);
+	closedir_s(v.dir_ptr);
 }
 
-static void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_path)
+static void	add_list(t_token_list *matched_list_ptr, \
+char *path, char *absolute_path)
 {
 	int		abs_len;
 	char	*add_string;
@@ -77,20 +74,22 @@ static void	add_list(t_token_list *matched_list_ptr, char *path, char *absolute_
 	matched_list_ptr->tail->expand = wild_card;
 }
 
-static int is_link_file(char *filename)
+static int	get_file_name(DIR *dir_ptr, struct dirent **filename)
 {
-	if (filename[0] == '.')
-		return (1);
-	return (0);
+	*filename = readdir_s(dir_ptr);
+	if (*filename == NULL)
+		return (0);
+	return (1);
 }
 
-static void	config_for_directory(t_token *pattern, char *path, int *dir_flag, DIR **dir_pptr)
+static int	get_filename_with_path(const char *path, struct dirent *filename, \
+									struct stat buf, char **path_filename)
 {
-	*dir_pptr = opendir(path);
-	// if(*dir_pptr == NULL) // 오류나면 어떻게 처리하지?
-		// return (-1);
-	if (pattern->next == NULL && pattern->string[ft_strlen(pattern->string) - 1] == '/')
-		*dir_flag = 1;
-	else
-		*dir_flag = 0;
+	*path_filename = char_join(path, filename->d_name, '/');
+	if (stat(*path_filename, &buf) == -1 || is_link_file(filename->d_name))
+	{
+		free(*path_filename);
+		return (0);
+	}
+	return (1);
 }

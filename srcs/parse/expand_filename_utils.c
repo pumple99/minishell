@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:44:04 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 00:00:32 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 18:32:47 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,22 @@ t_token	*get_head_token(t_token_list **matched_result)
 	head_node = (*matched_result)->head;
 	free(*matched_result);
 	return (head_node);
+}
+
+void	config_for_directory(t_token *pattern, char *path, \
+int *dir_flag, DIR **dir_pptr)
+{
+	*dir_pptr = opendir(path);
+	if (pattern->next == NULL \
+		&& pattern->string[ft_strlen(pattern->string) - 1] == '/')
+		*dir_flag = 1;
+	else
+		*dir_flag = 0;
+}
+
+int	is_link_file(char *filename)
+{
+	if (filename[0] == '.')
+		return (1);
+	return (0);
 }

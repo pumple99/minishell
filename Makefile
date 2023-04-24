@@ -6,7 +6,7 @@
 #    By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/24 17:26:06 by dongyshi         ###   ########.fr        #
+#    Updated: 2023/04/24 20:26:35 by dongyshi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS_PARSE = $(addprefix parse/, expand.c expand_filename.c expand_filename_util
 					expand_param.c expand_word_split.c get_path_and_pattern.c \
 					get_wild_card_str.c is_match.c join_quote_split.c parse_line.c \
 					quote_split.c recursive_search_file.c syntax_err.c syntax_state.c \
-					tl_basic_func.c tl_utils.c tokenize.c tokenize_state.c tokenize_utils.c)
+					tl_basic_func.c tl_utils.c tokenize.c tokenize_state.c tokenize_utils.c \
+					sort_matched_list.c)
 SRCS_LIST = $(addprefix list/, list_add_node.c list_create_node.c list_delete_node.c \
 					list_search_node.c list_utils.c)
 
