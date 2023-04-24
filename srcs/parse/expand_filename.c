@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 00:00:54 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 20:26:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ static t_token	*get_wild_card_expand_list(t_token *token)
 	wild_card_str = get_wild_card_str(token);
 	get_path_and_pattern(wild_card_str, &path, &absolute_path, pattern_list);
 	recursive_search_file(matched_result, path, absolute_path, \
-	pattern_list->head);
+							pattern_list->head);
+	sort_matched_result(matched_result);
 	free_pattern_list(&pattern_list);
 	return (free(path), free(wild_card_str), \
 	free(absolute_path), get_head_token(&matched_result));

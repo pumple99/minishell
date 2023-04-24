@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 00:54:35 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 20:27:02 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "./list.h"
+# include <dirent.h>
+# include <sys/stat.h>
+# include "list.h"
 
 //quote includes double quote
 typedef enum e_num_state
@@ -83,7 +85,7 @@ typedef enum e_syntax_s
 	error = 31
 }	t_syntax_s;
 
-typedef struct	s_match
+typedef struct s_match
 {
 	int	pattern_len;
 	int	string_len;
@@ -93,6 +95,15 @@ typedef struct	s_match
 	int	str_backtrack_idx;
 	int	next_to_wildcard_idx;
 }				t_match;
+
+typedef struct s_recur
+{
+	DIR				*dir_ptr;
+	struct dirent	*filename;
+	struct stat		buf;
+	char			*path_filename;
+	int				dir_flag;
+}				t_recur;
 
 //tl_basic_func.c
 t_token			*new_token(char *token_str);
@@ -153,6 +164,9 @@ char **absolute_path, t_token_list *pattern_list);
 void			init_list(t_token_list **matched_result);
 void			free_pattern_list(t_token_list **pattern);
 t_token			*get_head_token(t_token_list **matched_result);
+int				is_link_file(char *filename);
+void			config_for_directory(t_token *pattern, char *path, \
+									int *dir_flag, DIR **dir_pptr);
 
 //recursive_search_file
 void			recursive_search_file(t_token_list *matched_list_ptr, \
@@ -164,5 +178,8 @@ char			*get_wild_card_str(t_token *first_token);
 
 //is_match.c
 int				is_match(char *string, char *pattern);
+
+//sort_matched_list.c
+void			sort_matched_result(t_token_list *ml);
 
 #endif
