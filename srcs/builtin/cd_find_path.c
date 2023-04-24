@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_find_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:07:53 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:59:18 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:31:20 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*make_path(t_admin *hash_map, char *arg)
 	else
 	{
 		if (is_movable(arg))
-			return (ft_strdup(arg));
+			return (ft_strdup_s(arg));
 	}
 	return (NULL);
 }
