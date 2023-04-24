@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_subshell.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:58:56 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:23:23 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char ***envp, int is_pipe)
 	{
 		argv = make_argv(involve_paren_str);
 		path = get_path_to_execute_minishell();
-		execve(path, argv, *envp);
+		execve_s(path, argv, *envp);
 	}
 	else
 	{
@@ -41,7 +41,7 @@ char ***envp, int is_pipe)
 		{
 			argv = make_argv(involve_paren_str);
 			path = get_path_to_execute_minishell();
-			execve(path, argv, *envp);
+			execve_s(path, argv, *envp);
 		}
 		wait_last_child(hash_map, pid, 1);
 	}
@@ -52,12 +52,8 @@ static char	**make_argv(char *involve_paren_str)
 	char	**argv;
 
 	argv = (char **)malloc_s(sizeof(char *) * 3);
-	argv[0] = ft_strdup("minishell");
-	if (argv[0] == NULL)
-		malloc_error();
-	argv[1] = ft_strdup(involve_paren_str);
-	if (argv[1] == NULL)
-		malloc_error();
+	argv[0] = ft_strdup_s("minishell");
+	argv[1] = ft_strdup_s(involve_paren_str);
 	argv[2] = '\0';
 }
 
