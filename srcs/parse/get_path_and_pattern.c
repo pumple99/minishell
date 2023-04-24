@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path_and_pattern.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:30:30 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:30:55 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char **absolute_path, t_token_list *pattern_list)
 		path_len = ft_strlen(*path);
 		if ((*path)[path_len - 1] == '/')
 			(*path)[path_len - 1] = '\0';
-		*absolute_path = ft_strdup("");
+		*absolute_path = ft_strdup_s("");
 		get_pattern(pattern_list, path_len, wild_card_str);
 	}
 }
@@ -63,7 +63,7 @@ static char	*get_path(char *wild_card_str)
 			break ;
 		if (wild_card_str[i] == '/')
 		{
-			path = ft_substr(wild_card_str, 0, path_len + add_len + 1);
+			path = ft_substr_s(wild_card_str, 0, path_len + add_len + 1);
 			path_len = ft_strlen(path);
 			add_len = 0;
 		}
@@ -86,7 +86,7 @@ int path_len, char *wild_card_str)
 	{
 		if (wild_card_str[end_idx] == '/')
 		{
-			add_token(pattern_list, ft_substr(wild_card_str, start_idx, end_idx - start_idx + 1));
+			add_token(pattern_list, ft_substr_s(wild_card_str, start_idx, end_idx - start_idx + 1));
 			start_idx = end_idx + 1;
 			if (wild_card_str[end_idx + 1] == '\0')
 			{
@@ -96,7 +96,7 @@ int path_len, char *wild_card_str)
 		}
 		else if (wild_card_str[end_idx] == 0)
 		{
-			add_token(pattern_list, ft_substr(wild_card_str, start_idx, end_idx - start_idx + 1));
+			add_token(pattern_list, ft_substr_s(wild_card_str, start_idx, end_idx - start_idx + 1));
 			pattern_list->tail->next = NULL;
 			break ;
 		}
