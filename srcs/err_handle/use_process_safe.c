@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   use_process_safe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:19:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 17:17:18 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:38:32 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 #include "safe_function.h"
 
 int	pipe_s(int *fildes)
@@ -38,7 +39,7 @@ int	execve_s(const char *path, char *const argv[], char *const envp[])
 	int	re;
 
 	re = execve(path, argv, envp);
-	if (re == NULL)
+	if (re == -1)
 		perror("minishell: execve failed");
 	return (re);
 }

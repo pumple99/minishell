@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 19:56:14 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:42:30 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 static void		add_list(t_token_list *matched_list_ptr, \
 							char *path, char *absolute_path);
 static int		get_file_name(DIR *dir_ptr, struct dirent **filename);
-static int		get_filename_with_path(const char *path, \
-										struct dirent *filename, \
+static int		get_filename_with_path(char *path, struct dirent *filename, \
 										struct stat buf, char **path_filename);
 
 void	recur_search(t_token_list *matched_lp, char *path, \
@@ -82,7 +81,7 @@ static int	get_file_name(DIR *dir_ptr, struct dirent **filename)
 	return (1);
 }
 
-static int	get_filename_with_path(const char *path, struct dirent *filename, \
+static int	get_filename_with_path(char *path, struct dirent *filename, \
 									struct stat buf, char **path_filename)
 {
 	*path_filename = char_join(path, filename->d_name, '/');
