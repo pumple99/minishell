@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_create_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:58:56 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:39:23 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 17:29:14 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ t_node	*create_node(char *arg)
 	if (asm_opr_pos == NULL)
 	{
 		np->asm_opr = 0;
-		np->key = ft_strdup(arg);
+		np->key = ft_strdup_s(arg);
 		np->value = NULL;
 	}
 	else
 	{
 		np->asm_opr = 1;
-		np->key = ft_substr(arg, 0, asm_opr_pos - arg);
-		np->value = ft_substr(arg, asm_opr_pos - arg + 1, ft_strlen(asm_opr_pos + 1));
+		np->key = ft_substr_s(arg, 0, asm_opr_pos - arg);
+		np->value = ft_substr_s(arg, asm_opr_pos - arg + 1, ft_strlen(asm_opr_pos + 1));
 	}
 	return (np);
 }
