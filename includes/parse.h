@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 20:27:02 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/24 20:57:33 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,8 +169,8 @@ void			config_for_directory(t_token *pattern, char *path, \
 									int *dir_flag, DIR **dir_pptr);
 
 //recursive_search_file
-void			recursive_search_file(t_token_list *matched_list_ptr, \
-char *path, char *abosolute_path, t_token *pattern);
+void	recur_search(t_token_list *matched_lp, char *path, \
+						char *abs_path, t_token *pattern);
 
 //get_wild_card_str.c
 int				is_include_wild_card(t_token *first_token);

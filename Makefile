@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+         #
+#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/24 20:26:35 by dongyshi         ###   ########.fr        #
+#    Updated: 2023/04/24 20:58:31 by sindong-yeo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 CC := cc
 CFLAGS := #-Werror -Wall -Wextra
-LDFLAGS := -L/Users/dongyshi/.brew/opt/readline/lib
+LDFLAGS := -lreadline -L/opt/homebrew/opt/readline/lib
 DEBUG_FLAGS := -g
 LIB := libft.a
 LIB_DIR := libft
@@ -46,14 +46,14 @@ OBJS := $(SRCS:%.c=%.o)
 
 $(NAME) :: $(LIB)
 $(NAME) :: $(OBJS) $(CHANGABLE_HEADERS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LIB) $(DEBUG_FLAGS) -o $(NAME) 
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(DEBUG_FLAGS) -o $(NAME) -lreadline -L/opt/homebrew/opt/readline/lib 
 
 all : $(NAME)
 
 #bonus : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(INCLUDES) -I/Users/dongyshi/.brew/opt/readline/include -c $< $(DEBUG_FLAGS) -o $@ 
+	$(CC) $(CFLAGS) -I. -I$(LIB_DIR) -I$(INCLUDES) -I/opt/homebrew/opt/readline/include -c $< $(DEBUG_FLAGS) -o $@ 
 
 $(LIB) :
 	make -C $(LIB_DIR) all
