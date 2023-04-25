@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:44:04 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 20:41:22 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/25 13:02:06 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ t_token	*get_head_token(t_token_list **matched_result)
 {
 	t_token	*head_node;
 
-	if ((*matched_result)->head != NULL)
-		(*matched_result)->tail->next = NULL;
 	head_node = (*matched_result)->head;
 	free(*matched_result);
 	return (head_node);
