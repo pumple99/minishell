@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 20:57:33 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 21:10:50 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ typedef struct s_recur
 	int				dir_flag;
 }				t_recur;
 
+//parse_line.c
+t_token_list	parse_line(t_admin *hash_map, char *line);
+
 //tl_basic_func.c
 t_token			*new_token(char *token_str);
 void			add_token(t_token_list *tl, char *token_str);
@@ -169,7 +172,7 @@ void			config_for_directory(t_token *pattern, char *path, \
 									int *dir_flag, DIR **dir_pptr);
 
 //recursive_search_file
-void	recur_search(t_token_list *matched_lp, char *path, \
+void			recur_search(t_token_list *matched_lp, char *path, \
 						char *abs_path, t_token *pattern);
 
 //get_wild_card_str.c

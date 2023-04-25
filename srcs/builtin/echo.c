@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:42:32 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/24 21:03:02 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	print_args(char **args, int option_flag)
 	while (args[i])
 	{
 		word_length = ft_strlen(args[i]);
-		word_length != write_s(1, args[i], word_length);
+		write_s(1, args[i], word_length);
 		i++;
 	}
 	return (0);

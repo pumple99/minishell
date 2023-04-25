@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:21:19 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:20:53 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ static char	**make_two_dimensional_array(t_token *token)
 			token = token->next;
 		}
 	}
-	cmd_arr[arr_size] = '\0';
+	cmd_arr[arr_size] = NULL;
+	return (cmd_arr);
 }
 
 static int	count_array_size(t_token *token)

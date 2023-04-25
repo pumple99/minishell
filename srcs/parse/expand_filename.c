@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 20:57:50 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/25 13:01:58 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ static t_token	*get_wild_card_expand_list(t_token *token)
 	get_path_and_pattern(wild_card_str, &path, &absolute_path, pattern_list);
 	recur_search(matched_result, path, absolute_path, \
 							pattern_list->head);
+	if (matched_result->head != NULL)
+		matched_result->tail->next = NULL;
 	sort_matched_result(matched_result);
 	free_pattern_list(&pattern_list);
 	return (free(path), free(wild_card_str), \

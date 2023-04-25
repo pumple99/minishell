@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:21:11 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:05:35 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	is_builtin(char *minimal_cmd)
 	else if (ft_strncmp(minimal_cmd, "env", 4) == 0)
 		return (env);
 	else if (ft_strncmp(minimal_cmd, "exit", 5) == 0)
-		return (exit);
+		return (__exit);
 	else if (ft_strncmp(minimal_cmd, "export", 7) == 0)
 		return (export);
 	else if (ft_strncmp(minimal_cmd, "pwd", 4) == 0)

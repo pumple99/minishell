@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_matched_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:56:26 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 20:26:11 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:04:09 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	sort_matched_result(t_token_list *ml)
 	t_token	*j;
 	char	*str;
 
-	i = ml->head;
-	if (i == NULL)
+	if (ml->head == NULL)
 		return ;
+	i = ml->head;
 	while (i->next != NULL)
 	{
 		j = ml->head;
 		while (j->next != NULL)
 		{
-			if (ft_strncmp(i->string, j->string, \
+			if (ft_strncmp(j->string, j->next->string, \
 				max(ft_strlen(j->string), ft_strlen(j->next->string))) < 0)
 			{
 				str = j->string;
