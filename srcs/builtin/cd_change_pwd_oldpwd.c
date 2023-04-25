@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:42:21 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/25 18:00:04 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
 t_node **oldpwd_node);
 static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node);
 static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
-char *path_to_move);
+						char *path_to_move);
 
-void	changing_env(t_admin *hash_map, char *path_to_move, \
-char *prev_directory)
+void	changing_env(t_admin *hash_map, char *path_to_move)
 {
 	t_node	*pwd_node;
 	t_node	*oldpwd_node;
@@ -63,7 +62,7 @@ static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node)
 }
 
 static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
-char *path_to_move)
+						char *path_to_move)
 {
 	char	*prev_pwd;
 	char	*pwd;
