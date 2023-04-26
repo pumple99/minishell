@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 17:04:28 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 21:38:59 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,20 @@ void	delete_new_envp(char ***new_envp_ptr)
 	*new_envp_ptr = NULL;
 }
 
+void	is_exec_subshell(t_admin *hash_map, char *argv[], char ***envp)
+{
+	t_token_list	tl;
+
+	if (argv[1] == NULL)
+		return ;
+	tl = parse_line(hash_map, argv[1]);
+	exit(execute(&tl, hash_map, envp));
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	char			*line_read;
-	t_admin			hash_map[54];
+	t_admin			hash_map[55];
 	char			**new_envp;
 	t_token_list	tl;
 	int				exit_status;
@@ -76,6 +86,7 @@ int	main(int argc, char *argv[], char *envp[])
 	new_envp = NULL;
 	config();
 	make_hash_map(hash_map, envp, &new_envp);
+	is_exec_subshell(hash_map, argv, &new_envp);
 	while (1)
 	{
 		line_read = readline("minishell> ");
