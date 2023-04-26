@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:35:22 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/25 18:13:26 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 18:20:49 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		get_index(char *str)
 		index = 52;
 	else if (region == -2)
 		index = 53;
+	else if (region == -32)
+		index = 54;
 	else
 		index = str[0] - 'a' + 26;
 	return (index);
