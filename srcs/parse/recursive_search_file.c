@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 20:42:30 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 17:21:20 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@
 static void		add_list(t_token_list *matched_list_ptr, \
 							char *path, char *absolute_path);
 static int		get_file_name(DIR *dir_ptr, struct dirent **filename);
-static int		get_filename_with_path(char *path, struct dirent *filename, \
-										struct stat buf, char **path_filename);
+static int		get_filename_with_path(char *path, t_recur *v);
 
-void	recur_search(t_token_list *matched_lp, char *path, \
-						char *abs_path, t_token *pattern)
+void	recur_search(t_token_list *matched_lp, char *path, char *abs_path, t_token *pattern)
 {
 	t_recur	v;
 
@@ -35,7 +33,7 @@ void	recur_search(t_token_list *matched_lp, char *path, \
 	{
 		if (!get_file_name(v.dir_ptr, &v.filename))
 			break ;
-		if (!get_filename_with_path(path, v.filename, v.buf, &v.path_filename))
+		if (!get_filename_with_path(path, &v))
 			continue ;
 		if (is_match(v.filename->d_name, pattern->string))
 		{
@@ -81,13 +79,12 @@ static int	get_file_name(DIR *dir_ptr, struct dirent **filename)
 	return (1);
 }
 
-static int	get_filename_with_path(char *path, struct dirent *filename, \
-									struct stat buf, char **path_filename)
+static int		get_filename_with_path(char *path, t_recur *v)
 {
-	*path_filename = char_join(path, filename->d_name, '/');
-	if (stat(*path_filename, &buf) == -1 || is_link_file(filename->d_name))
+	v->path_filename = char_join(path, v->filename->d_name, '/');
+	if (stat(v->path_filename, &v->buf) == -1 || is_link_file(v->filename->d_name))
 	{
-		free(*path_filename);
+		free(v->path_filename);
 		return (0);
 	}
 	return (1);

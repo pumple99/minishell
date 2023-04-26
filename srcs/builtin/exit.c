@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:16:35 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:43:11 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 00:12:45 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ static void	check_args(char **args)
 		printf("bash: exit: %s: numeric argument required\n", args[1]);
 		exit(255);
 	}
-	else if (arg_cnt >= 2)
+	else if (arg_cnt > 2)
+	{
 		printf("bash: exit: too many arguments\n");
+		return ;
+	}
 	exit(return_value);
 }
 

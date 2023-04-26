@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/25 18:00:04 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 00:38:30 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ t_node **oldpwd_node);
 static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node);
 static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
 						char *path_to_move);
+static int	using_getcwd(t_admin *hash_map, t_node *pwd_node, \
+						t_node *oldpwd_node, char *prev_path);
 
-void	changing_env(t_admin *hash_map, char *path_to_move)
+void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_path)
 {
 	t_node	*pwd_node;
 	t_node	*oldpwd_node;
@@ -32,10 +34,30 @@ void	changing_env(t_admin *hash_map, char *path_to_move)
 	if (*last_char == '/')
 		*last_char = '\0';
 	get_pwd_oldpwd_node(hash_map, &pwd_node, &oldpwd_node);
+	if (using_getcwd(hash_map, pwd_node, oldpwd_node, prev_path))
+		return ;
 	if (oldpwd_node != NULL)
 		changing_oldpwd(hash_map, pwd_node);
 	if (pwd_node != NULL)
 		changing_pwd(hash_map, pwd_node, path_to_move);
+}
+
+static int	using_getcwd(t_admin *hash_map, t_node *pwd_node, \
+						t_node *oldpwd_node, char *prev_path)
+{
+	char	*prev_pwd;
+	char	*pwd;
+	char	*oldpwd;
+
+	prev_pwd = getcwd(NULL, 0);
+	if (prev_pwd == NULL)
+		return (0);
+	pwd = char_join("PWD", prev_pwd, '=');
+	free(prev_pwd);
+	add_node(hash_map, pwd);
+	oldpwd = char_join("OLDPWD", prev_path, '=');
+	add_node(hash_map, oldpwd);
+	return (1);
 }
 
 static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \

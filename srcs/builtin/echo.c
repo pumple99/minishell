@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 21:03:02 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 17:12:23 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	builtin_echo(char **args)
 
 	option_flag = 0;
 	if (args[1] == NULL)
+	{
 		write_s(1, "\n", 1);
+		return (0);
+	}
 	check_option(args, &option_flag);
 	return_val = print_args(args, option_flag);
 	if (option_flag == 0)
@@ -53,6 +56,7 @@ static int	print_args(char **args, int option_flag)
 	{
 		word_length = ft_strlen(args[i]);
 		write_s(1, args[i], word_length);
+		write_s(1, " ", 1);
 		i++;
 	}
 	return (0);

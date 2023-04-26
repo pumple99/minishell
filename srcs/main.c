@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/25 18:18:11 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/26 17:04:28 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 #include "list.h"
 #include "parse.h"
 #include "signal.h"
-#include "minishell.h"
 #include "builtin.h"
+#include "execute.h"
+#include "minishell.h"
+#include "safe_function.h"
 
 void	handler(int signum);
 
@@ -33,6 +35,8 @@ void	config(void)
 	tcgetattr(0, &attr);
 	attr.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &attr);
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 }
 
 void	delete_hash_map(t_admin *hash_map)
@@ -63,28 +67,29 @@ void	delete_new_envp(char ***new_envp_ptr)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	char		*line_read;
-	t_admin		hash_map[54];
-	char		**new_envp;
+	char			*line_read;
+	t_admin			hash_map[54];
+	char			**new_envp;
+	t_token_list	tl;
+	int				exit_status;
 
 	new_envp = NULL;
-	argc = argc - 1;
-	argv = &argv[0];
 	config();
 	make_hash_map(hash_map, envp, &new_envp);
 	while (1)
 	{
-		signal(SIGINT, handler);
-		signal(SIGQUIT, handler);
-		line_read = readline("minishell >");
-		if (rl_eof_found) // if (rl_eof_found)
+		line_read = readline("minishell> ");
+		if (rl_eof_found)
 		{
-			 delete_hash_map(hash_map);
-			 delete_new_envp(&new_envp);
+			delete_hash_map(hash_map);
+			delete_new_envp(&new_envp);
 			return (0);
 		}
 		if (*line_read)
-			parse_line(hash_map, line_read);
+		{
+			tl = parse_line(hash_map, line_read);
+			exit_status = execute(&tl, hash_map, &new_envp);
+		}
 		if (line_read && *line_read)
 			add_history (line_read);
 		if (line_read)
