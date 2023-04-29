@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:53:33 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:00:40 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ char		**get_path_list_from_env_path(t_admin *hash_map);
 void		is_executable(char *cmd_with_path);
 char		*get_path(char **path_list, char *cmd);
 char		*find_path(char **path_list, char *cmd);
-char		*remove_outer_paren(char *prev_involve_paren);
 
 //execute_subshell.c
 int			execute_subshell(t_admin *hash_map, char *involve_paren_str, \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:16:35 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 00:12:45 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:51:32 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	check_args(char **args)
 
 static int	count_args(char **args)
 {
-	int arg_cnt;
+	int	arg_cnt;
 
 	arg_cnt = 0;
 	while (args[arg_cnt])

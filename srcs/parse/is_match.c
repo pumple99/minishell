@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_match.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:19:27 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/04/23 00:54:41 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:47:26 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_wildcard(t_match *values, char *pattern);
 static void	init_values(t_match *values, char *string, char *pattern);
 static int	is_over(t_match *values, char *pattern);
 
-int is_match(char *string, char *pattern)
+int	is_match(char *string, char *pattern)
 {
 	t_match	values;
 
@@ -28,13 +28,14 @@ int is_match(char *string, char *pattern)
 			continue ;
 		if (values.pattern_index < values.pattern_len \
 		&& ((pattern[values.pattern_index] == string[values.string_index]) \
-		|| (pattern[values.pattern_index] == -1 && string[values.string_index] == '*')))
+		|| (pattern[values.pattern_index] == -1 \
+		&& string[values.string_index] == '*')))
 		{
 			++values.string_index;
 			++values.pattern_index;
 		}
 		else if (values.last_wildcard_idx == -1)
-			return 0;
+			return (0);
 		else
 		{
 			values.pattern_index = values.next_to_wildcard_idx;
@@ -59,13 +60,13 @@ static void	init_values(t_match *values, char *string, char *pattern)
 
 static int	is_over(t_match *values, char *pattern)
 {
-	int i;
+	int	i;
 
 	i = values->pattern_index;
 	while (i < values->pattern_len)
 	{
 		if (pattern[i] != '*')
-			return 0;
+			return (0);
 		i++;
 	}
 	return (1);
@@ -73,7 +74,8 @@ static int	is_over(t_match *values, char *pattern)
 
 static int	is_wildcard(t_match *values, char *pattern)
 {
-	if (values->pattern_index < values->pattern_len && pattern[values->pattern_index] == '*')
+	if (values->pattern_index < values->pattern_len \
+	&& pattern[values->pattern_index] == '*')
 	{
 		values->last_wildcard_idx = values->pattern_index;
 		values->next_to_wildcard_idx = ++values->pattern_index;

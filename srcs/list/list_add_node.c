@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_add_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:45:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:38:47 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:49:47 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	adding(t_admin *ap, t_node *np)
 	cur_node = ap->head->next;
 	while (cur_node != ap->tail)
 	{
-		comp_val = ft_strncmp(np->key, cur_node->key, get_comp_length(np->key, cur_node->key));
+		comp_val = ft_strncmp(np->key, cur_node->key, \
+		get_comp_length(np->key, cur_node->key));
 		if (comp_val == 0)
 			return (add_this_loc(cur_node, np));
 		else if (comp_val < 0)
@@ -57,7 +58,7 @@ static int	get_comp_length(char *np_key, char *cur_node_key)
 {
 	int	np_len;
 	int	cur_node_len;
-	
+
 	np_len = ft_strlen(np_key);
 	cur_node_len = ft_strlen(cur_node_key);
 	if (np_len < cur_node_len)

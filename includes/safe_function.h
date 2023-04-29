@@ -6,15 +6,15 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:39:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 17:18:16 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:53:22 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SAFE_FUNCTION_H
 # define SAFE_FUNCTION_H
 
-#include <dirent.h>
-#include <unistd.h>
+# include <dirent.h>
+# include <unistd.h>
 
 //err_exit.c
 void			perr_exit(char *str);
@@ -43,7 +43,6 @@ int				pipe_s(int *fildes);
 pid_t			fork_s(void);
 int				execve_s(const char *path, char *const argv[], \
 							char *const envp[]);
-
 
 //use_file_safe.c
 int				unlink_s(char *path);

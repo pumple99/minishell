@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_dir_safe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:45:17 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:53:40 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <dirent.h>
 #include <sys/errno.h>
 
-int chdir_s(const char *path)
+int	chdir_s(const char *path)
 {
-	int re;
+	int	re;
 
 	re = chdir(path);
 	if (re == -1)
@@ -42,7 +42,7 @@ struct dirent	*readdir_s(DIR *dirp)
 
 	prev_errno = errno;
 	re = readdir(dirp);
-	if (re != NULL) 
+	if (re != NULL)
 		return (re);
 	else
 	{

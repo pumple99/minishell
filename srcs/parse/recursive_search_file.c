@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 17:21:20 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:46:53 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void		add_list(t_token_list *matched_list_ptr, \
 static int		get_file_name(DIR *dir_ptr, struct dirent **filename);
 static int		get_filename_with_path(char *path, t_recur *v);
 
-void	recur_search(t_token_list *matched_lp, char *path, char *abs_path, t_token *pattern)
+void	recur_search(t_token_list *matched_lp, char *path, \
+char *abs_path, t_token *pattern)
 {
 	t_recur	v;
 
@@ -79,10 +80,11 @@ static int	get_file_name(DIR *dir_ptr, struct dirent **filename)
 	return (1);
 }
 
-static int		get_filename_with_path(char *path, t_recur *v)
+static int	get_filename_with_path(char *path, t_recur *v)
 {
 	v->path_filename = char_join(path, v->filename->d_name, '/');
-	if (stat(v->path_filename, &v->buf) == -1 || is_link_file(v->filename->d_name))
+	if (stat(v->path_filename, &v->buf) == -1 \
+	|| is_link_file(v->filename->d_name))
 	{
 		free(v->path_filename);
 		return (0);

@@ -6,12 +6,13 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 21:33:13 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/20 15:58:24 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:51:50 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 static int			ft_isdigit(int c);
-static long long	get_res(const char *str, long long res, int sign, int *flag);
+static long long	get_res(const char *str, long long res, \
+int sign, int *flag);
 
 long long	ft_atol(const char *str, int *flag)
 {

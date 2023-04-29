@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:30:41 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:54:00 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "builtin.h"
 #include "minishell.h"
 #include "safe_function.h"
-
 
 static int	is_not_subshell(t_admin *hash_map, char ***envp, \
 t_token *token, int is_pipe);
@@ -88,8 +87,9 @@ static char	**make_two_dimensional_array(t_token *token)
 
 static int	count_array_size(t_token *token)
 {
-	int	cnt = 0;
+	int	cnt;
 
+	cnt = 0;
 	while (!is_and_or_pipe_end(token))
 	{
 		if (is_redirection(token))

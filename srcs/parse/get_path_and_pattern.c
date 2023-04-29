@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:24:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:30:55 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:59:20 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 static char	*get_path(char *wild_card_str);
 static void	get_pattern(t_token_list *pattern_list, \
 int path_len, char *wild_card_str);
+static void	init(char **path, int *i, int *add_len, int *path_len);
 
 void	get_path_and_pattern(char *wild_card_str, char **path, \
 char **absolute_path, t_token_list *pattern_list)
@@ -53,10 +54,7 @@ static char	*get_path(char *wild_card_str)
 
 	if (wild_card_str[0] != '/')
 		return (NULL);
-	path = NULL;
-	i = 0;
-	add_len = 0;
-	path_len = 0;
+	init(&path, &i, &add_len, &path_len);
 	while (wild_card_str[i])
 	{
 		if (wild_card_str[i] == '*')
@@ -74,32 +72,40 @@ static char	*get_path(char *wild_card_str)
 	return (path);
 }
 
-static void	get_pattern(t_token_list *pattern_list, \
-int path_len, char *wild_card_str)
+static void	get_pattern(t_token_list *pl, \
+int path_len, char *wc_str)
 {
-	int	start_idx;
-	int	end_idx;
+	int	s_idx;
+	int	e_idx;
 
-	start_idx = path_len;
-	end_idx = start_idx;
+	s_idx = path_len;
+	e_idx = s_idx;
 	while (1)
 	{
-		if (wild_card_str[end_idx] == '/')
+		if (wc_str[e_idx] == '/')
 		{
-			add_token(pattern_list, ft_substr_s(wild_card_str, start_idx, end_idx - start_idx + 1));
-			start_idx = end_idx + 1;
-			if (wild_card_str[end_idx + 1] == '\0')
+			add_token(pl, ft_substr_s(wc_str, s_idx, e_idx - s_idx + 1));
+			s_idx = e_idx + 1;
+			if (wc_str[e_idx + 1] == '\0')
 			{
-				pattern_list->tail->next = NULL;
+				pl->tail->next = NULL;
 				break ;
 			}
 		}
-		else if (wild_card_str[end_idx] == 0)
+		else if (wc_str[e_idx] == 0)
 		{
-			add_token(pattern_list, ft_substr_s(wild_card_str, start_idx, end_idx - start_idx + 1));
-			pattern_list->tail->next = NULL;
+			add_token(pl, ft_substr_s(wc_str, s_idx, e_idx - s_idx + 1));
+			pl->tail->next = NULL;
 			break ;
 		}
-		++end_idx;
+		++e_idx;
 	}
+}
+
+static void	init(char **path, int *i, int *add_len, int *path_len)
+{
+	*path = NULL;
+	*i = 0;
+	*add_len = 0;
+	*path_len = 0;
 }

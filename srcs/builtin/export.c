@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:43:24 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:52:43 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -75,7 +74,7 @@ static void	print_hash_map(t_admin *hash_map)
 	t_node	*cur_node;
 
 	i = -1;
-	while(++i <= 52)
+	while (++i <= 52)
 	{
 		cur_node = hash_map[i].head->next;
 		while (cur_node != hash_map[i].tail)

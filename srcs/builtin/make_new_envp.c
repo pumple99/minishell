@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_new_envp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 22:21:27 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 01:03:48 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:50:44 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static int	get_array_size(t_admin *hash_map)
 
 	i = -1;
 	array_size = 0;
-	while(++i <= 52)
+	while (++i <= 52)
 	{
 		cur_node = hash_map[i].head->next;
 		while (cur_node != hash_map[i].tail)
 		{
-			if (cur_node->asm_opr == 1) // assignment operator가 있으면 배열에 추가하기.
+			if (cur_node->asm_opr == 1)
 				array_size++;
 			cur_node = cur_node->next;
 		}
@@ -57,10 +57,10 @@ static void	fill_array(t_admin *hash_map, char ***envp)
 	int		envp_index;
 	int		hash_map_index;
 	t_node	*cur_node;
-	
+
 	envp_index = -1;
 	hash_map_index = -1;
-	while(++hash_map_index <= 52)
+	while (++hash_map_index <= 52)
 	{
 		cur_node = hash_map[hash_map_index].head->next;
 		while (cur_node != hash_map[hash_map_index].tail)
