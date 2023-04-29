@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:56:31 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 22:20:04 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ static int	is_same_with_limiter(char *limiter, char *line)
 	size_t	len;
 
 	len = ft_strlen(limiter);
-	if (ft_strncmp(limiter, line, len) != 0)
-		return (0);
-	else if (line[len] == '\n')
+	if (ft_strncmp(limiter, line, len + 1) == 0)
 		return (1);
 	return (0);
 }
@@ -94,6 +92,7 @@ static void	read_heredoc(char *filename, char *limiter)
 			break ;
 		}
 		write_s(fd, line, ft_strlen(line));
+		write_s(fd, "\n", 1);
 		free(line);
 	}
 	close_s(fd);
