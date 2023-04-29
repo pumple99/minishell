@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_err.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:34:25 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 16:13:27 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_token *last_token)
 	t_state	state;
 	char	*str;
 
+	if (prev == start)
+		return (0);
 	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
 	|| prev == none)
 		return (fd_printf(2, \

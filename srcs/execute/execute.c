@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:48:43 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 16:14:35 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static t_token	*move_to_and_or_or(t_token *token)
 	int		paren_depth;
 
 	paren_depth = 0;
-	temp = token;
+	temp = token->next;
 	while (temp->type != end)
 	{
 		if (paren_depth == 0 && is_or_and_end(temp))
