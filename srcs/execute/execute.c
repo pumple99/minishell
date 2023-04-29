@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 16:14:35 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/04/29 20:13:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ static t_token	*move_to_and_or_or(t_token *token)
 	int		paren_depth;
 
 	paren_depth = 0;
-	temp = token->next;
+	temp = token;
+	if (temp->type == and || temp->type == or)
+		temp = temp->next;
 	while (temp->type != end)
 	{
 		if (paren_depth == 0 && is_or_and_end(temp))
 			break ;
-		if (token->type == paren_l)
+		if (temp->type == paren_l)
 			++paren_depth;
-		else if (token->type == paren_r)
+		else if (temp->type == paren_r)
 			--paren_depth;
 		temp = temp->next;
 	}
