@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:58:23 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 16:14:09 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_fd_list	execute_redirection(t_token *token)
 		{
 			if (change_fd(temp, &fd_list))
 				return (fd_list);
-			temp = temp->next->next;
+			temp = temp->next;
 		}
 		if (temp->type == paren_l)
 			++paren_depth;

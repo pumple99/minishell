@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
+#    By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/24 20:58:31 by sindong-yeo      ###   ########.fr        #
+#    Updated: 2023/04/29 16:12:38 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRCS_PARSE = $(addprefix parse/, expand.c expand_filename.c expand_filename_util
 SRCS_LIST = $(addprefix list/, list_add_node.c list_create_node.c list_delete_node.c \
 					list_search_node.c list_utils.c)
 
-SRCS := $(addprefix $(SRCS_DIR)/, main.c signal.c utils.c \
+SRCS := $(addprefix $(SRCS_DIR)/, main.c main_conf.c signal.c utils.c \
 			$(SRCS_BUILTIN) $(SRCS_ERR) $(SRCS_EXECUTE) $(SRCS_PARSE) $(SRCS_LIST))
 
 OBJS := $(SRCS:%.c=%.o)
