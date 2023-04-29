@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_subshell.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/26 18:37:41 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:10:01 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,15 @@ char ***envp, int is_pipe)
 	char	**argv;
 	char	*path;
 
-	if (is_pipe)
+	if (is_pipe == 0)
+		pid = fork_s();
+	if (is_pipe || pid == 0)
 	{
 		argv = make_argv(involve_paren_str);
 		path = get_path_to_execute_minishell(hash_map);
 		execve_s(path, argv, *envp);
 	}
-	else
-	{
-		pid = fork_s();
-		if (pid == 0)
-		{
-			argv = make_argv(involve_paren_str);
-			path = get_path_to_execute_minishell(hash_map);
-			execve_s(path, argv, *envp);
-		}
-		return (wait_last_child(hash_map, pid, 1));
-	}
+	return (wait_last_child(hash_map, pid, 1));
 }
 
 static char	**make_argv(char *involve_paren_str)

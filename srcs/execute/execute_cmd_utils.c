@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:21:03 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:59:08 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,4 @@ char	*find_path(char **path_list, char *cmd)
 	}
 	cmd_with_path = ft_strdup_s(cmd);
 	return (cmd_with_path);
-}
-
-char	*remove_outer_paren(char *prev_involve_paren)
-{
-	char	*involve_paren;
-
-	involve_paren = ft_substr_s(prev_involve_paren, 1, ft_strlen(prev_involve_paren) - 2);
-	free(prev_involve_paren);
-	return (involve_paren);
 }

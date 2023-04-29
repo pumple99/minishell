@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_pwd_oldpwd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 00:38:30 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:41:15 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ static int	using_getcwd(t_admin *hash_map, t_node *pwd_node, \
 	add_node(hash_map, pwd);
 	oldpwd = char_join("OLDPWD", prev_path, '=');
 	add_node(hash_map, oldpwd);
+	free(pwd);
+	free(oldpwd);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 21:05:35 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:04:06 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 static int	count_paren(t_token *token);
 static void	make_involve_paren(char **involve_paren, char *new_string);
+static char	*remove_outer_paren(char *prev_involve_paren);
 
 int	is_builtin(char *minimal_cmd)
 {
@@ -91,4 +92,14 @@ static void	make_involve_paren(char **involve_paren_str, char *new_string)
 	prev_involve_paren = *involve_paren_str;
 	*involve_paren_str = char_join(*involve_paren_str, new_string, ' ');
 	free(prev_involve_paren);
+}
+
+static char	*remove_outer_paren(char *prev_involve_paren)
+{
+	char	*involve_paren;
+
+	involve_paren = ft_substr_s(prev_involve_paren, 2, \
+								ft_strlen(prev_involve_paren) - 3);
+	free(prev_involve_paren);
+	return (involve_paren);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/25 17:20:53 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 17:30:41 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,52 @@
 #include "execute.h"
 #include "libft/libft.h"
 #include "builtin.h"
+#include "minishell.h"
 #include "safe_function.h"
 
+
+static int	is_not_subshell(t_admin *hash_map, char ***envp, \
+t_token *token, int is_pipe);
 static char	**make_two_dimensional_array(t_token *token);
 static int	count_array_size(t_token *token);
 
 int	execute_minimal(t_admin *hash_map, char ***envp, t_token *token, \
-int is_pipe)
+					int is_pipe)
 {
 	char		*involve_paren_str;
-	char		**minimal_cmd;
-	int			builtin_num;
 	t_fd_list	fd_list;
+	int			re;
 
 	fd_list = execute_redirection(token);
 	if (fd_list.err)
 		return (close_redirect_fds(fd_list, 1));
 	involve_paren_str = has_paren(token);
 	if (involve_paren_str)
-		return (close_redirect_fds(fd_list, \
-		execute_subshell(hash_map, involve_paren_str, envp, is_pipe)));
-	else
 	{
-		minimal_cmd = make_two_dimensional_array(token);
-		builtin_num = is_builtin(minimal_cmd[0]);
-		if (builtin_num)
-			return (close_redirect_fds(fd_list, \
-			execute_builtin_cmd(hash_map, envp, minimal_cmd, builtin_num)));
-		else
-			return (close_redirect_fds(fd_list, \
-			execute_non_builtin_cmd(hash_map, envp, minimal_cmd, is_pipe)));
+		re = execute_subshell(hash_map, involve_paren_str, envp, is_pipe);
+		free(involve_paren_str);
+		return (close_redirect_fds(fd_list, re));
 	}
+	else
+		return (close_redirect_fds(fd_list, \
+		is_not_subshell(hash_map, envp, token, is_pipe)));
+}
+
+static int	is_not_subshell(t_admin *hash_map, char ***envp, \
+t_token *token, int is_pipe)
+{
+	char	**minimal_cmd;
+	int		builtin_num;
+	int		re;
+
+	minimal_cmd = make_two_dimensional_array(token);
+	builtin_num = is_builtin(minimal_cmd[0]);
+	if (builtin_num)
+		re = execute_builtin_cmd(hash_map, envp, minimal_cmd, builtin_num);
+	else
+		re = execute_non_builtin_cmd(hash_map, envp, minimal_cmd, is_pipe);
+	free_double_pointer(minimal_cmd);
+	return (re);
 }
 
 static char	**make_two_dimensional_array(t_token *token)
