@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:44:19 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/04/29 22:31:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_token *token, int child_total)
 		if (child_count != 1)
 			token = get_next_pipe(token);
 		if (child_count != child_total)
-			pipe_s(fds.left);
+			pipe_s(fds.right);
 		pid = fork_s();
 		if (pid != 0)
 			close_left_and_move(fds.left, fds.right, child_count);
