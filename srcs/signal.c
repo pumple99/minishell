@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 20:06:06 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 13:14:24 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:43:38 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-//#include <signal.h>
 #include "signal.h"
 #include "safe_function.h"
 
@@ -29,19 +28,4 @@ void	sigint(void)
 	rl_replace_line("", 0);
 	rl_redisplay();
 	return ;
-}
-
-void	sigquit(void)
-{
-	rl_on_new_line();
-	rl_redisplay();
-	return ;
-}
-
-void	handler(int signum)
-{
-	if (signum == SIGINT)
-		sigint();
-	else if (signum == SIGQUIT)
-		sigquit();
 }

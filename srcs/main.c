@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 22:23:03 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 21:43:20 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@
 #include "parse.h"
 #include "builtin.h"
 #include "execute.h"
+#include "signal.h"
 #include "minishell.h"
 
-void	func()
-{
-	system("leaks minishell");
-}
+//void	func()
+//{
+//	system("leaks minishell");
+//}
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	atexit(func);
+	//atexit(func);
 	char			*line_read;
 	t_admin			hash_map[55];
 	char			**new_envp;
@@ -36,11 +37,12 @@ int	main(int argc, char *argv[], char *envp[])
 	int				exit_status;
 
 	new_envp = NULL;
-	config();
 	make_hash_map(hash_map, envp, &new_envp);
 	is_exec_subshell(hash_map, argv, &new_envp);
+	config();
 	while (1)
 	{
+		signal(SIGINT, sigint);
 		line_read = readline("minishell> ");
 		if (rl_eof_found)
 		{

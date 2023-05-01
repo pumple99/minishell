@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 15:04:01 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:42:21 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include "parse.h"
 #include "execute.h"
+#include "signal.h"
 #include "safe_function.h"
 
 static void	close_left_and_move(int *l, int *r, int count)
@@ -77,6 +78,7 @@ t_token *token, int child_total)
 		if (child_count != child_total)
 			pipe_s(fds.right);
 		pid = fork_s();
+		signal(SIGINT, SIG_IGN);
 		if (pid != 0)
 			close_left_and_move(fds.left, fds.right, child_count);
 	}
