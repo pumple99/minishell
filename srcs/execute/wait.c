@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 00:00:13 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 20:55:15 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	set_exit_status(int child_status, int *exit_status)
 	if (WIFEXITED(child_status))
 		status = WEXITSTATUS(child_status);
 	else if (WIFSIGNALED(child_status))
-		status = WTERMSIG(child_status);
+		status = WTERMSIG(child_status) + 128;
 	else if (WIFSTOPPED(child_status))
 		status = WSTOPSIG(child_status);
 	*exit_status = status;
