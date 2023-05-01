@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 19:57:11 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:38:45 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	quote_split(t_token_list *tl, t_token *token)
 		if (paren_depth == 0 && (token->type == and || token->type == or))
 			break ;
 		change_paren_depth(&paren_depth, token);
-		if (token->expand == not_expanded && token->type == word \
-		&& is_include_quote(token->string))
+		if (paren_depth == 0 && token->expand == not_expanded && \
+		token->type == word && is_include_quote(token->string))
 		{
 			str = token->string;
 			temp = token->next;

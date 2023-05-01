@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 19:59:32 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:40:03 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ void	expand_param(t_admin *hash_map, t_token_list *tl, t_token *token)
 		if (paren_depth == 0 && (token->type == and || token->type == or))
 			break ;
 		change_paren_depth(&paren_depth, token);
-		if (token->type == word && is_param_expandable(token->string))
+		if (paren_depth == 0 && token->type == word && \
+		is_param_expandable(token->string))
 		{
 			expand_str = get_param_expand_empty(hash_map, token->string);
 			fill_param_expand(hash_map, token->string, expand_str);

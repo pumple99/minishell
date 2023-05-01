@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:12:30 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:45:42 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	join_quote_split(t_token_list *tl, t_token *token)
 		if (paren_depth == 0 && (token->type == and || token->type == or))
 			break ;
 		change_paren_depth(&paren_depth, token);
-		if (token->expand == non_quote || token->expand == quote_word)
+		if (paren_depth == 0 \
+		&& (token->expand == non_quote || token->expand == quote_word))
 		{
 			joined_word = get_empty_str(token);
 			fill_empty_str(token, joined_word);

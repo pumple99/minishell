@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:00:56 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:44:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "libft.h"
 #include "safe_function.h"
 
-static int	is_include_delimiter(char *str)
+static int	need_split(char *str)
 {
 	while (*str)
 	{
@@ -77,8 +77,9 @@ void	expand_word_split(t_token_list *tl, t_token *token)
 		if (paren_depth == 0 && (token->type == and || token->type == or))
 			break ;
 		change_paren_depth(&paren_depth, token);
-		if (token->type == word && token->expand != quote_word \
-		&& token->expand != quote_end && is_include_delimiter(token->string))
+		if (paren_depth == 0 && token->type == word \
+		&& token->expand != quote_word \
+		&& token->expand != quote_end && need_split(token->string))
 		{
 			str = token->string;
 			next = token->next;

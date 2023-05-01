@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 20:10:46 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:44:45 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	expand_filename(t_token_list *tl, t_token *token)
 		change_paren_depth(&paren_depth, token);
 		if (token->type == heredoc)
 			token = token->next->next;
-		else if (token->type == word && is_include_wild_card(token))
+		else if (paren_depth == 0 && token->type == word \
+		&& is_include_wild_card(token))
 			token = do_expand_filename(tl, token);
 		else
 			token = token->next;
