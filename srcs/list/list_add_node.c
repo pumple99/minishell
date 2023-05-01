@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_add_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:45:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:49:47 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:31:23 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,11 @@ static void	adding(t_admin *ap, t_node *np)
 		comp_val = ft_strncmp(np->key, cur_node->key, \
 		get_comp_length(np->key, cur_node->key));
 		if (comp_val == 0)
+		{
+			if (np->asm_opr == 0)
+				return ;
 			return (add_this_loc(cur_node, np));
+		}
 		else if (comp_val < 0)
 			return (ap->node_cnt++, add_front_loc(cur_node, np));
 		else
