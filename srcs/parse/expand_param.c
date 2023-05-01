@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_param.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 20:31:08 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 19:59:32 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,17 @@ static void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
 	}
 }
 
-void	expand_param(t_admin *hash_map, t_token_list *tl)
+void	expand_param(t_admin *hash_map, t_token_list *tl, t_token *token)
 {
-	t_token	*token;
+	int		paren_depth;
 	char	*expand_str;
 
-	token = tl->head;
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && (token->type == and || token->type == or))
+			break ;
+		change_paren_depth(&paren_depth, token);
 		if (token->type == word && is_param_expandable(token->string))
 		{
 			expand_str = get_param_expand_empty(hash_map, token->string);

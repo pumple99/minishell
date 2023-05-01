@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_quote_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:32:11 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 20:12:30 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ static void	fill_empty_str(t_token *first_token, char *empty_str)
 	}
 }
 
-void	join_quote_split(t_token_list *tl)
+void	join_quote_split(t_token_list *tl, t_token *token)
 {
-	t_token	*token;
+	int		paren_depth;
 	char	*joined_word;
 
-	token = tl->head;
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && (token->type == and || token->type == or))
+			break ;
+		change_paren_depth(&paren_depth, token);
 		if (token->expand == non_quote || token->expand == quote_word)
 		{
 			joined_word = get_empty_str(token);

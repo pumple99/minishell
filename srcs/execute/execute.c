@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 20:13:12 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:51:39 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,23 @@ int	execute(t_token_list *tl, t_admin *hash_map, char ***envp)
 	int		stdio_fds[2];
 
 	token = tl->head;
-	if (token->type != end)
+	if (token->type == end)
+		return (0);
+	save_stdio(stdio_fds);
+	execute_heredoc(tl);
+	exit_status = execute_pipe(hash_map, envp, token);
+	restore_stdio(stdio_fds);
+	while (token->type != end)
 	{
-		save_stdio(stdio_fds);
-		execute_heredoc(tl);
-		exit_status = execute_pipe(hash_map, envp, token);
-		restore_stdio(stdio_fds);
-		while (token->type != end)
+		token = move_to_and_or_or(token);
+		if ((exit_status == 0 && token->type == and) \
+		|| (exit_status != 0 && token->type == or))
 		{
-			token = move_to_and_or_or(token);
-			if ((exit_status == 0 && token->type == and) \
-			|| (exit_status != 0 && token->type == or))
-			{
-				token = token->next;
-				exit_status = execute_pipe(hash_map, envp, token);
-				restore_stdio(stdio_fds);
-			}
+			token = token->next;
+			expand_until_or_and_end(hash_map, tl, token);
+			exit_status = execute_pipe(hash_map, envp, token);
+			restore_stdio(stdio_fds);
 		}
-		close_dup_stdio(stdio_fds);
 	}
-	return (free_unlink_tl(tl), exit_status);
+	return (close_dup_stdio(stdio_fds), free_unlink_tl(tl), exit_status);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:24:51 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 20:11:39 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 #include "libft.h"
 #include "list.h"
 
-static void	quote_removal(t_token_list *tl)
+static void	quote_removal(t_token_list *tl, t_token *token)
 {
-	t_token	*token;
+	int		paren_depth;
 	char	*str;
 
-	token = tl->head;
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && (token->type == and || token->type == or))
+			break ;
+		change_paren_depth(&paren_depth, token);
 		if (token->expand == quote_word || token->expand == quote_end)
 		{
 			str = token->string;
@@ -63,12 +66,23 @@ int	is_param_expandable(char *str)
 	return (0);
 }
 
-void	expand_token_list(t_admin *hash_map, t_token_list *tl)
+void	change_paren_depth(int *paren_depth, t_token *token)
 {
-	quote_split(tl);
-	expand_param(hash_map, tl);
-	expand_word_split(tl);
-	expand_filename(tl);
-	quote_removal(tl);
-	join_quote_split(tl);
+	if (token->type == paren_l)
+		++(*paren_depth);
+	else if (token->type == paren_r)
+		--(*paren_depth);
+}
+
+void	expand_until_or_and_end(t_admin *hash_map, \
+t_token_list *tl, t_token *token)
+{
+	if (token == 0)
+		token = tl->head;
+	quote_split(tl, token);
+	expand_param(hash_map, tl, token);
+	expand_word_split(tl, token);
+	expand_filename(tl, token);
+	quote_removal(tl, token);
+	join_quote_split(tl, token);
 }

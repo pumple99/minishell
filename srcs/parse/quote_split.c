@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_split.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:32:52 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 19:57:11 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,18 @@ static void	quote_split_word(t_token_list *tl, t_token *first_token, char *str)
 		temp_token->expand = non_quote_end;
 }
 
-void	quote_split(t_token_list *tl)
+void	quote_split(t_token_list *tl, t_token *token)
 {
-	t_token	*token;
+	int		paren_depth;
 	t_token	*temp;
 	char	*str;
 
-	token = tl->head;
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && (token->type == and || token->type == or))
+			break ;
+		change_paren_depth(&paren_depth, token);
 		if (token->expand == not_expanded && token->type == word \
 		&& is_include_quote(token->string))
 		{
