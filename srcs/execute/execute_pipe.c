@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 22:31:12 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:04:01 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static t_token	*get_next_pipe(t_token *token)
 			return (token->next);
 		token = token->next;
 	}
+	return ((t_token *)1);
 }
 
 static void	fd_change(int child_count, t_fds *fds)
