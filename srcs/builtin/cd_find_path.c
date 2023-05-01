@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_find_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:07:53 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/24 17:31:20 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:04:51 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	is_movable(char *arg)
 	file_exist = access(arg, F_OK);
 	if (file_exist == -1)
 	{
-		write_s(2, "bash: cd: ", 11);
+		write_s(2, "minishell: cd: ", 11);
 		write_s(2, arg, ft_strlen(arg));
 		write_s(2, ": No such file or directory\n", 29);
 		return (0);
@@ -86,7 +86,7 @@ static int	is_movable(char *arg)
 	file_permission = access(arg, X_OK);
 	if (file_permission == -1)
 	{
-		write_s(2, "bash: cd: ", 11);
+		write_s(2, "minishell: cd: ", 11);
 		write_s(2, arg, ft_strlen(arg));
 		write_s(2, ": Permission denied\n", 21);
 		return (0);

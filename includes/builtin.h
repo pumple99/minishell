@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:51:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:52:43 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:12:37 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int			builtin_env(char ***envp);
 int			builtin_export(t_admin *hash_map, char ***envp, char **export_args);
 int			builtin_unset(t_admin *hash_map, char ***envp, char **args);
-int			builtin_exit(char **args);
+int			builtin_exit(t_admin *hash_map, char **args);
 int			builtin_cd(t_admin *hash_map, char ***envp, char **args);
 int			builtin_pwd(t_admin *hash_map);
 int			builtin_echo(char **args);
