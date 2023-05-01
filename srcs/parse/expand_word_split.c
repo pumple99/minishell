@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 15:44:14 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:00:56 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,18 @@ t_token *first_token, char *str)
 	delete_certain_token(tl, first_token);
 }
 
-void	expand_word_split(t_token_list *tl)
+void	expand_word_split(t_token_list *tl, t_token *token)
 {
-	t_token	*token;
+	int		paren_depth;
 	t_token	*next;
 	char	*str;
 
-	token = tl->head;
+	paren_depth = 0;
 	while (token->type != end)
 	{
+		if (paren_depth == 0 && (token->type == and || token->type == or))
+			break ;
+		change_paren_depth(&paren_depth, token);
 		if (token->type == word && token->expand != quote_word \
 		&& token->expand != quote_end && is_include_delimiter(token->string))
 		{

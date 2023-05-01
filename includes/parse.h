@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 21:10:50 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 19:56:27 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,24 +142,27 @@ t_token_type type);
 int				is_syntax_err(t_token_list token_list);
 
 //join_quote_split.c
-void			join_quote_split(t_token_list *tl);
+void			join_quote_split(t_token_list *tl, t_token *token);
 
 //quote_split.c
-void			quote_split(t_token_list *tl);
+void			quote_split(t_token_list *tl, t_token *token);
 
 //expand.c
 int				is_include_quote(char *str);
 int				is_param_expandable(char *str);
-void			expand_token_list(t_admin *hash_map, t_token_list *tl);
+void			expand_until_or_and_end(t_admin *hash_map, \
+t_token_list *tl, t_token *token);
+void			change_paren_depth(int *paren_depth, t_token *token);
 
 //expand_param.c
-void			expand_param(t_admin *hash_map, t_token_list *tl);
+void			expand_param(t_admin *hash_map, t_token_list *tl, \
+t_token *token);
 
 //expand_word_split.c
-void			expand_word_split(t_token_list *tl);
+void			expand_word_split(t_token_list *tl, t_token *token);
 
 //expand_filename.c
-void			expand_filename(t_token_list *tl);
+void			expand_filename(t_token_list *tl, t_token *token);
 void			get_path_and_pattern(char *wild_card_str, char **path, \
 char **absolute_path, t_token_list *pattern_list);
 
