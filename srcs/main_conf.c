@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:46:32 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/04/26 22:20:03 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 21:43:28 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include "execute.h"
 #include "minishell.h"
 
-void	handler(int signum);
-
 void	config(void)
 {
 	struct termios	attr;
@@ -28,8 +26,8 @@ void	config(void)
 	tcgetattr(0, &attr);
 	attr.c_lflag &= ~ECHOCTL;
 	tcsetattr(0, TCSANOW, &attr);
-	signal(SIGINT, handler);
-	signal(SIGQUIT, handler);
+	signal(SIGINT, sigint);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	delete_hash_map(t_admin *hash_map)
