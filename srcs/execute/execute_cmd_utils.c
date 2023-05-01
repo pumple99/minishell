@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 16:59:08 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:51:19 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	is_executable(char *cmd_with_path)
 {
 	if (access(cmd_with_path, F_OK) == -1 || ft_strchr(cmd_with_path, '/') == 0)
 	{
-		write_s(2, "bash: ", 7);
+		write_s(2, "minishell: ", 12);
 		write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
 		write_s(2, ": Command not found\n", 21);
 		exit(127);
 	}
 	if (access(cmd_with_path, X_OK) == -1)
 	{
-		write_s(2, "bash: ", 7);
+		write_s(2, "minishell: ", 12);
 		write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
 		write_s(2, ": Permission denied\n", 21);
 		exit(1);
