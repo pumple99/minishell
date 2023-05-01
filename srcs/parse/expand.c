@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:11:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/01 20:45:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static void	quote_removal(t_token_list *tl, t_token *token)
 		if (paren_depth == 0 && (token->type == and || token->type == or))
 			break ;
 		change_paren_depth(&paren_depth, token);
-		if (token->expand == quote_word || token->expand == quote_end)
+		if (paren_depth == 0 \
+		&& (token->expand == quote_word || token->expand == quote_end))
 		{
 			str = token->string;
 			while (*(str++))
