@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 20:31:08 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 17:35:24 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 		}
 		else
 			++len;
-		++str;
+		if (*str)
+			++str;
 	}
 	empty_str = (char *)malloc_s(len + 1);
 	empty_str[len] = 0;
