@@ -72,7 +72,8 @@ static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 		}
 		else
 			++len;
-		++str;
+		if (*str)
+			++str;
 	}
 	empty_str = (char *)malloc_s(len + 1);
 	empty_str[len] = 0;
@@ -102,7 +103,8 @@ static void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
 		}
 		else
 			expand[len++] = *str;
-		++str;
+		if (*str)
+			++str;
 	}
 }
 
