@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:52:43 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/01 15:05:55 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	inspect_arg(char *arg, int *return_val)
 
 static int	is_error(char *arg, int *return_val)
 {
-	printf("bash: export: %s: not a valid identifier\n", arg);
+	printf("minishell: export: %s: not a valid identifier\n", arg);
 	*return_val = 1;
 	return (-1);
 }

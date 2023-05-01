@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:51:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 18:38:32 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 15:05:59 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	make_hash_map(t_admin *hash_map, char *envp[], char ***new_envp)
 static void	init_hash_map(t_admin *hash_map)
 {
 	int	i;
-	
+
 	i = -1;
 	while (++i <= 54)
 	{
