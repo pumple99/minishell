@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_word_split.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:23:49 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 15:44:14 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_token *first_token, char *str)
 void	expand_word_split(t_token_list *tl)
 {
 	t_token	*token;
+	t_token	*next;
 	char	*str;
 
 	token = tl->head;
@@ -77,8 +78,11 @@ void	expand_word_split(t_token_list *tl)
 		&& token->expand != quote_end && is_include_delimiter(token->string))
 		{
 			str = token->string;
+			next = token->next;
 			word_split_one_word(tl, token, str);
+			token = next;
 		}
-		token = token->next;
+		else
+			token = token->next;
 	}
 }
