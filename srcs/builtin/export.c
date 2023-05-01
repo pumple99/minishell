@@ -6,12 +6,13 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:15:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 15:05:55 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/01 15:50:15 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "safe_function.h"
 #include "minishell.h"
 #include "builtin.h"
 #include "libft.h"
@@ -63,7 +64,9 @@ static int	inspect_arg(char *arg, int *return_val)
 
 static int	is_error(char *arg, int *return_val)
 {
-	printf("minishell: export: %s: not a valid identifier\n", arg);
+	write_s(2, "minishell: export: ", 20);
+	write_s(2, arg, ft_strlen(arg));
+	write_s(2, ": not a valid identifier\n", 26);
 	*return_val = 1;
 	return (-1);
 }
@@ -79,11 +82,15 @@ static void	print_hash_map(t_admin *hash_map)
 		cur_node = hash_map[i].head->next;
 		while (cur_node != hash_map[i].tail)
 		{
-			printf("%s", cur_node->key);
+			write_s(1, cur_node->key, ft_strlen(cur_node->key));
 			if (cur_node->value != 0)
-				printf("=\"%s\"\n", cur_node->value);
+			{
+				write_s(1, "=\"", 3);
+				write_s(1, cur_node->value, ft_strlen(cur_node->value));
+				write_s(1, "\"\n", 3);
+			}
 			else
-				printf("\n");
+				write_s(1, "\n", 2);
 			cur_node = cur_node->next;
 		}
 	}
