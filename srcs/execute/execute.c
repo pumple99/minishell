@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 17:51:39 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:04:25 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static t_token	*move_to_and_or_or(t_token *token)
 	t_token	*temp;
 	int		paren_depth;
 
-	paren_depth = 0;
 	temp = token;
+	paren_depth = 0;
 	if (temp->type == and || temp->type == or)
 		temp = temp->next;
 	while (temp->type != end)
@@ -69,19 +69,21 @@ int	execute(t_token_list *tl, t_admin *hash_map, char ***envp)
 
 	token = tl->head;
 	if (token->type == end)
-		return (0);
-	save_stdio(stdio_fds);
+		return (free(token), 0);
 	execute_heredoc(tl);
-	exit_status = execute_pipe(hash_map, envp, token);
+	save_stdio(stdio_fds);
+	expand_until_or_and_end(hash_map, tl, 0);
+	exit_status = execute_pipe(hash_map, envp, tl->head);
 	restore_stdio(stdio_fds);
+	token = tl->head;//need
 	while (token->type != end)
 	{
 		token = move_to_and_or_or(token);
 		if ((exit_status == 0 && token->type == and) \
 		|| (exit_status != 0 && token->type == or))
 		{
-			token = token->next;
 			expand_until_or_and_end(hash_map, tl, token);
+			token = token->next;
 			exit_status = execute_pipe(hash_map, envp, token);
 			restore_stdio(stdio_fds);
 		}
