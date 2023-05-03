@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:34:39 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 23:45:26 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 19:41:09 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	unlink_s(char *path)
 {
 	int	re;
 
+	if (access(path, F_OK) != 0)
+		return (0);
 	re = unlink(path);
 	if (re == -1)
 		perror("minishell: unlink failed");
