@@ -6,14 +6,14 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:36:36 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 19:36:38 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 20:08:44 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
 //prev state is inside, outside, op_paren, or op_end
-static t_state	prev_general(t_state prev_state, char *str)
+static t_state	prev_general(char *str)
 {
 	t_state	new;
 	char	c;
@@ -81,7 +81,7 @@ t_state	get_tokenize_state(t_state prev_state, char *str)
 	else if (prev_state.num_s == op_may_change)
 		return (prev_is_op_may_change(prev_state, str));
 	else
-		return (prev_general(prev_state, str));
+		return (prev_general(str));
 }
 
 t_state	init_state(void)

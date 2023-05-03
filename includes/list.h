@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 16:51:38 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/23 16:58:02 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:36:00 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ typedef struct s_admin
 	int		node_cnt;
 }						t_admin;
 
-// key값
-// 대입 연산자 존재 시 기본적으로 ""로 세팅됨.
-// 대입연산자의 유무.
 struct	s_node
 {
 	t_node	*prev;

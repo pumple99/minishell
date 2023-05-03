@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 16:19:11 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 20:02:07 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	execute_non_builtin_cmd(t_admin *hash_map, char ***envp, \
 	char	*cmd_with_path;
 	pid_t	pid;
 
+	pid = 0;
 	signal(SIGINT, SIG_IGN);
 	if (is_pipe == 0)
 		pid = fork_s();

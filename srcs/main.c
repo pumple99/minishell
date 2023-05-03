@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 19:48:19 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 20:06:05 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@
 
 static int	prompt_exec(t_admin *hash_map, char ***new_envp);
 
-//void	func()
-//{
-//	system("leaks minishell");
-//}
-//atexit(func);
+void	func()
+{
+	system("leaks minishell");
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
+	atexit(func);
 	t_admin	hash_map[55];
 	char	**new_envp;
 
 	new_envp = NULL;
 	make_hash_map(hash_map, envp, &new_envp);
-	is_exec_subshell(hash_map, argv, &new_envp);
+	if (argc >= 2)
+		is_exec_subshell(hash_map, argv, &new_envp);
 	config();
 	return (prompt_exec(hash_map, &new_envp));
 }
@@ -58,7 +60,7 @@ static int	prompt_exec(t_admin *hash_map, char ***new_envp)
 		}
 		if (*line_read)
 		{
-			tl = parse_line(hash_map, line_read);
+			tl = parse_line(line_read);
 			execute(&tl, hash_map, new_envp);
 		}
 		if (line_read && *line_read)

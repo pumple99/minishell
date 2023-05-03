@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+         #
+#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/05/03 17:09:35 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/05/03 19:55:42 by sindong-yeo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := minishell
 CC := cc
-CFLAGS := #-Werror -Wall -Wextra
+CFLAGS := -Werror -Wall -Wextra
 LDFLAGS := -lreadline -L/opt/homebrew/opt/readline/lib
-DEBUG_FLAGS := -g -fsanitize=address
+DEBUG_FLAGS := -g #-fsanitize=address
 LIB := libft.a
 LIB_DIR := libft
 SRCS_DIR := srcs

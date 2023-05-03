@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 15:47:35 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 20:03:17 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char ***envp, int is_pipe)
 	char	**argv;
 	char	*path;
 
+	pid = 0;
 	if (is_pipe == 0)
 		pid = fork_s();
 	if (is_pipe || pid == 0)
