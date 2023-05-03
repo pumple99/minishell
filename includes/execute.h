@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 16:43:24 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 17:03:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,13 @@ char		*find_path(char **path_list, char *cmd);
 int			execute_subshell(t_admin *hash_map, char *involve_paren_str, \
 char ***envp, int is_pipe);
 
-//execute_minishell.c
+//execute_heredoc.c
 int			execute_heredoc(t_admin *hash_map, t_token_list *tl);
+
+//execute_heredoc_utils.c
+char		*get_quote_removal_limiter(char *unremoved);
+void		write_in_file(t_admin *hash_map, \
+int fd, char *line, int have_to_expand);
 
 //wait.c
 int			wait_last_child(t_admin *hash_map, pid_t last_child_pid, \

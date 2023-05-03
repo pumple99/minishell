@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 16:46:00 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 17:06:58 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ static int	is_same_with_limiter(char *limiter, char *line)
 static int	read_heredoc(t_admin *hash_map, char *filename, char *limiter)
 {
 	int		fd;
+	int		have_to_expand;
 	char	*line;
 	pid_t	pid;
 
@@ -86,6 +87,8 @@ static int	read_heredoc(t_admin *hash_map, char *filename, char *limiter)
 	pid = fork_s();
 	if (pid == 0)
 	{
+		have_to_expand = !is_include_quote(limiter);
+		limiter = get_quote_removal_limiter(limiter);
 		signal(SIGINT, SIG_DFL);
 		fd = open_s(filename, O_WRONLY | O_CREAT | O_TRUNC);
 		if (fd == -1)
@@ -95,8 +98,7 @@ static int	read_heredoc(t_admin *hash_map, char *filename, char *limiter)
 			line = readline("> ");
 			if (line == 0 || is_same_with_limiter(limiter, line))
 				exit (0);
-			write_s(fd, line, ft_strlen(line));
-			write_s(fd, "\n", 1);
+			write_in_file(hash_map, fd, line, have_to_expand);
 			free(line);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 19:56:27 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:47:20 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ void			change_paren_depth(int *paren_depth, t_token *token);
 //expand_param.c
 void			expand_param(t_admin *hash_map, t_token_list *tl, \
 t_token *token);
+char			*get_param_expand_empty(t_admin *hash_map, char *str);
+void			fill_param_expand(t_admin *hash_map, char *str, char *expand);
 
 //expand_word_split.c
 void			expand_word_split(t_token_list *tl, t_token *token);

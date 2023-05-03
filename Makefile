@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
+#    By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/05/03 16:43:26 by sindong-yeo      ###   ########.fr        #
+#    Updated: 2023/05/03 17:09:35 by seunghoy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,9 @@ SRCS_ERR = $(addprefix err_handle/, err_exit.c use_dir_safe.c use_fd_safe.c \
 					use_file_safe.c use_heap_safe.c use_process_safe.c \
 					use_write_getcwd_safe.c use_libft_safe.c)
 SRCS_EXECUTE = $(addprefix execute/, execute.c execute_cmd.c execute_cmd_utils.c \
-					execute_heredoc.c execute_minimal.c execute_minimal_utils.c \
-					execute_pipe.c execute_redirection.c execute_subshell.c execute_utils.c \
-					wait.c set_questionmark.c)
+					execute_heredoc.c execute_heredoc_utils.c execute_minimal.c \
+					execute_minimal_utils.c execute_pipe.c execute_redirection.c \
+					execute_subshell.c execute_utils.c wait.c set_questionmark.c)
 SRCS_PARSE = $(addprefix parse/, expand.c expand_filename.c expand_filename_utils.c \
 					expand_param.c expand_word_split.c get_path_and_pattern.c \
 					get_wild_card_str.c is_match.c join_quote_split.c parse_line.c \

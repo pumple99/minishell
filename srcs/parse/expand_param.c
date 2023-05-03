@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:40:03 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:47:00 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*get_param_value(t_admin *hash_map, char **p_str)
 	return (0);
 }
 
-static char	*get_param_expand_empty(t_admin *hash_map, char *str)
+char	*get_param_expand_empty(t_admin *hash_map, char *str)
 {
 	size_t	len;
 	char	*empty_str;
@@ -80,7 +80,7 @@ static char	*get_param_expand_empty(t_admin *hash_map, char *str)
 	return (empty_str);
 }
 
-static void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
+void	fill_param_expand(t_admin *hash_map, char *str, char *expand)
 {
 	size_t	len;
 	char	*param_value;
