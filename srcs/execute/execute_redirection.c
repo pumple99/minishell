@@ -6,11 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 16:14:09 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 21:08:40 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include <fcntl.h>
 #include "parse.h"
 #include "execute.h"
@@ -97,12 +98,15 @@ t_fd_list	execute_redirection(t_token *token)
 int	close_redirect_fds(t_fd_list fd_list, int re)
 {
 	t_fd_node	*node;
+	t_fd_node	*temp;
 
 	node = fd_list.first_node;
 	while (node)
 	{
-		close_s(node->fd);
+		temp = node;
 		node = node->next;
+		close_s(temp->fd);
+		free(temp);
 	}
 	return (re);
 }
