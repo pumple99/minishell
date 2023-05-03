@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/02 17:04:25 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:37:54 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,12 @@ int	execute(t_token_list *tl, t_admin *hash_map, char ***envp)
 	token = tl->head;
 	if (token->type == end)
 		return (free(token), 0);
-	execute_heredoc(tl);
+	if (execute_heredoc(hash_map, tl))
+	{
+		set_questionmark(hash_map, 1);
+		free_unlink_tl(tl);
+		return (1);
+	}
 	save_stdio(stdio_fds);
 	expand_until_or_and_end(hash_map, tl, 0);
 	exit_status = execute_pipe(hash_map, envp, tl->head);

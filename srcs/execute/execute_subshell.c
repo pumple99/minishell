@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:53:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 21:21:44 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 15:47:35 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ char ***envp, int is_pipe)
 		pid = fork_s();
 	if (is_pipe || pid == 0)
 	{
-		//test
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
-		//test
 		argv = make_argv(involve_paren_str);
 		path = get_path_to_execute_minishell(hash_map);
 		execve_s(path, argv, *envp);
