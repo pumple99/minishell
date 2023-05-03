@@ -6,18 +6,35 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:46:32 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/05/01 21:43:28 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/02 21:08:48 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
 #include <termios.h>
+#include <readline/readline.h>
 #include "list.h"
 #include "parse.h"
 #include "signal.h"
 #include "execute.h"
 #include "minishell.h"
+#include "safe_function.h"
+
+
+// rl_on_new_line(); 해당 라인의 커서를 맨 앞으로 옮겨주는 함수.
+// 	rl_replace_line("", 0); rl_line_buffer을 첫번째 인자로 바꿔주는 함수
+// 	rl_redisplay(); prompt를 포함해서 rl_line_buffer을 출력해주는 함수.
+
+void	sigint(int signum)
+{
+	write_s(1, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	return ;
+}
 
 void	config(void)
 {
@@ -28,49 +45,4 @@ void	config(void)
 	tcsetattr(0, TCSANOW, &attr);
 	signal(SIGINT, sigint);
 	signal(SIGQUIT, SIG_IGN);
-}
-
-void	delete_hash_map(t_admin *hash_map)
-{
-	int		i;
-	t_node	*cur_node;
-	t_node	*del_node;
-
-	i = -1;
-	while (++i <= 54)
-	{
-		cur_node = hash_map[i].head->next;
-		while (cur_node != hash_map[i].tail)
-		{
-			del_node = cur_node;
-			cur_node = cur_node->next;
-			if (del_node)
-			{
-				if (del_node->key)
-					free(del_node->key);
-				if (del_node->value)
-					free(del_node->value);
-				free(del_node);
-			}
-		}
-		free(hash_map[i].head);
-		free(hash_map[i].tail);
-		hash_map[i].node_cnt = 0;
-	}
-}
-
-void	delete_new_envp(char ***new_envp_ptr)
-{
-	free_double_pointer(*new_envp_ptr);
-	*new_envp_ptr = NULL;
-}
-
-void	is_exec_subshell(t_admin *hash_map, char *argv[], char ***envp)
-{
-	t_token_list	tl;
-
-	if (argv[1] == NULL)
-		return ;
-	tl = parse_line(hash_map, argv[1]);
-	exit(execute(&tl, hash_map, envp));
 }
