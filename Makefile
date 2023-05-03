@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+         #
+#    By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/04/29 16:12:38 by seunghoy         ###   ########.fr        #
+#    Updated: 2023/05/03 16:43:26 by sindong-yeo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME := minishell
 CC := cc
 CFLAGS := #-Werror -Wall -Wextra
 LDFLAGS := -lreadline -L/opt/homebrew/opt/readline/lib
-DEBUG_FLAGS := -g
+DEBUG_FLAGS := -g -fsanitize=address
 LIB := libft.a
 LIB_DIR := libft
 SRCS_DIR := srcs
@@ -29,7 +29,7 @@ SRCS_ERR = $(addprefix err_handle/, err_exit.c use_dir_safe.c use_fd_safe.c \
 SRCS_EXECUTE = $(addprefix execute/, execute.c execute_cmd.c execute_cmd_utils.c \
 					execute_heredoc.c execute_minimal.c execute_minimal_utils.c \
 					execute_pipe.c execute_redirection.c execute_subshell.c execute_utils.c \
-					wait.c)
+					wait.c set_questionmark.c)
 SRCS_PARSE = $(addprefix parse/, expand.c expand_filename.c expand_filename_utils.c \
 					expand_param.c expand_word_split.c get_path_and_pattern.c \
 					get_wild_card_str.c is_match.c join_quote_split.c parse_line.c \
@@ -39,7 +39,7 @@ SRCS_PARSE = $(addprefix parse/, expand.c expand_filename.c expand_filename_util
 SRCS_LIST = $(addprefix list/, list_add_node.c list_create_node.c list_delete_node.c \
 					list_search_node.c list_utils.c)
 
-SRCS := $(addprefix $(SRCS_DIR)/, main.c main_conf.c signal.c utils.c \
+SRCS := $(addprefix $(SRCS_DIR)/, main.c main_conf.c main_utils.c utils.c \
 			$(SRCS_BUILTIN) $(SRCS_ERR) $(SRCS_EXECUTE) $(SRCS_PARSE) $(SRCS_LIST))
 
 OBJS := $(SRCS:%.c=%.o)
