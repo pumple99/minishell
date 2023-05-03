@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_delete_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:26:46 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:49:10 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/02 20:22:57 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	delete_node(t_admin *hash_map, char *key, int *re_build_flag)
 
 	find_flag = 0;
 	index = get_index(key);
+	if (index == -1)
+		return ;
 	del_node = search_node(hash_map, key);
 	if (del_node == NULL)
 		return ;

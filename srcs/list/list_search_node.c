@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:20:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 19:39:47 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/02 20:24:10 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_node	*search_node(t_admin *hash_map, char *key)
 	t_node	*cur_node;
 
 	index = get_index(key);
+	if (index == -1)
+		return (NULL);
 	cur_node = hash_map[index].head->next;
 	while (cur_node != hash_map[index].tail)
 	{

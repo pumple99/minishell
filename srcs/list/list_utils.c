@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:35:22 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:49:02 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/03 11:27:58 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,22 @@
 
 int	get_index(char *str)
 {
-	char	region;
+	char	f_word;
 	int		index;
 
-	region = str[0] - 'A';
-	if (0 <= region && region <= 26)
-		index = region;
-	else if (region == 31)
+	f_word = str[0];
+	if (65 <= f_word && f_word <= 90)
+		index = f_word - 'A';
+	else if (97 <= f_word && f_word <= 122)
+		index = f_word - 'a' + 26;
+	else if (f_word == '_')
 		index = 52;
-	else if (region == -2)
+	else if (f_word == '?')
 		index = 53;
-	else if (region == -32)
+	else if (f_word == '!')
 		index = 54;
 	else
-		index = str[0] - 'a' + 26;
+		return (-1);
 	return (index);
+
 }
