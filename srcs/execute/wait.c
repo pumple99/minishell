@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:55:15 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 16:44:34 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
+#include "execute.h"
 #include "minishell.h"
 
-static void	set_exit_status(int child_status, int *exit_status);
-static void	set_questionmark(t_admin *hash_map, int exit_status);
+static int	set_exit_status(int child_status);
 
 int	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 {
@@ -31,14 +31,14 @@ int	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 		pid_num = wait(&child_status);
 		if (pid_num == last_child_pid)
 		{
-			set_exit_status(child_status, &exit_status);
+			exit_status = set_exit_status(child_status);
 			set_questionmark(hash_map, exit_status);
 		}
 	}
 	return (exit_status);
 }
 
-static void	set_exit_status(int child_status, int *exit_status)
+static int	set_exit_status(int child_status)
 {
 	int	status;
 
@@ -49,18 +49,5 @@ static void	set_exit_status(int child_status, int *exit_status)
 		status = WTERMSIG(child_status) + 128;
 	else if (WIFSTOPPED(child_status))
 		status = WSTOPSIG(child_status);
-	*exit_status = status;
-}
-
-static void	set_questionmark(t_admin *hash_map, int exit_status)
-{
-	char	*exit_status_char;
-	char	*prev_exit_status_char;
-
-	exit_status_char = ft_itoa(exit_status);
-	prev_exit_status_char = exit_status_char;
-	exit_status_char = char_join("?", exit_status_char, '=');
-	add_node(hash_map, exit_status_char);
-	free(exit_status_char);
-	free(prev_exit_status_char);
+	return (status);
 }
