@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/02 21:07:52 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 16:37:25 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int argc, char *argv[], char *envp[])
 			delete_hash_map(hash_map);
 			delete_new_envp(&new_envp);
 			free(line_read);
-			return (0);
+			return (1);
 		}
 		if (*line_read)
 		{
