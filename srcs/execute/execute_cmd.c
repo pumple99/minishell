@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 21:41:51 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 11:28:20 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	execute_non_builtin_cmd(t_admin *hash_map, char ***envp, \
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (ft_strlen(minimal_cmd[0]) == 0)
-			exit(0);
+			is_executable(cmd_with_path);
 		path_list = get_path_list_from_env_path(hash_map);
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);
