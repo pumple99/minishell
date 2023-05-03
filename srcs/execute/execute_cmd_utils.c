@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 20:51:19 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:28:48 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include "execute.h"
 #include "minishell.h"
 #include "safe_function.h"
+
+static void	is_directory(char *cmd_with_path);
 
 char	**get_path_list_from_env_path(t_admin *hash_map)
 {
@@ -30,6 +32,7 @@ char	**get_path_list_from_env_path(t_admin *hash_map)
 
 void	is_executable(char *cmd_with_path)
 {
+	is_directory(cmd_with_path);
 	if (access(cmd_with_path, F_OK) == -1 || ft_strchr(cmd_with_path, '/') == 0)
 	{
 		write_s(2, "minishell: ", 12);
@@ -43,6 +46,22 @@ void	is_executable(char *cmd_with_path)
 		write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
 		write_s(2, ": Permission denied\n", 21);
 		exit(1);
+	}
+}
+
+static void	is_directory(char *cmd_with_path)
+{
+	struct stat	buf;
+
+	if (access(cmd_with_path, F_OK) == 0 && stat(cmd_with_path, &buf) != -1)
+	{
+		if (S_ISDIR(buf.st_mode))
+		{
+			write_s(2, "minishell: ", 12);
+			write_s(2, cmd_with_path, ft_strlen(cmd_with_path));
+			write_s(2, ": is a directory\n", 18);
+			exit(126);
+		}
 	}
 }
 
