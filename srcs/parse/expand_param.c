@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 16:47:00 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:17:43 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*get_param_value(t_admin *hash_map, char **p_str)
 	t_node	*node;
 
 	if (**p_str == '?')
-		return (*p_str += 1, search_node(hash_map, "?")->value);
+		return (search_node(hash_map, "?")->value);
 	search_str = get_search_str(p_str);
 	node = search_node(hash_map, search_str);
 	free(search_str);
@@ -126,7 +126,12 @@ void	expand_param(t_admin *hash_map, t_token_list *tl, t_token *token)
 			fill_param_expand(hash_map, token->string, expand_str);
 			free(token->string);
 			token->string = expand_str;
+			if (ft_strlen(expand_str) == 0 && token->expand == not_expanded)
+				token = delete_certain_token(tl, token);
 		}
-		token = token->next;
+		if (token == 0)
+			token = tl->head;
+		else
+			token = token->next;
 	}
 }
