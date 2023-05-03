@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join_quote_split.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:55:54 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:45:42 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:04:37 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	fill_empty_str(t_token *first_token, char *empty_str)
 	}
 }
 
-void	join_quote_split(t_token_list *tl, t_token *token)
+void	join_quote_split(t_token *token)
 {
 	int		paren_depth;
 	char	*joined_word;

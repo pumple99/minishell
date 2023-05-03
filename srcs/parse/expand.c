@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:08:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/02 16:56:53 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:04:49 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include "list.h"
 
-static void	quote_removal(t_token_list *tl, t_token *token)
+static void	quote_removal(t_token *token)
 {
 	int		paren_depth;
 	char	*str;
@@ -84,14 +84,14 @@ t_token_list *tl, t_token *token)
 		expand_param(hash_map, tl, tl->head);
 		expand_word_split(tl, tl->head);
 		expand_filename(tl, tl->head);
-		quote_removal(tl, tl->head);
-		join_quote_split(tl, tl->head);
+		quote_removal(tl->head);
+		join_quote_split(tl->head);
 		return ;
 	}
 	quote_split(tl, token->next);
 	expand_param(hash_map, tl, token->next);
 	expand_word_split(tl, token->next);
 	expand_filename(tl, token->next);
-	quote_removal(tl, token->next);
-	join_quote_split(tl, token->next);
+	quote_removal(token->next);
+	join_quote_split(token->next);
 }

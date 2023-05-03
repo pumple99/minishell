@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 15:24:08 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:04:06 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:03:05 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char	*has_paren(t_token *token)
 
 static int	count_paren(t_token *token)
 {
-	int	cnt;
 	int	paren_depth;
 
 	paren_depth = 0;

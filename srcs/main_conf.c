@@ -6,7 +6,7 @@
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 21:46:32 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/05/03 19:42:42 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/03 20:11:48 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@
 // 	rl_redisplay(); prompt를 포함해서 rl_line_buffer을 출력해주는 함수.
 void	sigint(int signum)
 {
+	if (signum != SIGINT)
+		return ;
 	write_s(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-	return ;
 }
 
 void	config(void)
