@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 11:28:20 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:30:38 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include <signal.h>
 #include "execute.h"
 #include "builtin.h"
-#include "signal.h"
 #include "libft.h"
 #include "safe_function.h"
 
@@ -44,6 +42,7 @@ int	execute_non_builtin_cmd(t_admin *hash_map, char ***envp, \
 	char	*cmd_with_path;
 	pid_t	pid;
 
+	pid = 0;
 	signal(SIGINT, SIG_IGN);
 	if (is_pipe == 0)
 		pid = fork_s();
@@ -52,7 +51,7 @@ int	execute_non_builtin_cmd(t_admin *hash_map, char ***envp, \
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		if (ft_strlen(minimal_cmd[0]) == 0)
-			is_executable(cmd_with_path);
+			is_executable(minimal_cmd[0]);
 		path_list = get_path_list_from_env_path(hash_map);
 		cmd_with_path = get_path(path_list, minimal_cmd[0]);
 		is_executable(cmd_with_path);

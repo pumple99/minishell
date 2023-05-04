@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_pwd_oldpwd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:41:15 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:56:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
 #include "minishell.h"
-#include "safe_function.h"
 
 static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
 t_node **oldpwd_node);
 static void	changing_oldpwd(t_admin *hash_map, t_node *pwd_node);
 static void	changing_pwd(t_admin *hash_map, t_node *pwd_node, \
 						char *path_to_move);
-static int	using_getcwd(t_admin *hash_map, t_node *pwd_node, \
-						t_node *oldpwd_node, char *prev_path);
+static int	using_getcwd(t_admin *hash_map, char *prev_path);
 
 void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_path)
 {
@@ -34,7 +33,7 @@ void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_path)
 	if (*last_char == '/')
 		*last_char = '\0';
 	get_pwd_oldpwd_node(hash_map, &pwd_node, &oldpwd_node);
-	if (using_getcwd(hash_map, pwd_node, oldpwd_node, prev_path))
+	if (using_getcwd(hash_map, prev_path))
 		return ;
 	if (oldpwd_node != NULL)
 		changing_oldpwd(hash_map, pwd_node);
@@ -42,8 +41,7 @@ void	changing_env(t_admin *hash_map, char *path_to_move, char *prev_path)
 		changing_pwd(hash_map, pwd_node, path_to_move);
 }
 
-static int	using_getcwd(t_admin *hash_map, t_node *pwd_node, \
-						t_node *oldpwd_node, char *prev_path)
+static int	using_getcwd(t_admin *hash_map, char *prev_path)
 {
 	char	*prev_pwd;
 	char	*pwd;

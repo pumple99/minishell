@@ -10,13 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "list.h"
-#include "libft.h"
-#include "minishell.h"
-
-static void	set_exit_status(int child_status, int *exit_status);
+#include "execute.h"
 
 void	set_questionmark(t_admin *hash_map, int exit_status)
 {
@@ -43,14 +39,14 @@ int	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 		pid_num = wait(&child_status);
 		if (pid_num == last_child_pid)
 		{
-			set_exit_status(child_status, &exit_status);
+			exit_status = set_exit_status(child_status);
 			set_questionmark(hash_map, exit_status);
 		}
 	}
 	return (exit_status);
 }
 
-static void	set_exit_status(int child_status, int *exit_status)
+static int	set_exit_status(int child_status)
 {
 	int	status;
 
@@ -61,5 +57,5 @@ static void	set_exit_status(int child_status, int *exit_status)
 		status = WTERMSIG(child_status) + 128;
 	else if (WIFSTOPPED(child_status))
 		status = WSTOPSIG(child_status);
-	*exit_status = status;
+	return (status);
 }

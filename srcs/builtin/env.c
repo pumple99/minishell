@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 20:23:40 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 00:36:21 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 16:02:47 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "safe_function.h"
+#include "libft.h"
 
 int	builtin_env(char ***envp)
 {
@@ -19,7 +20,8 @@ int	builtin_env(char ***envp)
 	i = 0;
 	while ((*envp)[i])
 	{
-		printf("%s\n", (*envp)[i]);
+		write_s(1, (*envp)[i], ft_strlen((*envp)[i]));
+		write_s(1, "\n", 1);
 		i++;
 	}
 	return (0);

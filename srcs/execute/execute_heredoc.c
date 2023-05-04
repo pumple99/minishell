@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 22:20:04 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:35:41 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <readline/readline.h>
-#include <readline/history.h>
 #include "parse.h"
 #include "libft.h"
+#include "execute.h"
 #include "safe_function.h"
 
 #define HEREDOC_BASENAME ".heredoc_temp_file_"
@@ -48,8 +48,8 @@ static void	fill_file_num_str(char *file_num_str, unsigned int file_num)
 static char	*get_heredoc_filename(void)
 {
 	static unsigned int	heredoc_file_num;
-	char	file_num_str[11];
-	char	*joined_filename;
+	char				file_num_str[11];
+	char				*joined_filename;
 
 	while (1)
 	{
@@ -75,33 +75,40 @@ static int	is_same_with_limiter(char *limiter, char *line)
 	return (0);
 }
 
-static void	read_heredoc(char *filename, char *limiter)
+static int	read_heredoc(t_admin *hash_map, char *filename, char *limiter)
 {
 	int		fd;
+	int		have_to_expand;
 	char	*line;
+	pid_t	pid;
 
-	fd = open_s(filename, O_WRONLY | O_CREAT | O_TRUNC);
-	if (fd == -1)
-		return ;
-	while (1)
+	signal(SIGINT, SIG_IGN);
+	pid = fork_s();
+	if (pid == 0)
 	{
-		line = readline("> ");
-		if (line == 0 || is_same_with_limiter(limiter, line))
+		have_to_expand = !is_include_quote(limiter);
+		limiter = get_quote_removal_limiter(limiter);
+		signal(SIGINT, SIG_DFL);
+		fd = open_s(filename, O_WRONLY | O_CREAT | O_TRUNC);
+		if (fd == -1)
+			exit (1);
+		while (1)
 		{
+			line = readline("> ");
+			if (line == 0 || is_same_with_limiter(limiter, line))
+				exit (0);
+			write_in_file(hash_map, fd, line, have_to_expand);
 			free(line);
-			break ;
 		}
-		write_s(fd, line, ft_strlen(line));
-		write_s(fd, "\n", 1);
-		free(line);
 	}
-	close_s(fd);
+	return (wait_last_child(hash_map, pid, 1));
 }
 
-void	execute_heredoc(t_token_list *tl)
+int	execute_heredoc(t_admin *hash_map, t_token_list *tl)
 {
 	t_token	*token;
 	char	*heredoc_filename;
+	int		heredoc_stat;
 
 	token = tl->head;
 	while (token->type != end)
@@ -109,7 +116,8 @@ void	execute_heredoc(t_token_list *tl)
 		if (token->type == heredoc)
 		{
 			heredoc_filename = get_heredoc_filename();
-			read_heredoc(heredoc_filename, token->next->string);
+			heredoc_stat = read_heredoc(hash_map, \
+					heredoc_filename, token->next->string);
 			free(token->string);
 			token->string = (char *)malloc_s(2);
 			(token->string)[0] = '<';
@@ -117,7 +125,10 @@ void	execute_heredoc(t_token_list *tl)
 			token = token->next;
 			free(token->string);
 			token->string = heredoc_filename;
+			if (heredoc_stat != 0)
+				return (1);
 		}
 		token = token->next;
-	}	
+	}
+	return (0);
 }

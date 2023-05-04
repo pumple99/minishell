@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 20:00:58 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/02 17:04:25 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:46:17 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,13 @@ int	execute(t_token_list *tl, t_admin *hash_map, char ***envp)
 	int		exit_status;
 	int		stdio_fds[2];
 
-	token = tl->head;
-	if (token->type == end)
-		return (free(token), 0);
-	execute_heredoc(tl);
+	if (execute_heredoc(hash_map, tl))
+		return (set_questionmark(hash_map, 1), free_unlink_tl(tl), 1);
 	save_stdio(stdio_fds);
 	expand_until_or_and_end(hash_map, tl, 0);
 	exit_status = execute_pipe(hash_map, envp, tl->head);
 	restore_stdio(stdio_fds);
-	token = tl->head;//need
+	token = tl->head;
 	while (token->type != end)
 	{
 		token = move_to_and_or_or(token);

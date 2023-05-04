@@ -6,13 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:44:12 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:41:26 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "parse.h"
-#include "libft.h"
 #include "safe_function.h"
 
 static int	need_split(char *str)

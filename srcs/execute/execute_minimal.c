@@ -12,9 +12,6 @@
 
 #include <stdlib.h>
 #include "execute.h"
-#include "libft/libft.h"
-#include "builtin.h"
-#include "execute.h"
 #include "minishell.h"
 #include "safe_function.h"
 

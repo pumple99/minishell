@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/16 21:24:27 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 21:42:21 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:40:53 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <stdlib.h>
 #include "parse.h"
 #include "execute.h"
-#include "signal.h"
 #include "safe_function.h"
 
 static void	close_left_and_move(int *l, int *r, int count)
@@ -98,6 +97,8 @@ int	execute_pipe(t_admin *hash_map, char ***envp, t_token *token)
 	int		paren_depth;
 	t_token	*temp;
 
+	if (token->type == end)
+		return (0);
 	paren_depth = 0;
 	temp = token;
 	child_count = 1;

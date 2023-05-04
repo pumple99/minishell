@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 19:56:27 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:05:59 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_recur
 }				t_recur;
 
 //parse_line.c
-t_token_list	parse_line(t_admin *hash_map, char *line);
+t_token_list	parse_line(char *line);
 
 //tl_basic_func.c
 t_token			*new_token(char *token_str);
@@ -142,7 +142,7 @@ t_token_type type);
 int				is_syntax_err(t_token_list token_list);
 
 //join_quote_split.c
-void			join_quote_split(t_token_list *tl, t_token *token);
+void			join_quote_split(t_token *token);
 
 //quote_split.c
 void			quote_split(t_token_list *tl, t_token *token);
@@ -157,6 +157,8 @@ void			change_paren_depth(int *paren_depth, t_token *token);
 //expand_param.c
 void			expand_param(t_admin *hash_map, t_token_list *tl, \
 t_token *token);
+char			*get_param_expand_empty(t_admin *hash_map, char *str);
+void			fill_param_expand(t_admin *hash_map, char *str, char *expand);
 
 //expand_word_split.c
 void			expand_word_split(t_token_list *tl, t_token *token);

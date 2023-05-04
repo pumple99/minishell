@@ -6,13 +6,12 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 20:44:45 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:38:46 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parse.h"
-#include "libft.h"
 
 static t_token	*get_wild_card_expand_list(t_token *token);
 static void		change_last_expand_type(t_token *list);

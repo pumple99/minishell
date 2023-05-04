@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_delete_node.c                                 :+:      :+:    :+:   */
+/*   set_questionmark.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 17:26:46 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 20:09:01 by sindong-yeo      ###   ########.fr       */
+/*   Created: 2023/05/03 16:41:59 by sindong-yeo       #+#    #+#             */
+/*   Updated: 2023/05/03 16:42:42 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "minishell.h"
 #include "list.h"
+#include "libft.h"
 
-void	delete_node(t_admin *hash_map, char *key, int *re_build_flag)
+void	set_questionmark(t_admin *hash_map, int exit_status)
 {
-	int		index;
-	t_node	*del_node;
+	char	*exit_status_char;
+	char	*prev_exit_status_char;
 
-	index = get_index(key);
-	if (index == -1)
-		return ;
-	del_node = search_node(hash_map, key);
-	if (del_node == NULL)
-		return ;
-	else
-	{
-		*re_build_flag = 1;
-		hash_map[index].node_cnt--;
-		del_node->prev->next = del_node->next;
-		del_node->next->prev = del_node->prev;
-		free(del_node->key);
-		free(del_node->value);
-	}
+	exit_status_char = ft_itoa(exit_status);
+	prev_exit_status_char = exit_status_char;
+	exit_status_char = char_join("?", exit_status_char, '=');
+	add_node(hash_map, exit_status_char);
+	free(exit_status_char);
+	free(prev_exit_status_char);
 }

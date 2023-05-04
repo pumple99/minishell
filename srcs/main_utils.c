@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:03:45 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/05/02 21:07:30 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 14:33:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "parse.h"
 #include "execute.h"
 #include "minishell.h"
 
@@ -54,8 +53,6 @@ void	is_exec_subshell(t_admin *hash_map, char *argv[], char ***envp)
 {
 	t_token_list	tl;
 
-	if (argv[1] == NULL)
-		return ;
-	tl = parse_line(hash_map, argv[1]);
+	tl = parse_line(argv[1]);
 	exit(execute(&tl, hash_map, envp));
 }
