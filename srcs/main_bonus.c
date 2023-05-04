@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 16:43:56 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:18:18 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <signal.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include "builtin.h"
-#include "execute.h"
-#include "minishell.h"
+#include "builtin_bonus.h"
+#include "execute_bonus.h"
+#include "minishell_bonus.h"
 
 static int	prompt_exec(t_admin *hash_map, char ***new_envp);
 
