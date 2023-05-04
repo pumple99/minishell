@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:04:48 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:58:55 by sindong-yeo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_token *token, int is_pipe)
 	int		re;
 
 	minimal_cmd = make_two_dimensional_array(token);
+	if (minimal_cmd[0] == NULL)
+		return (0);
 	builtin_num = is_builtin(minimal_cmd[0]);
 	if (builtin_num)
 	{
