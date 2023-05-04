@@ -6,7 +6,7 @@
 #    By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 15:20:31 by seunghoy          #+#    #+#              #
-#    Updated: 2023/05/04 17:32:33 by dongyshi         ###   ########.fr        #
+#    Updated: 2023/05/04 20:26:06 by dongyshi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,7 @@ NAME := minishell
 BONUS := minishell_bonus
 CC := cc
 CFLAGS := -Werror -Wall -Wextra
-LDFLAGS := -lreadline -L/Users/dongyshi/.brew/opt/readline/lib
-DEBUG_FLAGS := -g
+DEBUG_FLAGS := -g -fsanitize=address
 LIB := libft.a
 LIB_DIR := libft
 SRCS_DIR := srcs
@@ -104,4 +103,4 @@ re :
 	make fclean
 	make all
 
-.PHONY : clean fclean re
+.PHONY : clean fclean re all bonus

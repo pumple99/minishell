@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 17:18:18 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 21:12:19 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 #include <signal.h>
 #include <readline/history.h>
 #include <readline/readline.h>
+#include "libft.h"
 #include "builtin_bonus.h"
 #include "execute_bonus.h"
+#include "safe_function_bonus.h"
 #include "minishell_bonus.h"
 
 static int	prompt_exec(t_admin *hash_map, char ***new_envp);
+static void	meet_eof(t_admin *hash_map);
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -44,12 +47,7 @@ static int	prompt_exec(t_admin *hash_map, char ***new_envp)
 		signal(SIGINT, sigint);
 		line_read = readline("minishell> ");
 		if (rl_eof_found)
-		{
-			delete_hash_map(hash_map);
-			delete_new_envp(new_envp);
-			free(line_read);
-			return (1);
-		}
+			meet_eof(hash_map);
 		if (*line_read)
 		{
 			tl = parse_line(line_read);
@@ -61,4 +59,15 @@ static int	prompt_exec(t_admin *hash_map, char ***new_envp)
 			free(line_read);
 	}
 	return (0);
+}
+
+static void	meet_eof(t_admin *hash_map)
+{
+	char	**args;
+
+	args = (char **)malloc_s(sizeof(char *) * 3);
+	args[0] = "exit";
+	args[1] = ft_strdup(search_node(hash_map, "?")->value);
+	args[2] = NULL;
+	builtin_exit(hash_map, args);
 }

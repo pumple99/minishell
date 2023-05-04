@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_write_getcwd_safe.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:07:20 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:45:47 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 21:13:16 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

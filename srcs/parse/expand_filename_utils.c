@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 20:44:04 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/25 13:02:06 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 21:17:02 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
