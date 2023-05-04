@@ -6,14 +6,12 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 22:21:27 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:50:44 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:36 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "list.h"
-#include "libft.h"
 #include "minishell.h"
 #include "safe_function.h"
 

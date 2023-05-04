@@ -6,7 +6,7 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 14:30:48 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:15:51 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int fd, char *line, int have_to_expand);
 //wait.c
 int			wait_last_child(t_admin *hash_map, pid_t last_child_pid, \
 int child_cnt);
+void		set_questionmark(t_admin *hash_map, int exit_status);
+
 
 //set_questionmark.c
 void		set_questionmark(t_admin *hash_map, int exit_status);

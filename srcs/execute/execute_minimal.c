@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_minimal.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 15:38:48 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:20:43 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ t_token *token, int is_pipe)
 	minimal_cmd = make_two_dimensional_array(token);
 	builtin_num = is_builtin(minimal_cmd[0]);
 	if (builtin_num)
+	{
 		re = execute_builtin_cmd(hash_map, envp, minimal_cmd, builtin_num);
+		set_questionmark(hash_map, re);
+	}
 	else
 		re = execute_non_builtin_cmd(hash_map, envp, minimal_cmd, is_pipe);
 	free_double_pointer(minimal_cmd);

@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:27:13 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/23 23:44:02 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 16:32:01 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "list.h"
 #include "builtin.h"
-#include "minishell.h"
 
 int	builtin_unset(t_admin *hash_map, char ***envp, char **args)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 15:49:19 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:23:57 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 #include "list.h"
 #include "execute.h"
 
-static int	set_exit_status(int child_status);
+void	set_questionmark(t_admin *hash_map, int exit_status)
+{
+	char	*exit_status_char;
+	char	*prev_exit_status_char;
+
+	exit_status_char = ft_itoa(exit_status);
+	prev_exit_status_char = exit_status_char;
+	exit_status_char = char_join("?", exit_status_char, '=');
+	add_node(hash_map, exit_status_char);
+	free(exit_status_char);
+	free(prev_exit_status_char);
+}
 
 int	wait_last_child(t_admin *hash_map, pid_t last_child_pid, int child_cnt)
 {

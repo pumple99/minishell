@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:43:41 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 00:21:49 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:58:58 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 #include "list.h"
-#include "minishell.h"
 #include "libft.h"
 #include "safe_function.h"
 
