@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:00:40 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:15:51 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ char ***envp, int is_pipe);
 //wait_last_child.c
 int			wait_last_child(t_admin *hash_map, pid_t last_child_pid, \
 int child_cnt);
+void		set_questionmark(t_admin *hash_map, int exit_status);
+
 
 //execute_minishell.c
 void		execute_heredoc(t_token_list *tl);

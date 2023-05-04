@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   make_hash_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 20:51:01 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 15:05:59 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 16:00:41 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
 #include "builtin.h"
