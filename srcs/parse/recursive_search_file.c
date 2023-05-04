@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:46:53 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:51:16 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <sys/types.h>
+// #include <sys/types.h> do we need?
 #include <sys/stat.h>
 #include <dirent.h> 
 #include "libft.h"

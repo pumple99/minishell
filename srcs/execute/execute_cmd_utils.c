@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:40:49 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 20:28:48 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:21:50 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

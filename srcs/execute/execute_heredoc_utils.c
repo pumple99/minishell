@@ -6,13 +6,11 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:04:31 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 17:08:24 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:32:25 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 #include "parse.h"
 #include "libft.h"
 #include "safe_function.h"

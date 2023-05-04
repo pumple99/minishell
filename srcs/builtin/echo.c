@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/01 19:23:13 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 16:00:10 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-#include "list.h"
 #include "libft.h"
 #include "safe_function.h"
 

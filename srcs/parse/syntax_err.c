@@ -6,17 +6,19 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 20:36:25 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/29 16:13:27 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:10:47 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "pf_printf.h"
+#include "safe_function.h"
+#include "libft.h"
 
 static int	genral_syntax_err(t_token *token)
 {
-	fd_printf(2, "minishell: syntax error near unexpected token `%s'\n" \
-	, token->string);
+	write_s(2, "minishell: syntax error near unexpected token `", 47);
+	write_s(2, token->string, ft_strlen(token->string));
+	write_s(2, "'\n", 2);
 	return (1);
 }
 
@@ -31,8 +33,8 @@ t_token *last_token)
 		return (0);
 	if (paren_depth != 0 || prev == a_bracket || prev == done_a_bracket \
 	|| prev == none)
-		return (fd_printf(2, \
-		"minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
+		return (write_s(2, \
+		"minishell: syntax error near unexpected token `readline'\n", 57), 1);
 	if (last_token->type == word)
 	{
 		str = last_token->string;
@@ -40,8 +42,8 @@ t_token *last_token)
 		while (*str)
 			state = get_tokenize_state(state, str++);
 		if (state.num_s == quote)
-			return (fd_printf(2, \
-		"minishell: syntax error near unexpected token `%s'\n", "readline"), 1);
+			return (write_s(2, \
+		"minishell: syntax error near unexpected token `readline'\n", 57), 1);
 	}
 	return (0);
 }

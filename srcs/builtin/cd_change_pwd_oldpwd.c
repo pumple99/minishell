@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   cd_change_pwd_oldpwd.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 20:53:30 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 19:59:11 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:56:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdlib.h>
 #include "list.h"
 #include "libft.h"
 #include "minishell.h"
-#include "safe_function.h"
 
 static void	get_pwd_oldpwd_node(t_admin *hash_map, t_node **pwd_node, \
 t_node **oldpwd_node);

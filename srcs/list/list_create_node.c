@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   list_create_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:58:56 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/29 17:49:32 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:17:12 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "list.h"
 #include "libft.h"
 #include "safe_function.h"

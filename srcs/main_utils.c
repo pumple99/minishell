@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 21:03:45 by sindong-yeo       #+#    #+#             */
-/*   Updated: 2023/05/03 20:09:18 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 14:33:24 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "parse.h"
 #include "execute.h"
 #include "minishell.h"
 

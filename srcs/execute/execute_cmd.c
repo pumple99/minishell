@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:56:19 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 20:02:07 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:30:38 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include <signal.h>
 #include "execute.h"
 #include "builtin.h"
-#include "signal.h"
 #include "libft.h"
 #include "safe_function.h"
 

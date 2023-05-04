@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   get_wild_card_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:28:19 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/04/24 17:31:07 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:44:53 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "parse.h"
 #include "libft.h"
 #include "safe_function.h"

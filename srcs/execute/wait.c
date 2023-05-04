@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:19:45 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 16:44:34 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:49:19 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include "list.h"
-#include "libft.h"
 #include "execute.h"
-#include "minishell.h"
 
 static int	set_exit_status(int child_status);
 
