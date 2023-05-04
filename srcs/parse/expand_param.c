@@ -6,14 +6,13 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:21:33 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 19:17:43 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:39:07 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parse.h"
 #include "libft.h"
-#include "list.h"
 #include "safe_function.h"
 
 static char	*get_search_str(char **p_str)

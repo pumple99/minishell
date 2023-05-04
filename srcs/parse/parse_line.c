@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:08:15 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/03 20:05:51 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 14:45:42 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
-#include "list.h"
 
 t_token_list	parse_line(char *line)
 {

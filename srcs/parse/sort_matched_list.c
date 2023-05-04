@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   sort_matched_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:56:26 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/04/26 17:43:36 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 14:57:13 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 #include "parse.h"
 

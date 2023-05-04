@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 20:01:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 20:06:05 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 14:31:28 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <signal.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include "list.h"
-#include "parse.h"
 #include "builtin.h"
 #include "execute.h"
 #include "minishell.h"

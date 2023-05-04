@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   list_search_node.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sindong-yeob <sindong-yeob@student.42.f    +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:20:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/02 20:24:10 by sindong-yeo      ###   ########.fr       */
+/*   Updated: 2023/05/04 15:17:59 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "list.h"
 #include "libft.h"
 

@@ -6,14 +6,13 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/03 17:03:15 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:30:48 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTE_H
 # define EXECUTE_H
 
-# include "list.h"
 # include "parse.h"
 
 typedef struct s_fds

@@ -6,11 +6,10 @@
 /*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 20:41:56 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/01 20:38:45 by seunghoy         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:46:29 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "parse.h"
 #include "safe_function.h"
 
