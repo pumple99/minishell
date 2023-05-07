@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recursive_search_file_bonus.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 17:23:14 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:16:40 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:44:11 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char *path, char *absolute_path)
 		add_string = ft_substr_s(path, abs_len + 1, 30000);
 		add_token(matched_list_ptr, add_string);
 	}
-	matched_list_ptr->tail->expand = wild_card;
+	matched_list_ptr->tail->ambi = ambiguous;
 }
 
 static int	get_file_name(DIR *dir_ptr, struct dirent **filename)
