@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   use_fd_safe_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 17:14:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:07 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 23:11:15 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include "safe_function_bonus.h"
+#include "libft.h"
 
 int	dup_s(int fd)
 {
@@ -54,6 +55,11 @@ int	open_s(char *path, int o_flag)
 	else
 		re = open(path, o_flag, 0644);
 	if (re == -1)
-		perror("minishell: open failed");
+	{
+		write_s(2, "minishell: ", 12);
+		write_s(2, path, ft_strlen(path));
+		write_s(2, ": ", 2);
+		perror("");
+	}
 	return (re);
 }
