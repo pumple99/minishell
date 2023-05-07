@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_filename.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 15:48:34 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:17:03 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:42:49 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	change_last_expand_type(t_token *list)
 	curr = list;
 	while (curr->next)
 		curr = curr->next;
-	curr->expand = wild_card_end;
+	curr->ambi = last_ambi;
 }
 
 static t_token	*get_wild_card_expand_list(t_token *token)

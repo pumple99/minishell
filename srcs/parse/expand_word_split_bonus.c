@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_word_split_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:31:57 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:58 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:41:45 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,10 @@ t_token *first_token, char *str)
 		temp = get_word_split_str(&str);
 		temp_token = insert_token_to_next(temp_token, temp);
 		temp_token->expand = non_quote_end;
+		temp_token->ambi = ambiguous;
 	}
 	temp_token->expand = first_token->expand;
+	temp_token->ambi = last_ambi;
 	delete_certain_token(tl, first_token);
 }
 

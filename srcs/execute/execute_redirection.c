@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_redirection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:36:09 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:30 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:46:38 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	is_ambiguous(t_token *redirect_token)
 {
 	if (redirect_token->type == heredoc)
 		return (0);
-	if (redirect_token->next->expand == wild_card)
+	if (redirect_token->next->ambi == ambiguous)
 	{
 		write_s(2, "minishell: ambiguous redirect\n", 30);
 		return (1);
