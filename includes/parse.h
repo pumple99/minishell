@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:11:43 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 21:16:57 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:25:04 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,22 @@ typedef enum e_expand_type
 	quote_end,
 	non_quote,
 	non_quote_end,
-	not_expanded,
-	wild_card,
-	wild_card_end = 24
+	not_expanded = 22
 }	t_expand_type;
+
+typedef enum e_ambi_type
+{
+	not_ambi = 23,
+	ambiguous,
+	last_ambi = 25
+}	t_ambi_type;
 
 typedef struct s_token
 {
 	char			*string;
 	t_token_type	type;
 	t_expand_type	expand;
+	t_ambi_type		ambi;
 	struct s_token	*next;
 }	t_token;
 
@@ -76,13 +82,13 @@ typedef struct s_token_list
 
 typedef enum e_syntax_s
 {
-	start = 25,
+	start = 26,
 	none,
 	exist,
 	a_bracket,
 	done,
 	done_a_bracket,
-	error = 31
+	error = 32
 }	t_syntax_s;
 
 typedef struct s_match
