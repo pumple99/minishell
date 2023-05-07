@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tl_basic_func_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 20:13:05 by seunghoy          #+#    #+#             */
-/*   Updated: 2023/05/04 21:16:33 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:31:42 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_token	*new_token(char *token_str)
 	new->type = get_token_type(token_str);
 	new->next = 0;
 	new->expand = not_expanded;
+	new->ambi = not_ambi;
 	return (new);
 }
 

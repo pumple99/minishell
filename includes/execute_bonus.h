@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 18:57:12 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:16:52 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/07 22:26:52 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ typedef struct s_fds
 
 typedef enum e_builtin_num
 {
-	cd = 32,
+	cd = 33,
 	echo,
 	env,
 	__exit,
 	export,
 	pwd,
-	unset = 38
+	unset = 39
 }			t_builtin_num;
 
 typedef struct s_fd_node
