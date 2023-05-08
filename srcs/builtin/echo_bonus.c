@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 21:57:10 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:12:40 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:13:15 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static int	check_option(char **args, int *option_flag)
 				if (args[i][j] != 'n')
 					return (i);
 			}
+			if (j == 1)
+				return (i);
 		}
 		else
 			break ;

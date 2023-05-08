@@ -6,7 +6,7 @@
 /*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:58:16 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:25 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:13:45 by dongyshi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_token *token, int is_pipe)
 	int		re;
 
 	minimal_cmd = make_two_dimensional_array(token);
+	if (minimal_cmd[0] == NULL)
+		return (0);
 	builtin_num = is_builtin(minimal_cmd[0]);
 	if (builtin_num)
 	{
