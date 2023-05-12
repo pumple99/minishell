@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_search_node_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:20:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:46 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:28:16 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_node	*search_node(t_admin *hash_map, char *key)
 	cur_node = hash_map[index].head->next;
 	while (cur_node != hash_map[index].tail)
 	{
-		if (ft_strncmp(cur_node->key, key, ft_strlen(key)) == 0)
+		if (ft_strncmp(cur_node->key, key, ft_strlen(key) + 1) == 0)
 			return (cur_node);
 		cur_node = cur_node->next;
 	}
