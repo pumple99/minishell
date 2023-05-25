@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_delete_node_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:26:46 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:44 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:50:43 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ void	delete_node(t_admin *hash_map, char *key, int *re_build_flag)
 		del_node->next->prev = del_node->prev;
 		free(del_node->key);
 		free(del_node->value);
+		free(del_node);
 	}
 }

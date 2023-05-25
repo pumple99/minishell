@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_add_node.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dongyshi <dongyshi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seunghoy <seunghoy@student.42.kr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:45:52 by dongyshi          #+#    #+#             */
-/*   Updated: 2023/05/04 21:13:42 by dongyshi         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:48:45 by seunghoy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ static void	adding(t_admin *ap, t_node *np)
 		if (comp_val == 0)
 		{
 			if (np->asm_opr == 0)
+			{
+				free(np->key);
+				free(np);
 				return ;
+			}
 			return (add_this_loc(cur_node, np));
 		}
 		else if (comp_val < 0)
